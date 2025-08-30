@@ -1,122 +1,106 @@
+// import 'lib_brok_a/main.dart' as brok_a;
+// import 'lib_beno_app/main.dart' as beno_app;
+// import 'lib_mtn_digital_ap_p/main.dart' as mtn_digital;
+import 'lib_medica_l_ap_p/main.dart' as medical_app;
+
 import 'package:flutter/material.dart';
+// import 'package:food/lib_brok_a/screens/ai_chat_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+// import 'lib_tikto_k/main.dart' as tikto_k;
+// import 'lib_famil_y/main.dart' as famil_y;
+// import 'lib_tod_o_app/main.dart' as tod_o_app;
+// import 'lib_profil_e/main.dart' as profil_e;
+// import 'lib_chatap_p/main.dart' as chatap_p;
+// import 'lib_insta_app/main.dart' as insta_app;
+// import 'lib_flemo_ap_p/main.dart' as flemo_ap_p;
+// import 'lib_nouva_neon_ap_p/main.dart' as nouva_neon_ap_p;
+// import 'lib_nouva_neon_ap_p_2/main.dart'jubilee_ins_app as nouva_neon_ap_p_2;
+// import 'lib_nouva_neon_ap_p_3/main.dart' as nouva_neon_ap_p_3;
+// import 'lib_benevolent_app/main.dart' as benevolent_app;
+
+// void main() {
+//   brok_a.main();
+//   // tikto_k.main();
+//   // famil_y.main();
+//   // tod_o_app.main();
+//   // profil_e.main();
+//   // chatap_p.main();
+//   // insta_app.main();
+//   // flemo_ap_p.main();
+//   // nouva_neon_ap_p.main();
+//   // nouva_neon_ap_p_2.main();
+//   // nouva_neon_ap_p_3.main();
+//   // benevolent_app.main();
+// }
+
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // try {
+  //   await dotenv.load(fileName: ".env");
+  //   print("API Key: ${dotenv.env['OPENAI_API_KEY']}"); // ✅ Test output
+  //   print("API Key: ${dotenv.env['OPENAI_API_KEY']}"); // ✅ Test output
+  // } catch (e) {
+  //   print("Could not load .env file: $e");
+  // }
+  // brok_a.main();
+  // beno_app.main();
+  // mtn_digital.main();
+  medical_app.main();
+  // runApp(AIChatScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// import 'package:flutter/material.dart';
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+// void main() {
+//   runApp(MyApp());
+// }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(primarySwatch: Colors.blue),
+//       home: MyHomePage(),
+//     );
+//   }
+// }
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+// class MyHomePage extends StatefulWidget {
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+// class _MyHomePageState extends State<MyHomePage> {
+//   int _counter = 0;
 
-  final String title;
+//   void _incrementCounter() {
+//     setState(() {
+//       _counter++;
+//     });
+//   }
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text('Simple Counter App')),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Text('You have pushed the button this many times:'),
+//             Text(
+//               '$_counter',
+//               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+//             ),
+//           ],
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: _incrementCounter,
+//         tooltip: 'Increment',
+//         child: Icon(Icons.add),
+//       ),
+//     );
+//   }
+// }
