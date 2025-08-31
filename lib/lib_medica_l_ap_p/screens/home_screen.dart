@@ -213,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             SelectionCard(
-                              minHeight: 150, // example minHeight if you want
+                              minHeight: 200, // example minHeight if you want
                               icon: Icons.person_outline,
                               title: "Me",
                               isSelected:
@@ -227,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(width: 16),
                             SelectionCard(
-                              minHeight: 150, // example minHeight if you want
+                              minHeight: 200, // example minHeight if you want
                               icon: Icons.group_outlined,
                               title: "Me & Spouse",
                               isSelected:
@@ -242,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(width: 16),
                             SelectionCard(
-                              minHeight: 150, // example minHeight if you want
+                              minHeight: 200, // example minHeight if you want
                               icon: Icons.family_restroom_outlined,
                               title: "My Family",
                               isSelected:
