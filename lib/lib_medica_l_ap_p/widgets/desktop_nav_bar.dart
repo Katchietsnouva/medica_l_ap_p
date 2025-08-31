@@ -1,15 +1,18 @@
 // components/footer_header/desktop_nav_bar.dart
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/models/navigation_item.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/hoverable_menu_button.dart';
-import 'package:medica_l_ap_p/lib_beno_app/models/navigation_item.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/navigation_data.dart';
-import 'package:medica_l_ap_p/models/royal_project_model.dart';
+// import 'package:broka/lib_medica_l_ap_p/models/navigation_item.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/hoverable_menu_button.dart';
+import 'package:broka/lib_medica_l_ap_p/data/models/navigation_item.dart';
+import 'package:broka/lib_medica_l_ap_p/data/navigation_data.dart';
+import 'package:broka/lib_medica_l_ap_p/models/royal_project_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/settings_dialog.dart';
+
 // import '../../data/navigation_data.dart';
 // lib/lib_Royal_app/models/navigation_item.dart
 // import '../../models/Royal_project_model.dart';
-import '../../widgets/settings_dialog.dart';
+// import '../../widgets/settings_dialog.dart';
 
 class DesktopNavBar extends StatelessWidget {
   final VoidCallback onScrollToRegister;

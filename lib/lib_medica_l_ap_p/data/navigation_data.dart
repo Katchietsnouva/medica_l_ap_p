@@ -1,7 +1,7 @@
 // data/navigation_data.dart
 // import '../models/navigation_item.dart';
 
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/models/navigation_item.dart';
+import 'package:broka/lib_medica_l_ap_p/data/models/navigation_item.dart';
 
 final List<NavigationItem> navigationItems = [
   const NavigationItem(id: "0", title: "Home", url: "/"),

@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     # old_string = old_string_
     new_string = 'medica_l_ap_p'
-    skip_files = ['z_projects_list.txt', 'manipulator.py']
+    skip_files = ['z_projects_list.txt', 'manipulator.py', 'pubspec.yaml']
     skip_dirs = ['lib']  
     
     term_to_search = old_string_
