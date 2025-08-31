@@ -1,10 +1,6 @@
 import os
 
 def replace_in_file(file_path, old, new):
-    """
-    Reads a file, replaces all occurrences of 'old' with 'new' in its contents,
-    and writes back if any changes were made.
-    """
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -22,10 +18,6 @@ def replace_in_file(file_path, old, new):
             print(f"Error writing to {file_path}: {e}")
 
 def rename_file_or_dir(path, old, new):
-    """            
-    If the given file or directory name contains 'old', rename it by replacing 'old' with 'new'.
-    Returns the new path if renamed, otherwise returns the original path.
-    """
     directory, name = os.path.split(path)
     if old in name:
         new_name = name.replace(old, new)

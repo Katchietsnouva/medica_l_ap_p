@@ -1,7 +1,6 @@
 // lib/screens/home_screen.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
-import 'package:medica_l_ap_p/lib_profil_e/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
@@ -155,12 +154,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: SelectionCard(
                                   icon: Icons.person_outline,
                                   title: "Me",
-                                  isSelected: provider.selectedCoverType ==
+                                  isSelected:
+                                      provider.selectedCoverType ==
                                       CoverType.me,
                                   onTap: () {
                                     provider.selectCoverType(CoverType.me);
                                     provider.showDetailsSection(
-                                        _scrollToDetailsSection);
+                                      _scrollToDetailsSection,
+                                    );
                                   },
                                 ),
                               ),
@@ -172,12 +173,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: SelectionCard(
                                   icon: Icons.group_outlined,
                                   title: "Me & Spouse",
-                                  isSelected: provider.selectedCoverType ==
+                                  isSelected:
+                                      provider.selectedCoverType ==
                                       CoverType.spouse,
                                   onTap: () {
                                     provider.selectCoverType(CoverType.spouse);
                                     provider.showDetailsSection(
-                                        _scrollToDetailsSection);
+                                      _scrollToDetailsSection,
+                                    );
                                   },
                                 ),
                               ),
@@ -189,12 +192,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: SelectionCard(
                                   icon: Icons.family_restroom_outlined,
                                   title: "My Family",
-                                  isSelected: provider.selectedCoverType ==
+                                  isSelected:
+                                      provider.selectedCoverType ==
                                       CoverType.family,
                                   onTap: () {
                                     provider.selectCoverType(CoverType.family);
                                     provider.showDetailsSection(
-                                        _scrollToDetailsSection);
+                                      _scrollToDetailsSection,
+                                    );
                                   },
                                 ),
                               ),
@@ -240,10 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
           //   background: ResponsiveFooter(),
           // ),
           // inside your CustomScrollView (home_screen.dart)
-
-          SliverToBoxAdapter(
-            child: const ResponsiveFooter(),
-          ),
+          SliverToBoxAdapter(child: const ResponsiveFooter()),
         ],
       ),
     );
@@ -291,29 +293,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Protect What Matters Most',
-                        style:
-                            Theme.of(context).textTheme.displayLarge?.copyWith(
-                          color: Colors.white,
-                          fontSize: 36,
-                          fontWeight: FontWeight.w700,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 8.0,
-                              color: Colors.black.withOpacity(0.3),
-                              offset: const Offset(0, 2),
+                        style: Theme.of(context).textTheme.displayLarge
+                            ?.copyWith(
+                              color: Colors.white,
+                              fontSize: 36,
+                              fontWeight: FontWeight.w700,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 8.0,
+                                  color: Colors.black.withOpacity(0.3),
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16),
                       Text(
                         'Choose a tailored medical cover plan for you, your spouse, or your entire family with Royal Med.',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.white70,
-                              fontSize: 18,
-                              height: 1.6,
-                            ),
+                          color: Colors.white70,
+                          fontSize: 18,
+                          height: 1.6,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 32),
@@ -346,15 +348,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 18,
                             color:
                                 Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.white,
+                                ? Colors.white
+                                : Colors.white,
                           ),
                         ),
                       ),
                     ],
-                  )
-                      .animate()
-                      .fadeIn(duration: const Duration(milliseconds: 600)),
+                  ).animate().fadeIn(duration: const Duration(milliseconds: 600)),
                 ),
               ),
             ],
@@ -365,8 +365,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Helper methods (no changes needed here)
-  Widget _buildAnimatedSection(
-      {required bool isVisible, required Widget child}) {
+  Widget _buildAnimatedSection({
+    required bool isVisible,
+    required Widget child,
+  }) {
     return AnimatedSize(
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut,
@@ -380,8 +382,10 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Divider(height: 40),
-        Text("Personal Details",
-            style: Theme.of(context).textTheme.headlineMedium),
+        Text(
+          "Personal Details",
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         const SizedBox(height: 16),
         DobPickerField(
           label: "Your Date of Birth",
@@ -404,8 +408,10 @@ class _HomeScreenState extends State<HomeScreen> {
               labelText: "Number of Children",
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide:
-                    BorderSide(color: AppTheme.secondaryColor, width: 2),
+                borderSide: BorderSide(
+                  color: AppTheme.secondaryColor,
+                  width: 2,
+                ),
               ),
               labelStyle: const TextStyle(color: AppTheme.subtleTextColor),
               filled: true,
@@ -418,8 +424,10 @@ class _HomeScreenState extends State<HomeScreen> {
             value: provider.childCount == 0 ? null : provider.childCount,
             hint: const Text("Select count"),
             items: List.generate(10, (index) => index + 1)
-                .map((count) =>
-                    DropdownMenuItem(value: count, child: Text("$count")))
+                .map(
+                  (count) =>
+                      DropdownMenuItem(value: count, child: Text("$count")),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) provider.setChildCount(value);
@@ -437,34 +445,39 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Divider(height: 40),
-        Text("Select Cover Amount",
-            style: Theme.of(context).textTheme.headlineMedium),
+        Text(
+          "Select Cover Amount",
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         const SizedBox(height: 16),
         Row(
           children: [
             CoverAmountCard(
-                amount: 500000,
-                isSelected: provider.selectedCoverAmount == 500000,
-                onTap: () {
-                  provider.selectCoverAmount(500000);
-                  provider.showCoverAmountSection(_scrollToCoverAmountSection);
-                }),
+              amount: 500000,
+              isSelected: provider.selectedCoverAmount == 500000,
+              onTap: () {
+                provider.selectCoverAmount(500000);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              },
+            ),
             const SizedBox(width: 16),
             CoverAmountCard(
-                amount: 1000000,
-                isSelected: provider.selectedCoverAmount == 1000000,
-                onTap: () {
-                  provider.selectCoverAmount(1000000);
-                  provider.showCoverAmountSection(_scrollToCoverAmountSection);
-                }),
+              amount: 1000000,
+              isSelected: provider.selectedCoverAmount == 1000000,
+              onTap: () {
+                provider.selectCoverAmount(1000000);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              },
+            ),
             const SizedBox(width: 16),
             CoverAmountCard(
-                amount: 2000000,
-                isSelected: provider.selectedCoverAmount == 2000000,
-                onTap: () {
-                  provider.selectCoverAmount(2000000);
-                  provider.showCoverAmountSection(_scrollToCoverAmountSection);
-                }),
+              amount: 2000000,
+              isSelected: provider.selectedCoverAmount == 2000000,
+              onTap: () {
+                provider.selectCoverAmount(2000000);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              },
+            ),
           ],
         ),
       ],
