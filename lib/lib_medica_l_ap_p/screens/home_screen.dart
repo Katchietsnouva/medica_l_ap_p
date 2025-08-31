@@ -129,73 +129,108 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         const SizedBox(height: 24),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     Expanded(
+                        //       child: ConstrainedBox(
+                        //         constraints: const BoxConstraints(
+                        //           minHeight: 100,
+                        //           maxHeight: 120,
+                        //         ),
+                        //         child: SelectionCard(
+                        //           icon: Icons.person_outline,
+                        //           title: "Me",
+                        //           isSelected:
+                        //               provider.selectedCoverType ==
+                        //               CoverType.me,
+                        //           onTap: () {
+                        //             provider.selectCoverType(CoverType.me);
+                        //             provider.showDetailsSection(
+                        //               _scrollToDetailsSection,
+                        //             );
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(width: 16),
+                        //     Expanded(
+                        //       child: ConstrainedBox(
+                        //         constraints: const BoxConstraints(
+                        //           minHeight: 100,
+                        //           maxHeight: 120,
+                        //         ),
+                        //         child: SelectionCard(
+                        //           icon: Icons.group_outlined,
+                        //           title: "Me & Spouse",
+                        //           isSelected:
+                        //               provider.selectedCoverType ==
+                        //               CoverType.spouse,
+                        //           onTap: () {
+                        //             provider.selectCoverType(CoverType.spouse);
+                        //             provider.showDetailsSection(
+                        //               _scrollToDetailsSection,
+                        //             );
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(width: 16),
+                        //     Expanded(
+                        //       child: ConstrainedBox(
+                        //         constraints: const BoxConstraints(
+                        //           minHeight: 100,
+                        //           maxHeight: 120,
+                        //         ),
+                        //         child: SelectionCard(
+                        //           icon: Icons.family_restroom_outlined,
+                        //           title: "My Family",
+                        //           isSelected:
+                        //               provider.selectedCoverType ==
+                        //               CoverType.family,
+                        //           onTap: () {
+                        //             provider.selectCoverType(CoverType.family);
+                        //             provider.showDetailsSection(
+                        //               _scrollToDetailsSection,
+                        //             );
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
-                              child: ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  minHeight: 100,
-                                  maxHeight: 120,
-                                ),
-                                child: SelectionCard(
-                                  icon: Icons.person_outline,
-                                  title: "Me",
-                                  isSelected:
-                                      provider.selectedCoverType ==
-                                      CoverType.me,
-                                  onTap: () {
-                                    provider.selectCoverType(CoverType.me);
-                                    provider.showDetailsSection(
-                                      _scrollToDetailsSection,
-                                    );
-                                  },
-                                ),
-                              ),
+                            SelectionCard(
+                              minHeight: 150, // example minHeight if you want
+                              icon: Icons.person_outline,
+                              title: "Me",
+                              isSelected:
+                                  provider.selectedCoverType == CoverType.me,
+                              onTap: () =>
+                                  provider.selectCoverType(CoverType.me),
                             ),
                             const SizedBox(width: 16),
-                            Expanded(
-                              child: ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  minHeight: 100,
-                                  maxHeight: 120,
-                                ),
-                                child: SelectionCard(
-                                  icon: Icons.group_outlined,
-                                  title: "Me & Spouse",
-                                  isSelected:
-                                      provider.selectedCoverType ==
-                                      CoverType.spouse,
-                                  onTap: () {
-                                    provider.selectCoverType(CoverType.spouse);
-                                    provider.showDetailsSection(
-                                      _scrollToDetailsSection,
-                                    );
-                                  },
-                                ),
-                              ),
+                            SelectionCard(
+                              minHeight: 150, // example minHeight if you want
+                              icon: Icons.group_outlined,
+                              title: "Me & Spouse",
+                              isSelected:
+                                  provider.selectedCoverType ==
+                                  CoverType.spouse,
+                              onTap: () =>
+                                  provider.selectCoverType(CoverType.spouse),
                             ),
                             const SizedBox(width: 16),
-                            Expanded(
-                              child: ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  minHeight: 100,
-                                  maxHeight: 120,
-                                ),
-                                child: SelectionCard(
-                                  icon: Icons.family_restroom_outlined,
-                                  title: "My Family",
-                                  isSelected:
-                                      provider.selectedCoverType ==
-                                      CoverType.family,
-                                  onTap: () {
-                                    provider.selectCoverType(CoverType.family);
-                                    provider.showDetailsSection(
-                                      _scrollToDetailsSection,
-                                    );
-                                  },
-                                ),
-                              ),
+                            SelectionCard(
+                              minHeight: 150, // example minHeight if you want
+                              icon: Icons.family_restroom_outlined,
+                              title: "My Family",
+                              isSelected:
+                                  provider.selectedCoverType ==
+                                  CoverType.family,
+                              onTap: () =>
+                                  provider.selectCoverType(CoverType.family),
                             ),
                           ],
                         ),
