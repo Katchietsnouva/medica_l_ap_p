@@ -1,16 +1,16 @@
-import 'package:broka/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/system_header.dart';
-import 'package:broka/lib_profil_e/widgets/footer.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
+import 'package:medica_l_ap_p/lib_profil_e/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/payment_details_form.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_details_form.dart';
 import 'dart:ui';
 
 class HomeScreen extends StatefulWidget {
@@ -445,19 +445,19 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 // // lib/screens/home_screen.dart
-// import 'package:broka/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
-// import 'package:broka/lib_medica_l_ap_p/widgets/system_header.dart';
-// import 'package:broka/lib_profil_e/widgets/footer.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
+// import 'package:medica_l_ap_p/lib_profil_e/widgets/footer.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_animate/flutter_animate.dart';
 // import 'package:provider/provider.dart';
-// import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
-// import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
-// import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-// import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-// import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
-// import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
-// import 'package:broka/lib_medica_l_ap_p/widgets/payment_details_form.dart'; // ADD THIS IMPORT
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_details_form.dart'; // ADD THIS IMPORT
 // import 'dart:ui';
 
 // class HomeScreen extends StatefulWidget {
@@ -903,12 +903,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // // import 'package:flutter/material.dart';
 // // import 'package:provider/provider.dart';
-// // import 'package:broka/lib_medica_l_ap_p/lib/providers/app_provider.dart';
-// // import 'package:broka/lib_medica_l_ap_p/lib/utils/app_theme.dart';
-// // import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-// // import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-// // import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
-// // import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
 // // import 'package:flutter_animate/flutter_animate.dart';
 
 // // class HomeScreen extends StatelessWidget {
@@ -1295,12 +1295,12 @@ class _HomeScreenState extends State<HomeScreen> {
 // // // // lib/screens/home_screen.dart
 // // // import 'package:flutter/material.dart';
 // // // import 'package:provider/provider.dart';
-// // // import 'package:broka/lib_medica_l_ap_p/lib/providers/app_provider.dart';
-// // // import 'package:broka/lib_medica_l_ap_p/lib/utils/app_theme.dart';
-// // // import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-// // // import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-// // // import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
-// // // import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
 
 // // // class HomeScreen extends StatelessWidget {
 // // //   const HomeScreen({super.key});

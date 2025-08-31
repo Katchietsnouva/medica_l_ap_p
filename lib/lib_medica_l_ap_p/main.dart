@@ -1,19 +1,19 @@
 // lib/main.dart
-import 'package:broka/lib_medica_l_ap_p/logic/text_scale_provider.dart';
-import 'package:broka/lib_medica_l_ap_p/logic/theme_provider.dart';
-import 'package:broka/lib_medica_l_ap_p/navigation/app_router.dart';
-import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
-import 'package:broka/lib_medica_l_ap_p/providers/dashboard_provider.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/home_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/logic/text_scale_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/logic/theme_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/navigation/app_router.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/dashboard_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/dashboard/dashboard_screen.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/home_screen.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/payment/payment_screen.dart';
-import 'package:broka/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart'; // Add this import
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/dashboard_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/home_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/payment/payment_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart'; // Add this import
 
 void main() {
   runApp(
@@ -79,9 +79,10 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: const Color(0xFF1A1D21), // Dark charcoal
             fontFamily: 'Inter',
             textTheme: Theme.of(context).textTheme.apply(
-                fontFamily: 'Inter',
-                bodyColor: Colors.white70,
-                displayColor: Colors.white),
+              fontFamily: 'Inter',
+              bodyColor: Colors.white70,
+              displayColor: Colors.white,
+            ),
             // cardTheme: CardTheme(
             cardTheme: CardThemeData(
               // color: const Color(0xFF1E1E1E),
@@ -109,8 +110,9 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(
-                textScaler:
-                    TextScaler.linear(textScaleProvider.textScaleFactor),
+                textScaler: TextScaler.linear(
+                  textScaleProvider.textScaleFactor,
+                ),
               ),
               child: child!,
             );
@@ -139,12 +141,12 @@ class MyApp extends StatelessWidget {
 }
 
 // // lib/main.dart
-// import 'package:broka/lib_medica_l_ap_p/logic/theme_provider.dart';
-// import 'package:broka/lib_medica_l_ap_p/navigation/app_router.dart';
-// import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
-// import 'package:broka/lib_medica_l_ap_p/providers/dashboard_provider.dart';
-// import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
-// // import 'package:broka/lib_medica_l_ap_p/screens/home_screen.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/logic/theme_provider.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/navigation/app_router.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/dashboard_provider.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/home_screen.dart';
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 // // import 'package:royal_med/providers/app_provider.dart';

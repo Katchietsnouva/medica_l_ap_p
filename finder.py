@@ -103,12 +103,13 @@ if __name__ == '__main__':
     old_string_ = 'com.android.tools.'
     old_string_ = 'kotlin_version'
     
-    old_string_ = 'medica_l_ap_p'
+    old_string_ = 'broka'
 
     # old_string = old_string_
     new_string = 'medica_l_ap_p'
-    skip_files = ['z_projects_list.txt', 'manipulator.py', 'pubspec.yaml']
-    skip_dirs = ['lib']  
+    skip_files = ['z_projects_list.txt', 'manipulator.py', 'pubspec.yaml', 'finder.py']
+    # skip_dirs = ['lib']  
+    skip_dirs = ['']  
     
     term_to_search = old_string_
     search_directory = '.'
