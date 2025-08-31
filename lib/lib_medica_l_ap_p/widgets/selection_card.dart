@@ -22,11 +22,9 @@ class SelectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Expanded(
-    return GestureDetector(
-      onTap: onTap,
-      child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: minHeight ?? 0),
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
@@ -75,6 +73,5 @@ class SelectionCard extends StatelessWidget {
         ),
       ),
     );
-    // );
   }
 }

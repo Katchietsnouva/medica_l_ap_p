@@ -199,41 +199,83 @@ class _HomeScreenState extends State<HomeScreen> {
                         //     ),
                         //   ],
                         // ),
-                        Row(
+                        // Row(
+                        //   children: [
+                        //     SelectionCard(
+                        //       // minHeight: 150, // example minHeight if you want
+                        //       icon: Icons.person_outline,
+                        //       title: "Me",
+                        //       isSelected:
+                        //           provider.selectedCoverType == CoverType.me,
+                        //       onTap: () =>
+                        //           provider.selectCoverType(CoverType.me),
+                        //     ),
+                        //     const SizedBox(width: 16),
+                        //     SelectionCard(
+                        //       // minHeight: 150, // example minHeight if you want
+                        //       icon: Icons.group_outlined,
+                        //       title: "Me & Spouse",
+                        //       isSelected:
+                        //           provider.selectedCoverType ==
+                        //           CoverType.spouse,
+                        //       onTap: () =>
+                        //           provider.selectCoverType(CoverType.spouse),
+                        //     ),
+                        //     const SizedBox(width: 16),
+                        //     SelectionCard(
+                        //       // minHeight: 150, // example minHeight if you want
+                        //       icon: Icons.family_restroom_outlined,
+                        //       title: "My Family",
+                        //       isSelected:
+                        //           provider.selectedCoverType ==
+                        //           CoverType.family,
+                        //       onTap: () =>
+                        //           provider.selectCoverType(CoverType.family),
+                        //     ),
+                        //   ],
+                        // ),
+                        Wrap(
+                          spacing: 16,
+                          runSpacing: 16,
                           children: [
-                            SelectionCard(
-                              minHeight: 150, // example minHeight if you want
-                              icon: Icons.person_outline,
-                              title: "Me",
-                              isSelected:
-                                  provider.selectedCoverType == CoverType.me,
-                              onTap: () =>
-                                  provider.selectCoverType(CoverType.me),
+                            SizedBox(
+                              width: 200,
+                              child: SelectionCard(
+                                icon: Icons.person_outline,
+                                title: "Me",
+                                isSelected:
+                                    provider.selectedCoverType == CoverType.me,
+                                onTap: () =>
+                                    provider.selectCoverType(CoverType.me),
+                              ),
                             ),
-                            const SizedBox(width: 16),
-                            SelectionCard(
-                              minHeight: 150, // example minHeight if you want
-                              icon: Icons.group_outlined,
-                              title: "Me & Spouse",
-                              isSelected:
-                                  provider.selectedCoverType ==
-                                  CoverType.spouse,
-                              onTap: () =>
-                                  provider.selectCoverType(CoverType.spouse),
+                            SizedBox(
+                              width: 200,
+                              child: SelectionCard(
+                                icon: Icons.group_outlined,
+                                title: "Me & Spouse",
+                                isSelected:
+                                    provider.selectedCoverType ==
+                                    CoverType.spouse,
+                                onTap: () =>
+                                    provider.selectCoverType(CoverType.spouse),
+                              ),
                             ),
-                            const SizedBox(width: 16),
-                            SelectionCard(
-                              minHeight: 150, // example minHeight if you want
-                              icon: Icons.family_restroom_outlined,
-                              title: "My Family",
-                              isSelected:
-                                  provider.selectedCoverType ==
-                                  CoverType.family,
-                              onTap: () =>
-                                  provider.selectCoverType(CoverType.family),
+                            SizedBox(
+                              width: 200,
+                              child: SelectionCard(
+                                icon: Icons.family_restroom_outlined,
+                                title: "My Family",
+                                isSelected:
+                                    provider.selectedCoverType ==
+                                    CoverType.family,
+                                onTap: () =>
+                                    provider.selectCoverType(CoverType.family),
+                              ),
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 24),
                         _buildAnimatedSection(
                           isVisible: provider.isDetailsSectionVisible,
