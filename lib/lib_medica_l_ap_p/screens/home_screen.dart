@@ -149,8 +149,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             Expanded(
-                              child: SizedBox(
-                                height: 200,
+                              child: ConstrainedBox(
+                                // SizedBox(
+                                // height: 200,
+                                constraints: const BoxConstraints(
+                                  minHeight: 100,
+                                  maxHeight: 120,
+                                ),
                                 child: SelectionCard(
                                   icon: Icons.person_outline,
                                   title: "Me",
@@ -168,8 +173,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(width: 16),
                             Expanded(
-                              child: SizedBox(
-                                height: 200,
+                              child: ConstrainedBox(
+                                // SizedBox(
+                                // height: 200,
+                                constraints: const BoxConstraints(
+                                  minHeight: 100,
+                                  maxHeight: 120,
+                                ),
                                 child: SelectionCard(
                                   icon: Icons.group_outlined,
                                   title: "Me & Spouse",
@@ -187,8 +197,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(width: 16),
                             Expanded(
-                              child: SizedBox(
-                                height: 200,
+                              child: ConstrainedBox(
+                                // SizedBox(
+                                // height: 200,
+                                constraints: const BoxConstraints(
+                                  minHeight: 100,
+                                  maxHeight: 120,
+                                ),
                                 child: SelectionCard(
                                   icon: Icons.family_restroom_outlined,
                                   title: "My Family",
