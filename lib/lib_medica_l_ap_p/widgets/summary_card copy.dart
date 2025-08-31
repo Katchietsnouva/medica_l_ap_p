@@ -92,8 +92,7 @@ class SummaryCard extends StatelessWidget {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () {
-                            // context.go('/dashboard');
-                            Navigator.pushNamed(context, '/dashboard');
+                            context.go('/dashboard');
                           },
                           child: const Text("Pay Later"),
                         ),
@@ -103,7 +102,7 @@ class SummaryCard extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             // context.push('/payment'); // Navigate to payment form
-                            context.read<AppProvider>().showPaymentForm();
+                            // context.read<AppProvider>().showPaymentForm();
                             // 2. Trigger the scroll callback passed from home_screen
                             onProceedToPayment();
                           },

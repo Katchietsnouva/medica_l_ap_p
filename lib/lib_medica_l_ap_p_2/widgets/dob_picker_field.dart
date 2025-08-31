@@ -1,7 +1,7 @@
 // lib/widgets/dob_picker_field.dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
 
 class DobPickerField extends StatelessWidget {
   final String label;
@@ -73,8 +73,10 @@ class DobPickerField extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide:
-                const BorderSide(color: AppTheme.primaryColor, width: 2),
+            borderSide: const BorderSide(
+              color: AppTheme.primaryColor,
+              width: 2,
+            ),
           ),
         ),
         child: Row(

@@ -1,7 +1,7 @@
 // lib/widgets/selection_card.dart
 import 'package:flutter/material.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
 
 class SelectionCard extends StatelessWidget {
   final IconData icon;
@@ -47,22 +47,23 @@ class SelectionCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon,
-                  size: 40,
-                  color: isSelected
-                      ? AppTheme.primaryColor
-                      : AppTheme.primaryColor.withOpacity(0.9)),
+              Icon(
+                icon,
+                size: 40,
+                color: isSelected
+                    ? AppTheme.primaryColor
+                    : AppTheme.primaryColor.withOpacity(0.9),
+              ),
               const SizedBox(height: 12),
               Text(
                 title,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.normal,
-                      color: isSelected
-                          ? AppTheme.primaryColor
-                          : AppTheme.primaryColor.withOpacity(0.9),
-                    ),
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                  color: isSelected
+                      ? AppTheme.primaryColor
+                      : AppTheme.primaryColor.withOpacity(0.9),
+                ),
               ),
             ],
           ),

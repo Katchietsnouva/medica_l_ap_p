@@ -1,7 +1,7 @@
 // lib/widgets/cover_amount_card.dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
 
 class CoverAmountCard extends StatelessWidget {
   final int amount;
@@ -29,8 +29,9 @@ class CoverAmountCard extends StatelessWidget {
             color: isSelected ? AppTheme.secondaryColor : AppTheme.surfaceColor,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color:
-                  isSelected ? AppTheme.secondaryColor : Colors.grey.shade300,
+              color: isSelected
+                  ? AppTheme.secondaryColor
+                  : Colors.grey.shade300,
               width: isSelected ? 2.0 : 1.0,
             ),
           ),
@@ -38,9 +39,9 @@ class CoverAmountCard extends StatelessWidget {
             formatter.format(amount),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: isSelected ? Colors.white : AppTheme.primaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: isSelected ? Colors.white : AppTheme.primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
