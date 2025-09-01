@@ -1,12 +1,12 @@
 // lib/screens/dashboard/dashboard_screen.dart
 import 'package:flutter/material.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
 
 // Import the actual page widgets that will be displayed
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   // CHANGE: This widget no longer takes a child. It manages its own content.
@@ -116,7 +116,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 // // lib/screens/dashboard/dashboard_screen.dart
 // import 'package:flutter/material.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+// import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
 // import 'package:go_router/go_router.dart';
 // // import 'package:royal_med/utils/app_theme.dart';
 

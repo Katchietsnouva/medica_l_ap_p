@@ -2,9 +2,39 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:go_router/go_router.dart';
+
+void popupfxn_with_msg(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false, // user can't close manually
+    builder: (BuildContext context) {
+      Future.delayed(const Duration(seconds: 2), () {
+        Navigator.of(context).pop(); // close after 2 sec
+      });
+
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        content: Row(
+          children: const [
+            Icon(Icons.check_circle, color: Colors.green, size: 28),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                "Quote saved successfully!",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
 
 class SummaryCard extends StatelessWidget {
   final VoidCallback onProceedToPayment;
@@ -95,22 +125,33 @@ class SummaryCard extends StatelessWidget {
                       // Expanded(
                       //   child: OutlinedButton(
                       //     onPressed: () {
-                      //       // context.go('/dashboard');
-                      //       Navigator.pushNamed(context, '/dashboard');
                       //     },
-                      //     child: const Text("Pay Later"),
+                      //     child: const Text("Save Quote"),
                       //   ),
                       // ),
-                      // const SizedBox(width: 16),
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            //       // context.go('/dashboard');
+                            //       // Navigator.pushNamed(context, '/dashboard');
+                            popupfxn_with_msg(context);
+                          },
+                          child: const Text("Save Quote"),
+                        ),
+                      ),
+
+                      const SizedBox(width: 16),
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
                             // context.push('/payment'); // Navigate to payment form
+                            popupfxn_with_msg(context);
+
                             context.read<AppProvider>().showPaymentForm();
                             // 2. Trigger the scroll callback passed from home_screen
                             onProceedToPayment();
                           },
-                          child: const Text("confirm quote"),
+                          child: const Text("Submit Quote"),
                         ),
                       ),
                     ],

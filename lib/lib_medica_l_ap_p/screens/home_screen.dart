@@ -1,17 +1,17 @@
 // lib/screens/home_screen.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_widget.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/payment_widget.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/system_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_details_form.dart'; // ADD THIS IMPORT
+import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/payment_details_form.dart'; // ADD THIS IMPORT
 import 'dart:ui';
 
 class HomeScreen extends StatefulWidget {
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _scrollToPaymentForm() {
     // We add a small delay to allow the widget to build before we scroll to it
     Future.delayed(const Duration(milliseconds: 400), () {
-      final context = _mpesapaymentFormKey.currentContext;
+      final context = _paymentFormKey.currentContext;
       if (context != null) {
         Scrollable.ensureVisible(
           context,
@@ -206,6 +206,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 24),
 
+                        // const SummaryCard(),
+                        SummaryCard(onProceedToPayment: _scrollToPaymentForm),
+                        const SizedBox(height: 24),
+
                         // ADD THIS SECTION to display the payment form
                         _buildAnimatedSection(
                           isVisible: provider.isPaymentFormVisible,
@@ -215,10 +219,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 100),
-
-                        // const SummaryCard(),
-                        SummaryCard(onProceedToPayment: _scrollToPaymentForm),
                         const SizedBox(height: 24),
 
                         _buildAnimatedSection(
@@ -228,6 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: const PaymentWidget(), // USE THE NEW WIDGET
                           ),
                         ),
+
+                        const SizedBox(height: 100),
                       ],
                     ),
                   ),
@@ -387,18 +389,22 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: 16),
         DobPickerField(
-          label: "Your Date of Birth",
-          selectedDate: provider.myDob,
-          onDateSelected: (date) => provider.setMyDob(date),
-        ),
+            label: "Your Date of Birth",
+            selectedDate: provider.myDob,
+            onDateSelected: (date) {
+              provider.setMyDob(date);
+              provider.showCoverAmountSection(_scrollToCoverAmountSection);
+            }),
         if (provider.selectedCoverType == CoverType.spouse ||
             provider.selectedCoverType == CoverType.family) ...[
           const SizedBox(height: 16),
           DobPickerField(
-            label: "Spouse's Date of Birth",
-            selectedDate: provider.spouseDob,
-            onDateSelected: (date) => provider.setSpouseDob(date),
-          ),
+              label: "Spouse's Date of Birth",
+              selectedDate: provider.spouseDob,
+              onDateSelected: (date) {
+                provider.setSpouseDob(date);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              }),
         ],
         if (provider.selectedCoverType == CoverType.family) ...[
           const SizedBox(height: 16),
@@ -486,12 +492,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
+// import 'package:broka/lib_medica_l_ap_p/lib/providers/app_provider.dart';
+// import 'package:broka/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
 // import 'package:flutter_animate/flutter_animate.dart';
 
 // class HomeScreen extends StatelessWidget {
@@ -878,12 +884,12 @@ class _HomeScreenState extends State<HomeScreen> {
 // // // lib/screens/home_screen.dart
 // // import 'package:flutter/material.dart';
 // // import 'package:provider/provider.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
+// // import 'package:broka/lib_medica_l_ap_p/lib/providers/app_provider.dart';
+// // import 'package:broka/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
 
 // // class HomeScreen extends StatelessWidget {
 // //   const HomeScreen({super.key});

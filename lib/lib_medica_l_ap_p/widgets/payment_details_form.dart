@@ -2,9 +2,45 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
+
+// void popupfxn_with_msg(BuildContext context, String message) {
+void popupfxn_with_msg(BuildContext context, String message,
+    {bool isError = false}) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      Future.delayed(const Duration(seconds: 2), () {
+        Navigator.of(context).pop(); // close after 2 sec
+      });
+
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        content: Row(
+          children: [
+            Icon(
+              isError ? Icons.error : Icons.check_circle,
+              color: isError ? Colors.red : Colors.green,
+              size: 28,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                message,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
 
 class PaymentDetailsForm extends StatefulWidget {
   const PaymentDetailsForm({super.key});
@@ -25,7 +61,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
   bool _isSubmitting = false;
 
   // Replace with your real endpoint
-  final String _endpoint = 'https://api.com/submit';
+  final String _endpoint = 'https://apitoget.com/submit';
 
   @override
   void dispose() {
@@ -76,32 +112,51 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-                'Quote saved successfully! Our team will contact you shortly.'),
-            backgroundColor: AppTheme.textColor,
-          ),
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   const SnackBar(
+        //     content: Text(
+        // 'Quote saved successfully! Our team will contact you shortly.'),
+        //     backgroundColor: AppTheme.textColor,
+        //   ),
+        // );
+
+        popupfxn_with_msg(
+          context,
+          'Quote saved successfully! .',
         );
+
         return true;
       } else {
         // show server-side error
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                'Submission failed (${response.statusCode}): ${response.body}'),
-            backgroundColor: Colors.red,
-          ),
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: Text(
+        //         'Submission failed (${response.statusCode}): ${response.body}'),
+        //     backgroundColor: Colors.red,
+        //   ),
+        // );
+
+        popupfxn_with_msg(
+          context,
+          'Submission failed (${response.statusCode}): ${response.body}',
+          isError: true,
         );
+
         return false;
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error submitting: $e'),
-          backgroundColor: Colors.red,
-        ),
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text('Error submitting: $e'),
+      //     backgroundColor: Colors.red,
+      //   ),
+      // );
+      popupfxn_with_msg(
+        context,
+        'Error submitting: $e',
+        isError: true,
       );
+
       return false;
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
@@ -191,27 +246,27 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
               const SizedBox(height: 40),
               Row(
                 children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      // onPressed: _submitForm,
-                      // onPressed: () async {
-                      //   final success = await _submitForm();
-                      //   if (success) {
-                      //     // context.go('/dashboard');
-                      //     Navigator.pushNamed(context, '/dashboard');
-                      //   }
-                      // },
+                  // Expanded(
+                  //   child: ElevatedButton(
+                  //     // onPressed: _submitForm,
+                  //     // onPressed: () async {
+                  //     //   final success = await _submitForm();
+                  //     //   if (success) {
+                  //     //     // context.go('/dashboard');
+                  //     //     Navigator.pushNamed(context, '/dashboard');
+                  //     //   }
+                  //     // },
 
-                      onPressed: () async {
-                        Navigator.pushNamed(context, '/dashboard');
-                      },
+                  //     onPressed: () async {
+                  //       Navigator.pushNamed(context, '/dashboard');
+                  //     },
 
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                      ),
-                      child: const Text('Save My Quote'),
-                    ),
-                  ),
+                  //     style: ElevatedButton.styleFrom(
+                  //       padding: const EdgeInsets.symmetric(vertical: 16),
+                  //     ),
+                  //     child: const Text('Save My Quote'),
+                  //   ),
+                  // ),
                   const SizedBox(width: 40),
                   Expanded(
                     child: ElevatedButton(
