@@ -1,5 +1,5 @@
 // widgets/settings_dialog.dart
-import 'package:broka/lib_medica_l_ap_p/helpers/responsive_helper.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/helpers/responsive_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../logic/theme_provider.dart';

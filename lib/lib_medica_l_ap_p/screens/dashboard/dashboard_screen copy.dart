@@ -1,6 +1,6 @@
 // lib/screens/dashboard/dashboard_screen.dart
 import 'package:flutter/material.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:royal_med/utils/app_theme.dart';
 

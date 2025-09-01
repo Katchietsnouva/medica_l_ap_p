@@ -1,6 +1,6 @@
 // widgets/universal_page_layout.dart (✅ NEW FILE)
-import 'package:broka/lib_medica_l_ap_p/widgets/mobile_nav_panel.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/system_header.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/mobile_nav_panel.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import '../components/footer_header/beno_header.dart';

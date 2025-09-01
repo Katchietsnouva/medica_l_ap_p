@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/universal_page_layout.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/universal_page_layout.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});

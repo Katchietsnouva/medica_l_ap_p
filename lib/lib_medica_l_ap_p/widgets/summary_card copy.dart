@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:go_router/go_router.dart';
 
 class SummaryCard extends StatelessWidget {
