@@ -1,6 +1,5 @@
 // components/ui/Nouva_ui_components.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:medica_l_ap_p/lib_mtn_digital_ap_p/components/ui/beno_ui_components.dart';
 import 'package:flutter/material.dart';
 
 // const Color primaryColor = Color(0xFFD02030);
@@ -9,21 +8,18 @@ import 'package:flutter/material.dart';
 // //       // #D02030
 // //       Color(0xFFD02030);
 
-const MaterialColor primaryColor_ = MaterialColor(
-  0xFFD02030,
-  <int, Color>{
-    50: Color(0xFFFFEBEE),
-    100: Color(0xFFFFCDD2),
-    200: Color(0xFFEF9A9A),
-    300: Color(0xFFE57373),
-    400: Color(0xFFEF5350),
-    500: Color(0xFFD02030),
-    600: Color(0xFFE53935),
-    700: Color(0xFFD32F2F),
-    800: Color(0xFFC62828),
-    900: Color(0xFFB71C1C),
-  },
-);
+const MaterialColor primaryColor_ = MaterialColor(0xFFD02030, <int, Color>{
+  50: Color(0xFFFFEBEE),
+  100: Color(0xFFFFCDD2),
+  200: Color(0xFFEF9A9A),
+  300: Color(0xFFE57373),
+  400: Color(0xFFEF5350),
+  500: Color(0xFFD02030),
+  600: Color(0xFFE53935),
+  700: Color(0xFFD32F2F),
+  800: Color(0xFFC62828),
+  900: Color(0xFFB71C1C),
+});
 
 class NouvaButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -57,8 +53,9 @@ class NouvaButton extends StatelessWidget {
         ? OutlinedButton.styleFrom(
             // padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             padding: padding,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           )
         : ElevatedButton.styleFrom(
             // backgroundColor: Colors.blue,
@@ -67,15 +64,22 @@ class NouvaButton extends StatelessWidget {
             foregroundColor: Colors.white,
             // padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             padding: padding,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           );
 
     final button = isOutline
         ? OutlinedButton(
-            onPressed: onPressed, style: buttonStyle, child: Text(text))
+            onPressed: onPressed,
+            style: buttonStyle,
+            child: Text(text),
+          )
         : ElevatedButton(
-            onPressed: onPressed, style: buttonStyle, child: Text(text));
+            onPressed: onPressed,
+            style: buttonStyle,
+            child: Text(text),
+          );
 
     return isFullWidth
         ? SizedBox(width: double.infinity, child: button)
@@ -89,12 +93,13 @@ class NouvaCard extends StatelessWidget {
   final double? elevation;
   final Color? color;
 
-  const NouvaCard(
-      {super.key,
-      required this.child,
-      this.maxWidth,
-      this.elevation,
-      this.color});
+  const NouvaCard({
+    super.key,
+    required this.child,
+    this.maxWidth,
+    this.elevation,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,8 +111,11 @@ class NouvaCard extends StatelessWidget {
 
     if (maxWidth != null) {
       return Center(
-          child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: maxWidth!), child: card));
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth!),
+          child: card,
+        ),
+      );
     }
     return card;
   }
