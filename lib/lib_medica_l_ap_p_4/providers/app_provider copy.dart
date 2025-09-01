@@ -20,10 +20,13 @@ class AppProvider extends ChangeNotifier {
   int? get selectedCoverAmount => _selectedCoverAmount;
   bool get isPaymentFormVisible => _isPaymentFormVisible;
 
-  bool get isDetailsSectionVisible => _selectedCoverType != CoverType.none;
-  bool get isCoverAmountSectionVisible =>
-      _myDob != null &&
-      (_selectedCoverType == CoverType.me || _spouseDob != null);
+  bool get isDetailsSectionVisible => _isDetailsSectionVisible;
+  bool get isCoverAmountSectionVisible => _isCoverAmountSectionVisible;
+
+  // bool get isDetailsSectionVisible => _selectedCoverType != CoverType.none;
+  // bool get isCoverAmountSectionVisible =>
+  //     _myDob != null &&
+  //     (_selectedCoverType == CoverType.me || _spouseDob != null);
 
   void selectCoverType(CoverType type) {
     if (_selectedCoverType == type) {
@@ -59,19 +62,9 @@ class AppProvider extends ChangeNotifier {
 
   void selectCoverAmount(int amount) {
     _selectedCoverAmount = amount;
-    // _isPaymentFormVisible = false;
-    _isPaymentFormVisible = true;
+    _isPaymentFormVisible = false;
     notifyListeners();
   }
-
-  void showPaymentForm() {
-    if (_selectedCoverAmount != null) {
-      _isPaymentFormVisible = true;
-      notifyListeners();
-    }
-  }
-
-// ####################################
 
   void showDetailsSection(VoidCallback scrollToDetails) {
     _isDetailsSectionVisible = true;
@@ -85,9 +78,16 @@ class AppProvider extends ChangeNotifier {
     scrollToCoverAmount();
   }
 
-  void showPaymentForm_(VoidCallback scrollToPayment) {
+  void showPaymentForm(VoidCallback scrollToPayment) {
     _isPaymentFormVisible = true;
     notifyListeners();
     scrollToPayment();
   }
+
+  // void showPaymentForm() {
+  //   if (_selectedCoverAmount != null) {
+  //     _isPaymentFormVisible = true;
+  //     notifyListeners();
+  //   }
+  // }
 }

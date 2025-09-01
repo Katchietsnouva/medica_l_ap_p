@@ -1,6 +1,4 @@
-// lib/screens/home_screen.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_widget.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -13,6 +11,7 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_details_form.dart'; // ADD THIS IMPORT
 import 'dart:ui';
+// import 'dart:ui';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _formSectionKey = GlobalKey();
   final GlobalKey _paymentFormKey = GlobalKey();
-  final GlobalKey _mpesapaymentFormKey = GlobalKey();
   final GlobalKey _detailsSectionKey =
       GlobalKey(); // Add key for details section
   final GlobalKey _coverAmountSectionKey = GlobalKey(); // Add key for cover
@@ -72,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _scrollToPaymentForm() {
     // We add a small delay to allow the widget to build before we scroll to it
     Future.delayed(const Duration(milliseconds: 400), () {
-      final context = _mpesapaymentFormKey.currentContext;
+      final context = _paymentFormKey.currentContext;
       if (context != null) {
         Scrollable.ensureVisible(
           context,
@@ -149,6 +147,69 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 24),
 
+                        // Row(
+                        //   children: [
+                        //     Expanded(
+                        //       child: ConstrainedBox(
+                        //         // SizedBox(
+                        //         // height: 200,
+                        //         constraints: const BoxConstraints(
+                        //             minHeight: 100, maxHeight: 120),
+                        //         child: SelectionCard(
+                        //           icon: Icons.person_outline,
+                        //           title: "Me",
+                        //           isSelected: provider.selectedCoverType ==
+                        //               CoverType.me,
+                        //           onTap: () {
+                        //             provider.selectCoverType(CoverType.me);
+                        //             provider.showDetailsSection(
+                        //                 _scrollToDetailsSection);
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(width: 16),
+                        //     Expanded(
+                        //       child: ConstrainedBox(
+                        //         // SizedBox(
+                        //         // height: 200,
+                        //         constraints: const BoxConstraints(
+                        //             minHeight: 100, maxHeight: 120),
+                        //         child: SelectionCard(
+                        //           icon: Icons.group_outlined,
+                        //           title: "Me & Spouse",
+                        //           isSelected: provider.selectedCoverType ==
+                        //               CoverType.spouse,
+                        //           onTap: () {
+                        //             provider.selectCoverType(CoverType.spouse);
+                        //             provider.showDetailsSection(
+                        //                 _scrollToDetailsSection);
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(width: 16),
+                        //     Container(
+                        //       child: ConstrainedBox(
+                        //         // SizedBox(
+                        //         // height: 200,
+                        //         constraints: const BoxConstraints(
+                        //             minHeight: 100, maxHeight: 120),
+                        //         child: SelectionCard(
+                        //           icon: Icons.family_restroom_outlined,
+                        //           title: "My Family",
+                        //           isSelected: provider.selectedCoverType ==
+                        //               CoverType.family,
+                        //           onTap: () {
+                        //             provider.selectCoverType(CoverType.family);
+                        //             provider.showDetailsSection(
+                        //                 _scrollToDetailsSection);
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         Row(
                           children: [
                             SelectionCard(
@@ -169,7 +230,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               minHeight: 200, // example minHeight if you want
                               icon: Icons.group_outlined,
                               title: "Me & Spouse",
-                              isSelected: provider.selectedCoverType ==
+                              isSelected:
+                                  provider.selectedCoverType ==
                                   CoverType.spouse,
                               onTap: () {
                                 provider.selectCoverType(CoverType.spouse);
@@ -183,7 +245,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               minHeight: 200, // example minHeight if you want
                               icon: Icons.family_restroom_outlined,
                               title: "My Family",
-                              isSelected: provider.selectedCoverType ==
+                              isSelected:
+                                  provider.selectedCoverType ==
                                   CoverType.family,
                               onTap: () {
                                 provider.selectCoverType(CoverType.family);
@@ -205,6 +268,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: _buildCoverAmountSection(context, provider),
                         ),
                         const SizedBox(height: 24),
+                        // const SummaryCard(),
+                        SummaryCard(onProceedToPayment: _scrollToPaymentForm),
+                        const SizedBox(height: 24),
 
                         // ADD THIS SECTION to display the payment form
                         _buildAnimatedSection(
@@ -216,18 +282,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
 
                         const SizedBox(height: 100),
-
-                        // const SummaryCard(),
-                        SummaryCard(onProceedToPayment: _scrollToPaymentForm),
-                        const SizedBox(height: 24),
-
-                        _buildAnimatedSection(
-                          isVisible: provider.isPaymentFormVisible,
-                          child: Container(
-                            key: _mpesapaymentFormKey, // Assign the key here
-                            child: const PaymentWidget(), // USE THE NEW WIDGET
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -290,29 +344,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Protect What Matters Most',
-                        style:
-                            Theme.of(context).textTheme.displayLarge?.copyWith(
-                          color: Colors.white,
-                          fontSize: 36,
-                          fontWeight: FontWeight.w700,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 8.0,
-                              color: Colors.black.withOpacity(0.3),
-                              offset: const Offset(0, 2),
+                        style: Theme.of(context).textTheme.displayLarge
+                            ?.copyWith(
+                              color: Colors.white,
+                              fontSize: 36,
+                              fontWeight: FontWeight.w700,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 8.0,
+                                  color: Colors.black.withOpacity(0.3),
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16),
                       Text(
                         'Choose a tailored medical cover plan for you, your spouse, or your entire family with Royal Med.',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.white70,
-                              fontSize: 18,
-                              height: 1.6,
-                            ),
+                          color: Colors.white70,
+                          fontSize: 18,
+                          height: 1.6,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 32),
@@ -345,15 +399,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 18,
                             color:
                                 Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.white,
+                                ? Colors.white
+                                : Colors.white,
                           ),
                         ),
                       ),
                     ],
-                  )
-                      .animate()
-                      .fadeIn(duration: const Duration(milliseconds: 600)),
+                  ).animate().fadeIn(duration: const Duration(milliseconds: 600)),
                 ),
               ),
             ],

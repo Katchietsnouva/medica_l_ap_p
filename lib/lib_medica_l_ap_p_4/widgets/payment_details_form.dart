@@ -25,7 +25,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
   bool _isSubmitting = false;
 
   // Replace with your real endpoint
-  final String _endpoint = 'https://api.com/submit';
+  final String _endpoint = 'https://your-api.com/submit';
 
   @override
   void dispose() {
@@ -209,7 +209,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      child: const Text('Save My Quote'),
+                      child: const Text('Submit & View Dashboard'),
                     ),
                   ),
                   const SizedBox(width: 40),
@@ -220,7 +220,7 @@ class _PaymentDetailsFormState extends State<PaymentDetailsForm> {
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         backgroundColor: AppTheme.backgroundColor,
                       ),
-                      child: const Text('Submit'),
+                      child: const Text('Save My Quote'),
                     ),
                   ),
                 ],

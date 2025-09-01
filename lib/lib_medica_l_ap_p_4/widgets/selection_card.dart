@@ -1,8 +1,6 @@
-// lib/widgets/selection_card.dart
+// // lib/widgets/selection_card.dart
 import 'package:flutter/material.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
-// // lib/widgets/selection_card.dart
 
 class SelectionCard extends StatelessWidget {
   final IconData icon;
@@ -24,13 +22,13 @@ class SelectionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // Define the text style once to ensure consistency
     final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-          color: isSelected
-              ? AppTheme.primaryColor
-              : AppTheme.primaryColor.withOpacity(0.9),
-          // Set a consistent line height for better spacing
-          height: 1.4,
-        );
+      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+      color: isSelected
+          ? AppTheme.primaryColor
+          : AppTheme.primaryColor.withOpacity(0.9),
+      // Set a consistent line height for better spacing
+      height: 1.4,
+    );
 
     return Expanded(
       child: GestureDetector(

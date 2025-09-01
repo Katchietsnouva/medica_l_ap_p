@@ -59,8 +59,7 @@ class AppProvider extends ChangeNotifier {
 
   void selectCoverAmount(int amount) {
     _selectedCoverAmount = amount;
-    // _isPaymentFormVisible = false;
-    _isPaymentFormVisible = true;
+    _isPaymentFormVisible = false;
     notifyListeners();
   }
 

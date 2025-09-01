@@ -1,6 +1,7 @@
 // widgets/settings_dialog.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/helpers/responsive_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../logic/theme_provider.dart';
 import '../logic/text_scale_provider.dart';
@@ -17,17 +18,30 @@ class SettingsDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Theme Mode',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text(
+              'Theme Mode',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             Consumer<ThemeProvider>(
               builder: (context, themeProvider, child) {
                 return Row(
                   children: [
                     const Icon(Icons.light_mode_outlined),
                     Expanded(
+                      // child: Switch(
+                      //   value: themeProvider.themeMode == ThemeMode.dark,
+                      //   onChanged: (value) => themeProvider.toggleTheme(),
+                      // ),
                       child: Switch(
                         value: themeProvider.themeMode == ThemeMode.dark,
                         onChanged: (value) => themeProvider.toggleTheme(),
+                        activeColor:
+                            AppTheme.primaryColor, // Thumb color when ON
+                        activeTrackColor: AppTheme.primaryColor.withOpacity(
+                          0.5,
+                        ), // Track color when ON
+                        inactiveThumbColor: Colors.grey,
+                        inactiveTrackColor: Colors.grey.shade300,
                       ),
                     ),
                     const Icon(Icons.dark_mode_outlined),
@@ -36,8 +50,10 @@ class SettingsDialog extends StatelessWidget {
               },
             ),
             const SizedBox(height: 24),
-            const Text('Text Size',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text(
+              'Text Size',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
             Consumer<TextScaleProvider>(
               builder: (context, textScaleProvider, child) {
@@ -99,7 +115,7 @@ class SettingsDialog extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                      )
+                      ),
                     ],
                     selected: {textScaleProvider.currentLevel},
                     onSelectionChanged: (newSelection) {
@@ -112,6 +128,7 @@ class SettingsDialog extends StatelessWidget {
                       return RadioListTile<TextScaleLevel>(
                         title: Text(
                           level.toString().split('.').last,
+                          style: TextStyle(color: AppTheme.primaryColor),
                           // style: TextStyle(
                           //   fontSize: responsiveFontSize(context, baseSize: 14),
                           // ),

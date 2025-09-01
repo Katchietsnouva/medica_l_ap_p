@@ -79,9 +79,10 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: const Color(0xFF1A1D21), // Dark charcoal
             fontFamily: 'Inter',
             textTheme: Theme.of(context).textTheme.apply(
-                fontFamily: 'Inter',
-                bodyColor: Colors.white70,
-                displayColor: Colors.white),
+              fontFamily: 'Inter',
+              bodyColor: Colors.white70,
+              displayColor: Colors.white,
+            ),
             // cardTheme: CardTheme(
             cardTheme: CardThemeData(
               // color: const Color(0xFF1E1E1E),
@@ -109,8 +110,9 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(
-                textScaler:
-                    TextScaler.linear(textScaleProvider.textScaleFactor),
+                textScaler: TextScaler.linear(
+                  textScaleProvider.textScaleFactor,
+                ),
               ),
               child: child!,
             );

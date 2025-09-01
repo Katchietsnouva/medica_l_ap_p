@@ -89,16 +89,16 @@ class SummaryCard extends StatelessWidget {
                   // )
                   Row(
                     children: [
-                      // Expanded(
-                      //   child: OutlinedButton(
-                      //     onPressed: () {
-                      //       // context.go('/dashboard');
-                      //       Navigator.pushNamed(context, '/dashboard');
-                      //     },
-                      //     child: const Text("Pay Later"),
-                      //   ),
-                      // ),
-                      // const SizedBox(width: 16),
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // context.go('/dashboard');
+                            Navigator.pushNamed(context, '/dashboard');
+                          },
+                          child: const Text("Pay Later"),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
@@ -107,7 +107,7 @@ class SummaryCard extends StatelessWidget {
                             // 2. Trigger the scroll callback passed from home_screen
                             onProceedToPayment();
                           },
-                          child: const Text("confirm quote"),
+                          child: const Text("Proceed to Payment"),
                         ),
                       ),
                     ],
