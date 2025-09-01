@@ -19,31 +19,31 @@ class CoverAmountCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final formatter = NumberFormat.compact(locale: 'en_US');
 
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          decoration: BoxDecoration(
-            color: isSelected ? AppTheme.secondaryColor : AppTheme.surfaceColor,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color:
-                  isSelected ? AppTheme.secondaryColor : Colors.grey.shade300,
-              width: isSelected ? 2.0 : 1.0,
-            ),
+    // return Expanded(
+    // child: GestureDetector(
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(vertical: 60),
+        decoration: BoxDecoration(
+          color: isSelected ? AppTheme.secondaryColor : AppTheme.surfaceColor,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isSelected ? AppTheme.secondaryColor : Colors.grey.shade300,
+            width: isSelected ? 2.0 : 1.0,
           ),
-          child: Text(
-            formatter.format(amount),
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: isSelected ? Colors.white : AppTheme.primaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
+        ),
+        child: Text(
+          formatter.format(amount),
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: isSelected ? Colors.white : AppTheme.primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );
+    // );
   }
 }

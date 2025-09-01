@@ -1,15 +1,19 @@
 // lib/main.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/logic/text_scale_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/logic/theme_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/navigation/app_router.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/dashboard_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/home_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_details_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/dashboard_screen.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/home_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/payment/payment_screen.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart'; // Add this import
 
 void main() {
@@ -32,8 +36,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<AppProvider>();
-
     return Consumer2<ThemeProvider, TextScaleProvider>(
       builder: (context, themeProvider, textScaleProvider, child) {
         // return MaterialApp.router(
@@ -118,14 +120,18 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (context) => const HomeScreen(),
-            '/payment': (context) => MpesaPaymentCard(
-                  provider: provider,
-                  onScrollTo____: () {},
-                ),
+            // '/about': (context) => const AboutPage(),
+            // '/contact': (context) => const ContactPage(),
+            // '/terms': (context) => const TermsAndConditionsPage(),
+            '/payment': (context) => const PaymentDetailsForm(),
             '/dashboard': (context) => const DashboardOverviewScreen(),
             '/my-cover': (context) => const MyCoverScreen(),
             '/payment-history': (context) => const PaymentHistoryScreen(),
             '/contact': (context) => const ContactScreen(),
+            // '/terms': (context) => const TermsAndConditionsPage(),
+            // '/terms': (context) => const TermsAndConditionsPage(),
+            // '/terms': (context) => const TermsAndConditionsPage(),
+            // '/terms': (context) => const TermsAndConditionsPage(),
           },
         );
       },

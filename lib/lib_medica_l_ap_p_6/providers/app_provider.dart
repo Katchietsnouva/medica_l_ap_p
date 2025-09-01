@@ -9,10 +9,9 @@ class AppProvider extends ChangeNotifier {
   DateTime? _spouseDob;
   int _childCount = 0;
   int? _selectedCoverAmount;
-  bool _isPersonOrFamilyDetailsCardVisible = false;
-  bool _isCoverAmountCardVisible = false;
+  bool _isDetailsSectionVisible = false;
+  bool _isCoverAmountSectionVisible = false;
   bool _isPaymentFormVisible = false;
-  bool _isMpesaComponentVisible = false;
 
   CoverType get selectedCoverType => _selectedCoverType;
   DateTime? get myDob => _myDob;
@@ -20,11 +19,9 @@ class AppProvider extends ChangeNotifier {
   int get childCount => _childCount;
   int? get selectedCoverAmount => _selectedCoverAmount;
   bool get isPaymentFormVisible => _isPaymentFormVisible;
-  bool get isMpesaComponentVisible => _isMpesaComponentVisible;
 
-  bool get isPersonOrFamilyDetailsCardVisible =>
-      _selectedCoverType != CoverType.none;
-  bool get isCoverAmountCardVisible =>
+  bool get isDetailsSectionVisible => _selectedCoverType != CoverType.none;
+  bool get isCoverAmountSectionVisible =>
       _myDob != null &&
       (_selectedCoverType == CoverType.me || _spouseDob != null);
 
@@ -41,7 +38,6 @@ class AppProvider extends ChangeNotifier {
     _childCount = 0;
     _selectedCoverAmount = null;
     _isPaymentFormVisible = false;
-    _isMpesaComponentVisible = false;
 
     notifyListeners();
   }
@@ -78,13 +74,13 @@ class AppProvider extends ChangeNotifier {
 // ####################################
 
   void showDetailsSection(VoidCallback scrollToDetails) {
-    _isPersonOrFamilyDetailsCardVisible = true;
+    _isDetailsSectionVisible = true;
     notifyListeners();
     scrollToDetails();
   }
 
   void showCoverAmountSection(VoidCallback scrollToCoverAmount) {
-    _isCoverAmountCardVisible = true;
+    _isCoverAmountSectionVisible = true;
     notifyListeners();
     scrollToCoverAmount();
   }
@@ -103,11 +99,5 @@ class AppProvider extends ChangeNotifier {
     // Adjust the formula here if you need to.
     // return (_selectedCoverAmount! * 0.0015);
     return (_selectedCoverAmount! * 1);
-  }
-
-  void showMpesaCard(VoidCallback scrollToMpesasComponent) {
-    _isMpesaComponentVisible = true;
-    notifyListeners();
-    scrollToMpesasComponent();
   }
 }

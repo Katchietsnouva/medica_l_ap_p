@@ -1,17 +1,18 @@
 // lib/screens/home_screen.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/cover_amount_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/family_cover_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/hero_section_widget.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_widget.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/person_or_family_details_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/payment_details_form.dart'; // ADD THIS IMPORT
+import 'dart:ui';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,8 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey _formSectionKey = GlobalKey();
   final GlobalKey _paymentFormKey = GlobalKey();
   final GlobalKey _mpesapaymentFormKey = GlobalKey();
-  final GlobalKey _detailsSectionKey = GlobalKey();
-  final GlobalKey _coverAmountSectionKey = GlobalKey();
+  final GlobalKey _detailsSectionKey =
+      GlobalKey(); // Add key for details section
+  final GlobalKey _coverAmountSectionKey = GlobalKey(); // Add key for cover
 
   void _scrollToForm() {
     final context = _formSectionKey.currentContext;
@@ -39,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void _scrollToPersonOrFamilyDetailsCard() {
+  void _scrollToDetailsSection() {
     Future.delayed(const Duration(milliseconds: 400), () {
       final context = _detailsSectionKey.currentContext;
       if (context != null) {
@@ -67,7 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _scrollToQuoteSummaryCard() {
+  void _scrollToPaymentForm() {
+    // We add a small delay to allow the widget to build before we scroll to it
     Future.delayed(const Duration(milliseconds: 400), () {
       final context = _paymentFormKey.currentContext;
       if (context != null) {
@@ -75,21 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
           context,
           duration: const Duration(seconds: 1),
           curve: Curves.easeInOutCubic,
-          alignment: 0.1,
-        );
-      }
-    });
-  }
-
-  void _scrollToMpesaComponent() {
-    Future.delayed(const Duration(milliseconds: 400), () {
-      final context = _mpesapaymentFormKey.currentContext;
-      if (context != null) {
-        Scrollable.ensureVisible(
-          context,
-          duration: const Duration(seconds: 1),
-          curve: Curves.easeInOutCubic,
-          alignment: 0.1,
+          alignment: 0.1, // Aligns it near the top of the viewport
         );
       }
     });
@@ -130,11 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
             floating: true,
             backgroundColor: AppTheme.surfaceColor,
             elevation: 4,
+            //
             flexibleSpace: FlexibleSpaceBar(
-              // background: _buildHeroSection(context),
-              background: HeroSectionWidget(
-                scrollController: _scrollController,
-              ),
+              background: _buildHeroSection(context),
             ),
           ),
 
@@ -142,6 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverToBoxAdapter(
             child: Container(
               key: _formSectionKey,
+              // color: AppTheme.backgroundColor,
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 800),
@@ -150,57 +138,97 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FamilyCoverCards(
-                            provider: provider,
-                            ScrollToPersonOrFamilyDetailsCard:
-                                _scrollToPersonOrFamilyDetailsCard),
-                        const SizedBox(height: 24),
-                        _buildAnimatedSection(
-                          isVisible:
-                              provider.isPersonOrFamilyDetailsCardVisible,
-                          // child: _buildPersonalDetailsCard(context, provider),
-                          child: PersonOrFamilyDetailsCard(
-                            provider: provider,
-                            onScrollToCoverAmountSection:
-                                _scrollToCoverAmountSection,
-                            detailsSectionKey: _detailsSectionKey,
-                          ),
+                        Text(
+                          "Who do you want to cover?",
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
-                        _buildAnimatedSection(
-                          isVisible: provider.isCoverAmountCardVisible,
-                          // child: _buildCoverAmountCards(context, provider),
-                          child: CoverAmountCards(
-                            provider: provider,
-                            onScrollToQuoteSummaryCard:
-                                _scrollToCoverAmountSection,
-                            coverAmountSectionKey: _coverAmountSectionKey,
-                          ),
+                        const SizedBox(height: 8),
+                        Text(
+                          "Select a plan that's right for you.",
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         const SizedBox(height: 24),
-                        QuoteSummaryCard(
-                            onProceedToPayment: _scrollToQuoteSummaryCard),
+
+                        Row(
+                          children: [
+                            SelectionCard(
+                              minHeight: 200, // example minHeight if you want
+                              icon: Icons.person_outline,
+                              title: "Me",
+                              isSelected:
+                                  provider.selectedCoverType == CoverType.me,
+                              onTap: () {
+                                provider.selectCoverType(CoverType.me);
+                                provider.showDetailsSection(
+                                  _scrollToDetailsSection,
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 16),
+                            SelectionCard(
+                              minHeight: 200, // example minHeight if you want
+                              icon: Icons.group_outlined,
+                              title: "Me & Spouse",
+                              isSelected: provider.selectedCoverType ==
+                                  CoverType.spouse,
+                              onTap: () {
+                                provider.selectCoverType(CoverType.spouse);
+                                provider.showDetailsSection(
+                                  _scrollToDetailsSection,
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 16),
+                            SelectionCard(
+                              minHeight: 200, // example minHeight if you want
+                              icon: Icons.family_restroom_outlined,
+                              title: "My Family",
+                              isSelected: provider.selectedCoverType ==
+                                  CoverType.family,
+                              onTap: () {
+                                provider.selectCoverType(CoverType.family);
+                                provider.showDetailsSection(
+                                  _scrollToDetailsSection,
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+
                         const SizedBox(height: 24),
+                        _buildAnimatedSection(
+                          isVisible: provider.isDetailsSectionVisible,
+                          child: _buildDetailsSection(context, provider),
+                        ),
+                        _buildAnimatedSection(
+                          isVisible: provider.isCoverAmountSectionVisible,
+                          child: _buildCoverAmountSection(context, provider),
+                        ),
+                        const SizedBox(height: 24),
+
+                        // const SummaryCard(),
+                        SummaryCard(onProceedToPayment: _scrollToPaymentForm),
+                        const SizedBox(height: 24),
+
+                        // ADD THIS SECTION to display the payment form
                         _buildAnimatedSection(
                           isVisible: provider.isPaymentFormVisible,
                           child: Container(
-                            key: _paymentFormKey,
-                            child: ContactInfoCard(
-                              provider: provider,
-                              onSuccessScrollToMpesa: _scrollToMpesaComponent,
-                            ),
+                            key: _paymentFormKey, // Assign the key here
+                            child: const PaymentDetailsForm(),
                           ),
                         ),
+
                         const SizedBox(height: 24),
+
                         _buildAnimatedSection(
-                          isVisible: provider.isMpesaComponentVisible,
-                          // child: Container(
-                          // key: _mpesapaymentFormKey,
-                          child: MpesaPaymentCard(
-                            provider: provider,
-                            onScrollTo____: () {},
+                          isVisible: provider.isPaymentFormVisible,
+                          child: Container(
+                            key: _mpesapaymentFormKey, // Assign the key here
+                            child: const PaymentWidget(), // USE THE NEW WIDGET
                           ),
-                          // ),
                         ),
+
                         const SizedBox(height: 100),
                       ],
                     ),
@@ -209,13 +237,131 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+
+          // Sliv
+
           // FlexibleSpaceBar(
           //   background: ResponsiveFooter(),
           // ),
           // inside your CustomScrollView (home_screen.dart)
-          SliverToBoxAdapter(child: ResponsiveFooter()),
+          SliverToBoxAdapter(child: const ResponsiveFooter()),
         ],
       ),
+    );
+  }
+
+  // The new Hero Section Widget
+  Widget _buildHeroSection(BuildContext context) {
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              // Image.asset(
+              //   'https://via.placeholder.com/800?text=Royal+Med+Hero',
+              //   fit: BoxFit.cover,
+              //   color: Colors.black.withOpacity(0.4),
+              //   colorBlendMode: BlendMode.darken,
+              // ),
+              Image(
+                image: AssetImage('assets/medica_l_ap_p/images/hero_image.png'),
+                fit: BoxFit.cover,
+                color: Colors.black.withOpacity(0.2),
+                colorBlendMode: BlendMode.darken,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      AppTheme.primaryColor.withOpacity(0.3),
+                    ],
+                  ),
+                ),
+              ),
+              Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Protect What Matters Most',
+                        style:
+                            Theme.of(context).textTheme.displayLarge?.copyWith(
+                          color: Colors.white,
+                          fontSize: 36,
+                          fontWeight: FontWeight.w700,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 8.0,
+                              color: Colors.black.withOpacity(0.3),
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Choose a tailored medical cover plan for you, your spouse, or your entire family with Royal Med.',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.white70,
+                              fontSize: 18,
+                              height: 1.6,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 32),
+                      ElevatedButton(
+                        onPressed: () {
+                          _scrollController.animateTo(
+                            MediaQuery.of(context).size.height,
+                            duration: const Duration(milliseconds: 800),
+                            curve: Curves.easeInOut,
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.secondaryColor,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32,
+                            vertical: 16,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          elevation: 4,
+                        ),
+                        child: Text(
+                          'Get Cover Now',
+                          // style:
+                          //     Theme.of(context).textTheme.labelLarge?.copyWith(
+                          //           fontSize: 18,
+                          //         ),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                      .animate()
+                      .fadeIn(duration: const Duration(milliseconds: 600)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -230,22 +376,119 @@ class _HomeScreenState extends State<HomeScreen> {
       child: isVisible ? child : const SizedBox.shrink(),
     );
   }
+
+  Widget _buildDetailsSection(BuildContext context, AppProvider provider) {
+    return Column(
+      key: _detailsSectionKey,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(height: 40),
+        Text(
+          "Personal Details",
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+        const SizedBox(height: 16),
+        DobPickerField(
+            label: "Your Date of Birth",
+            selectedDate: provider.myDob,
+            onDateSelected: (date) {
+              provider.setMyDob(date);
+              provider.showCoverAmountSection(_scrollToCoverAmountSection);
+            }),
+        if (provider.selectedCoverType == CoverType.spouse ||
+            provider.selectedCoverType == CoverType.family) ...[
+          const SizedBox(height: 16),
+          DobPickerField(
+              label: "Spouse's Date of Birth",
+              selectedDate: provider.spouseDob,
+              onDateSelected: (date) {
+                provider.setSpouseDob(date);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              }),
+        ],
+        if (provider.selectedCoverType == CoverType.family) ...[
+          const SizedBox(height: 16),
+          DropdownButtonFormField<int>(
+            decoration: InputDecoration(
+              labelText: "Number of Children",
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: AppTheme.secondaryColor,
+                  width: 2,
+                ),
+              ),
+              labelStyle: const TextStyle(color: AppTheme.subtleTextColor),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+            ),
+            value: provider.childCount == 0 ? null : provider.childCount,
+            hint: const Text("Select count"),
+            items: List.generate(10, (index) => index + 1)
+                .map(
+                  (count) =>
+                      DropdownMenuItem(value: count, child: Text("$count")),
+                )
+                .toList(),
+            onChanged: (value) {
+              if (value != null) provider.setChildCount(value);
+              provider.showCoverAmountSection(_scrollToCoverAmountSection);
+            },
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildCoverAmountSection(BuildContext context, AppProvider provider) {
+    return Column(
+      key: _coverAmountSectionKey,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(height: 40),
+        Text(
+          "Select Cover Amount",
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: [
+            CoverAmountCard(
+              amount: 500000,
+              isSelected: provider.selectedCoverAmount == 500000,
+              onTap: () {
+                provider.selectCoverAmount(500000);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              },
+            ),
+            const SizedBox(width: 16),
+            CoverAmountCard(
+              amount: 1000000,
+              isSelected: provider.selectedCoverAmount == 1000000,
+              onTap: () {
+                provider.selectCoverAmount(1000000);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              },
+            ),
+            const SizedBox(width: 16),
+            CoverAmountCard(
+              amount: 2000000,
+              isSelected: provider.selectedCoverAmount == 2000000,
+              onTap: () {
+                provider.selectCoverAmount(2000000);
+                provider.showCoverAmountSection(_scrollToCoverAmountSection);
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 }
-
-// class _buildHeroSection {
-// }
-
-// Widget _buildHeroSection(BuildContext context) {
-//   return HeroSectionWidget(
-//     onGetCoverPressed: () {
-//       _scrollController.animateTo(
-//         MediaQuery.of(context).size.height,
-//         duration: const Duration(milliseconds: 800),
-//         curve: Curves.easeInOut,
-//       );
-//     },
-//   );
-// }
 
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
@@ -502,17 +745,17 @@ class _HomeScreenState extends State<HomeScreen> {
 //                       ),
 //                       const SizedBox(height: 24),
 //                       _buildAnimatedSection(
-//                         isVisible: provider.isPersonOrFamilyDetailsCardVisible,
-//                         child: _buildPersonalDetailsCard(context, provider),
+//                         isVisible: provider.isDetailsSectionVisible,
+//                         child: _buildDetailsSection(context, provider),
 //                       ),
 //                       _buildAnimatedSection(
-//                         isVisible: provider.isCoverAmountCardVisible,
-//                         child: _buildCoverAmountCards(context, provider),
+//                         isVisible: provider.isCoverAmountSectionVisible,
+//                         child: _buildCoverAmountSection(context, provider),
 //                       ),
 //                       const SizedBox(height: 24),
 //                       _buildAnimatedSection(
-//                         isVisible: provider.isCoverAmountCardVisible,
-//                         child: const QuoteSummaryCard(),
+//                         isVisible: provider.isCoverAmountSectionVisible,
+//                         child: const SummaryCard(),
 //                       ),
 //                     ],
 //                   ),
@@ -538,7 +781,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //     );
 //   }
 
-//   Widget _buildPersonalDetailsCard(BuildContext context, AppProvider provider) {
+//   Widget _buildDetailsSection(BuildContext context, AppProvider provider) {
 //     return Column(
 //       crossAxisAlignment: CrossAxisAlignment.start,
 //       children: [
@@ -590,7 +833,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //     );
 //   }
 
-//   Widget _buildCoverAmountCards(BuildContext context, AppProvider provider) {
+//   Widget _buildCoverAmountSection(BuildContext context, AppProvider provider) {
 //     return Column(
 //       crossAxisAlignment: CrossAxisAlignment.start,
 //       children: [
@@ -705,15 +948,15 @@ class _HomeScreenState extends State<HomeScreen> {
 // //               ),
 // //               const SizedBox(height: 24),
 // //               _buildAnimatedSection(
-// //                 isVisible: provider.isPersonOrFamilyDetailsCardVisible,
-// //                 child: _buildPersonalDetailsCard(context, provider),
+// //                 isVisible: provider.isDetailsSectionVisible,
+// //                 child: _buildDetailsSection(context, provider),
 // //               ),
 // //               _buildAnimatedSection(
-// //                 isVisible: provider.isCoverAmountCardVisible,
-// //                 child: _buildCoverAmountCards(context, provider),
+// //                 isVisible: provider.isCoverAmountSectionVisible,
+// //                 child: _buildCoverAmountSection(context, provider),
 // //               ),
 // //               const SizedBox(height: 24),
-// //               const QuoteSummaryCard(),
+// //               const SummaryCard(),
 // //             ],
 // //           ),
 // //         ),
@@ -730,7 +973,7 @@ class _HomeScreenState extends State<HomeScreen> {
 // //     );
 // //   }
 
-// //   Widget _buildPersonalDetailsCard(BuildContext context, AppProvider provider) {
+// //   Widget _buildDetailsSection(BuildContext context, AppProvider provider) {
 // //     return Column(
 // //       crossAxisAlignment: CrossAxisAlignment.start,
 // //       children: [
@@ -780,7 +1023,7 @@ class _HomeScreenState extends State<HomeScreen> {
 // //     );
 // //   }
 
-// //   Widget _buildCoverAmountCards(BuildContext context, AppProvider provider) {
+// //   Widget _buildCoverAmountSection(BuildContext context, AppProvider provider) {
 // //     return Column(
 // //       crossAxisAlignment: CrossAxisAlignment.start,
 // //       children: [

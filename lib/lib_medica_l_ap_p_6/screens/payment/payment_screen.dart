@@ -4,6 +4,7 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:royal_med/utils/app_theme.dart';
+// lib/screens/payment/payment_screen.dart
 
 void popupfxn_with_msg(BuildContext context, String message) {
   showDialog(
@@ -15,18 +16,13 @@ void popupfxn_with_msg(BuildContext context, String message) {
       });
 
       return AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         content: Row(
           children: [
             const Icon(Icons.check_circle, color: Colors.green, size: 28),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(
-                message,
-                style: const TextStyle(fontSize: 16),
-              ),
+              child: Text(message, style: const TextStyle(fontSize: 16)),
             ),
           ],
         ),
@@ -58,7 +54,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
         builder: (context) => AlertDialog(
           title: const Text('Success'),
           content: const Text(
-              'Your details have been submitted. You can now manage your cover from the dashboard.'),
+            'Your details have been submitted. You can now manage your cover from the dashboard.',
+          ),
           actions: [
             TextButton(
               onPressed: () {
