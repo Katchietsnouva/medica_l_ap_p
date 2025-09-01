@@ -90,14 +90,4 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
     scrollToPayment();
   }
-
-  // ADD THIS GETTER FOR THE CENTRALIZED PREMIUM
-  double get premium {
-    if (_selectedCoverAmount == null) return 0.0;
-    // This is now the ONLY place the premium is calculated.
-    // Example logic: Premium is 0.15% of the cover amount per year.
-    // Adjust the formula here if you need to.
-    // return (_selectedCoverAmount! * 0.0015);
-    return (_selectedCoverAmount! * 1);
-  }
 }

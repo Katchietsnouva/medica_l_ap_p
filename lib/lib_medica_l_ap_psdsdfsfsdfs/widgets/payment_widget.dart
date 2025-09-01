@@ -67,28 +67,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
   Widget build(BuildContext context) {
     // Read data directly from the provider
     final provider = context.watch<AppProvider>();
-    // final premium = _calculatePremium(provider.selectedCoverAmount);
-    final premium = provider.premium;
-
+    final premium = _calculatePremium(provider.selectedCoverAmount);
     final currencyFormat =
         NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ');
 
-    return Container(
-      // elevation: 4,
-      padding: const EdgeInsets.all(32.0),
-      decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.secondaryColor, width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: AppTheme.secondaryColor.withOpacity(0.85),
-            blurRadius: 12,
-            offset: const Offset(0, 5),
-          )
-        ],
-      ),
-
+    return Card(
+      elevation: 4,
       margin: const EdgeInsets.only(top: 32),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -154,7 +138,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   backgroundColor: AppTheme
-                      .backgroundColor, // A vibrant color for the pay button
+                      .primaryColor, // A vibrant color for the pay button
                 ),
                 child: Text('Pay ${currencyFormat.format(premium)}'),
               ),

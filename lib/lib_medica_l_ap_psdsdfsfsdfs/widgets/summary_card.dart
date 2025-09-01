@@ -25,11 +25,8 @@ class SummaryCard extends StatelessWidget {
               (match) => '${match.group(1)!.toUpperCase()}${match.group(2)}',
             );
 
-    // final amountFormatter =
-    //     NumberFormat.currency(locale: 'en_US', symbol: '\$', decimalDigits: 0);
-
-    final amountFormatter = NumberFormat.currency(
-        locale: 'en_KE', symbol: 'Ksh ', decimalDigits: 0);
+    final amountFormatter =
+        NumberFormat.currency(locale: 'en_US', symbol: '\$', decimalDigits: 0);
 
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 400),

@@ -25,11 +25,8 @@ class SummaryCard extends StatelessWidget {
               (match) => '${match.group(1)!.toUpperCase()}${match.group(2)}',
             );
 
-    // final amountFormatter =
-    //     NumberFormat.currency(locale: 'en_US', symbol: '\$', decimalDigits: 0);
-
-    final amountFormatter = NumberFormat.currency(
-        locale: 'en_KE', symbol: 'Ksh ', decimalDigits: 0);
+    final amountFormatter =
+        NumberFormat.currency(locale: 'en_US', symbol: '\$', decimalDigits: 0);
 
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 400),
@@ -92,25 +89,24 @@ class SummaryCard extends StatelessWidget {
                   // )
                   Row(
                     children: [
-                      // Expanded(
-                      //   child: OutlinedButton(
-                      //     onPressed: () {
-                      //       // context.go('/dashboard');
-                      //       Navigator.pushNamed(context, '/dashboard');
-                      //     },
-                      //     child: const Text("Pay Later"),
-                      //   ),
-                      // ),
-                      // const SizedBox(width: 16),
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            context.go('/dashboard');
+                          },
+                          child: const Text("Pay Later"),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
                             // context.push('/payment'); // Navigate to payment form
-                            context.read<AppProvider>().showPaymentForm();
+                            // context.read<AppProvider>().showPaymentForm();
                             // 2. Trigger the scroll callback passed from home_screen
                             onProceedToPayment();
                           },
-                          child: const Text("confirm quote"),
+                          child: const Text("Proceed to Payment"),
                         ),
                       ),
                     ],
