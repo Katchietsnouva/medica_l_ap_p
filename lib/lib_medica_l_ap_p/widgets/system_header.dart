@@ -1,5 +1,4 @@
-// components/footer_header/Royal_header.dart
-// import 'package:medica_l_ap_p/lib_Royal_app/widgets/settings_dialog.dart';
+// lib/lib_medica_l_ap_p/widgets/system_header.dart
 import 'dart:ui';
 
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/settings_dialog.dart';
@@ -146,13 +145,35 @@ class RoyalHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                tooltip: 'Display Settings',
-                icon: const Icon(Icons.settings_outlined),
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => const SettingsDialog(),
-                ),
+              Row(
+                children: [
+                  IconButton(
+                    tooltip: 'Display Settings',
+                    icon: const Icon(Icons.settings_outlined),
+                    onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => const SettingsDialog(),
+                    ),
+                  ),
+                  // Builder(
+                  //   builder: (context) {
+                  //     return IconButton(
+                  //       tooltip: 'Open Menu',
+                  //       icon: const Icon(Icons.menu),
+                  //       onPressed: () {
+                  //         Scaffold.of(context).openEndDrawer();
+                  //       },
+                  //     );
+                  //   },
+                  // ),
+                  // IconButton(
+                  //   tooltip: 'Open Menu',
+                  //   icon: const Icon(Icons.menu),
+                  //   onPressed: () {
+                  //     Scaffold.of(context).openEndDrawer();
+                  //   },
+                  // ),
+                ],
               )
             ],
           );

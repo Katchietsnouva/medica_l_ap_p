@@ -1,6 +1,4 @@
-// components/footer_header/desktop_nav_bar.dart
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/models/navigation_item.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/hoverable_menu_button.dart';
+// lib/lib_medica_l_ap_p/widgets/desktop_nav_bar.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/models/navigation_item.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/navigation_data.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/models/royal_project_model.dart';

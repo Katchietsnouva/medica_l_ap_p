@@ -1,4 +1,4 @@
-// components/footer_header/mobile_nav_panel.dart
+// lib/lib_medica_l_ap_p/widgets/mobile_nav_panel.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/navigation_data.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/models/royal_project_model.dart';
 import 'package:flutter/material.dart';

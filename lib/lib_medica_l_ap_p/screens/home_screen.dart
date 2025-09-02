@@ -4,6 +4,7 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/family
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/hero_section_widget.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/mobile_nav_panel.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -105,8 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final provider = context.watch<AppProvider>();
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    final bool isSmallScreen = screenWidth < 600;
 
     return Scaffold(
+      endDrawer: isSmallScreen ? const MobileNavPanel() : null,
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
