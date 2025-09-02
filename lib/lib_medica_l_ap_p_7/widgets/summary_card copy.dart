@@ -1,19 +1,17 @@
-// lib/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/dialog_utils.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
+// lib/widgets/summary_card.dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
+import 'package:go_router/go_router.dart';
 
-class QuoteSummaryCard extends StatelessWidget {
+class SummaryCard extends StatelessWidget {
   final VoidCallback onProceedToPayment;
 
-  const QuoteSummaryCard({
+  const SummaryCard({
     super.key,
-    required this.onProceedToPayment,
+    required this.onProceedToPayment, // ADD THIS
   });
 
   @override
@@ -27,14 +25,27 @@ class QuoteSummaryCard extends StatelessWidget {
               (match) => '${match.group(1)!.toUpperCase()}${match.group(2)}',
             );
 
-    final amountFormatter = NumberFormat.currency(
-        locale: 'en_KE', symbol: 'Ksh ', decimalDigits: 0);
+    final amountFormatter =
+        NumberFormat.currency(locale: 'en_US', symbol: '\$', decimalDigits: 0);
 
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 400),
       opacity: isVisible ? 1.0 : 0.0,
       child: isVisible
-          ? CustomStyledContainer(
+          ? Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: AppTheme.surfaceColor,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: AppTheme.secondaryColor, width: 2),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppTheme.secondaryColor.withOpacity(0.85),
+                    blurRadius: 12,
+                    offset: const Offset(0, 5),
+                  )
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -58,6 +69,7 @@ class QuoteSummaryCard extends StatelessWidget {
                     isHighlight: true,
                   ),
                   const SizedBox(height: 24),
+                  // Placeholder for premium cost
                   Text(
                     "Premium details will be calculated here.",
                     style: Theme.of(context)
@@ -66,26 +78,37 @@ class QuoteSummaryCard extends StatelessWidget {
                         ?.copyWith(fontStyle: FontStyle.italic),
                   ),
                   const SizedBox(height: 24),
-                  // context.go('/dashboard');
-                  // context.push('/payment');
+                  // SizedBox(
+                  //   width: double.infinity,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {},
+                  //     style: ElevatedButton.styleFrom(
+                  //         backgroundColor: AppTheme.secondaryColor),
+                  //     child: const Text("Proceed to Payment"),
+                  //   ),
+                  // )
                   Row(
                     children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            context.go('/dashboard');
+                          },
+                          child: const Text("Pay Later"),
+                        ),
+                      ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: NouvaButton(
-                            onPressed: () {
-                              showPopupDialog(
-                                context,
-                                message: 'Quote saved successfully!',
-                                autoCloseDuration: const Duration(seconds: 2),
-                                showButton: false,
-                              );
-                              context.read<AppProvider>().showPaymentForm();
-                              onProceedToPayment();
-                            },
-                            text: 'Confirm Quote'),
-                      )
-                      // ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // context.push('/payment'); // Navigate to payment form
+                            // context.read<AppProvider>().showPaymentForm();
+                            // 2. Trigger the scroll callback passed from home_screen
+                            onProceedToPayment();
+                          },
+                          child: const Text("Proceed to Payment"),
+                        ),
+                      ),
                     ],
                   )
                 ],

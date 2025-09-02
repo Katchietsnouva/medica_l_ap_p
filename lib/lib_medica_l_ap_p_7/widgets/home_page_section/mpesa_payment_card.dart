@@ -1,7 +1,4 @@
 // lib/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/dialog_utils.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +6,57 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../../providers/app_provider.dart';
 import '../../utils/app_theme.dart';
+
+void popupfxn_with_msg(BuildContext context, String message,
+    {bool isError = false, VoidCallback? onClose}) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      // Auto-navigate to dashboard after 5 seconds for success messages
+      if (!isError) {
+        Future.delayed(const Duration(seconds: 5), () {
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop(); // Close dialog
+            Navigator.pushNamed(context, '/dashboard'); // Navigate to dashboard
+          }
+        });
+      }
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        content: Row(
+          children: [
+            Icon(
+              isError ? Icons.error : Icons.check_circle,
+              color: isError ? Colors.red : Colors.green,
+              size: 28,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                message,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close dialog
+              if (!isError && onClose != null) {
+                onClose(); // Trigger navigation for success
+              }
+            },
+            child: Text(isError ? 'Close' : 'Go to Dashboard'),
+          ),
+        ],
+      );
+    },
+  );
+}
 
 class MpesaPaymentCard extends StatefulWidget {
   final AppProvider provider;
@@ -32,16 +80,18 @@ class _MpesaPaymentCardState extends State<MpesaPaymentCard> {
   final _formKey = GlobalKey<FormState>();
   bool _isPaying = false;
   String _paymentStatus = '';
-  double? _remainingBalance;
+  double? _remainingBalance; // 💰 Track remaining balance
 
+  // Dummy Premium Calculation Logic
   double _calculatePremium(int? coverAmount) {
     if (coverAmount == null) return 0.0;
+    // Example logic: Premium is 0.15% of the cover amount per year
     return (coverAmount * 0.0015);
   }
 
   Future<void> _handlePayment() async {
     if (!_formKey.currentState!.validate()) {
-      return;
+      return; // Don't proceed if form is invalid
     }
 
     setState(() {
@@ -53,7 +103,7 @@ class _MpesaPaymentCardState extends State<MpesaPaymentCard> {
     await Future.delayed(const Duration(seconds: 4));
 
     // Simulate success or failure
-    final bool paymentSucceeded = true;
+    final bool paymentSucceeded = true; // Change to false to test failure
     final provider = context.read<AppProvider>();
     final premium = provider.premium;
     final partialPayment =
@@ -64,27 +114,20 @@ class _MpesaPaymentCardState extends State<MpesaPaymentCard> {
       // setState(() => _paymentStatus =
       //     'Payment of ${NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ').format(partialPayment)} successful! Remaining: ${NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ').format(remainingAmount)}. Welcome to Royal Med.');
       // // You could navigate to the dashboard here after a short delay
-      showPopupDialog(
+      popupfxn_with_msg(
         context,
-        message:
-            'Payment of ${NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ').format(partialPayment)} successful! Remaining: ${NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ').format(remainingAmount)}. Welcome to Royal Med.',
-        autoCloseDuration: const Duration(seconds: 5),
-        navigateTo: '/dashboard',
+        'Payment of ${NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ').format(partialPayment)} successful! Remaining: ${NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ').format(remainingAmount)}. Welcome to Royal Med.',
         onClose: () => Navigator.pushNamed(context, '/dashboard'),
-        showButton: true,
-        buttonText: 'Go to Dashboard',
       );
     } else {
       setState(() {
         _paymentStatus = 'Payment failed. Please try again.';
         _isPaying = false;
       });
-      showPopupDialog(
+      popupfxn_with_msg(
         context,
-        message: 'Payment failed. Please try again.',
+        'Payment failed. Please try again.',
         isError: true,
-        showButton: true,
-        buttonText: 'Close',
       );
     }
   }
@@ -98,6 +141,7 @@ class _MpesaPaymentCardState extends State<MpesaPaymentCard> {
 
   @override
   Widget build(BuildContext context) {
+    // Read data directly from the provider
     final provider = context.watch<AppProvider>();
     // final premium = _calculatePremium(provider.selectedCoverAmount);
     final premium = provider.premium;
@@ -137,23 +181,53 @@ class _MpesaPaymentCardState extends State<MpesaPaymentCard> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      CustomTextFormField(
+                      TextFormField(
                         controller: _phoneController,
-                        hintText: 'e.g., 0712345678',
-                        label: 'M-Pesa Phone Number',
-                        icon: Icons.phone_android,
+                        decoration: InputDecoration(
+                          labelText: 'M-Pesa Phone Number',
+                          prefixIcon: const Icon(Icons.phone_android),
+                          hintText: 'e.g., 0712345678',
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                const BorderSide(color: AppTheme.primaryColor),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                                color: AppTheme.primaryColor, width: 2),
+                          ),
+                        ),
                         keyboardType: TextInputType.phone,
                         enabled: !_isPaying,
-                        validatorType: ValidatorType.phone,
+                        validator: (value) {
+                          if (value == null ||
+                              !RegExp(r'^(0)[17]\d{8}$').hasMatch(value)) {
+                            return 'Please enter a valid Safaricom number';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 16),
-                      CustomTextFormField(
+                      TextFormField(
                         controller: _partialPaymentController,
-                        label: 'Amount to Pay Now (Ksh)',
-                        icon: Icons.monetization_on_outlined,
+                        decoration: InputDecoration(
+                          labelText: 'Amount to Pay Now (Ksh)',
+                          prefixIcon: Icon(Icons.monetization_on_outlined),
+                          hintText: 'e.g., 1000',
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide:
+                                BorderSide(color: AppTheme.primaryColor),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                                color: AppTheme.primaryColor, width: 2),
+                          ),
+                        ),
                         keyboardType: TextInputType.number,
                         enabled: !_isPaying,
-                        hintText: 'e.g., 1000',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter an amount';

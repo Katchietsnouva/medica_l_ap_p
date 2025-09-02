@@ -1,5 +1,4 @@
-// lib/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/dialog_utils.dart';
+// lib/widgets/summary_card.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,12 +7,42 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
 
+void popupfxn_with_msg(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false, // user can't close manually
+    builder: (BuildContext context) {
+      Future.delayed(const Duration(seconds: 2), () {
+        Navigator.of(context).pop(); // close after 2 sec
+      });
+
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        content: Row(
+          children: const [
+            Icon(Icons.check_circle, color: Colors.green, size: 28),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                "Quote saved successfully!",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
 class QuoteSummaryCard extends StatelessWidget {
   final VoidCallback onProceedToPayment;
 
   const QuoteSummaryCard({
     super.key,
-    required this.onProceedToPayment,
+    required this.onProceedToPayment, // ADD THIS
   });
 
   @override
@@ -58,6 +87,7 @@ class QuoteSummaryCard extends StatelessWidget {
                     isHighlight: true,
                   ),
                   const SizedBox(height: 24),
+                  // Placeholder for premium cost
                   Text(
                     "Premium details will be calculated here.",
                     style: Theme.of(context)
@@ -66,20 +96,41 @@ class QuoteSummaryCard extends StatelessWidget {
                         ?.copyWith(fontStyle: FontStyle.italic),
                   ),
                   const SizedBox(height: 24),
-                  // context.go('/dashboard');
-                  // context.push('/payment');
+                  // SizedBox(
+                  //   width: double.infinity,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {},
+                  //     style: ElevatedButton.styleFrom(
+                  //         backgroundColor: AppTheme.secondaryColor),
+                  //     child: const Text("Proceed to Payment"),
+                  //   ),
+                  // )
                   Row(
                     children: [
+                      // Expanded(
+                      //   child: NouvaButton(
+                      //     onPressed: () {
+                      //     },
+                      //     child: const Text("Save Quote"),
+                      //   ),
+                      // ),
+                      // Expanded(
+                      //   child: NouvaButton(
+                      //     onPressed: () {
+                      //       //       // context.go('/dashboard');
+                      //       //       // Navigator.pushNamed(context, '/dashboard');
+                      //       popupfxn_with_msg(context);
+                      //     },
+                      //     child: const Text("Save Quote"),
+                      //   ),
+                      // ),
+
                       const SizedBox(width: 16),
                       Expanded(
                         child: NouvaButton(
                             onPressed: () {
-                              showPopupDialog(
-                                context,
-                                message: 'Quote saved successfully!',
-                                autoCloseDuration: const Duration(seconds: 2),
-                                showButton: false,
-                              );
+                              // context.push('/payment');
+                              popupfxn_with_msg(context);
                               context.read<AppProvider>().showPaymentForm();
                               onProceedToPayment();
                             },

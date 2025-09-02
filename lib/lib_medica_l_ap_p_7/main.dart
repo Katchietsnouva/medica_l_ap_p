@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart'; // Add this import
 
 void main() {
   runApp(
@@ -20,6 +20,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => AppProvider()),
         ChangeNotifierProvider(create: (_) => TextScaleProvider()),
         ChangeNotifierProvider(create: (_) => DashboardProvider()),
+        // add others like TextScaleProvider if needed
       ],
       child: const MyApp(),
     ),
