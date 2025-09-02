@@ -1,11 +1,11 @@
 // lib/lib_medica_l_ap_p/widgets/desktop_nav_bar.dart
-import 'package:broka/lib_medica_l_ap_p/data/models/navigation_item.dart';
-import 'package:broka/lib_medica_l_ap_p/data/navigation_data.dart';
-import 'package:broka/lib_medica_l_ap_p/models/royal_project_model.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/models/navigation_item.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/navigation_data.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/models/royal_project_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router/go_router.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/settings_dialog.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/settings_dialog.dart';
 
 // import '../../data/navigation_data.dart';
 // lib/lib_Royal_app/models/navigation_item.dart

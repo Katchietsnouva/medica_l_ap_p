@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 
 void showPopupDialog(
   BuildContext context, {
@@ -151,7 +151,7 @@ void showPopupDialog(
 
 // // lib/lib_medica_l_ap_p/widgets/ui/dialog_utils.dart
 // import 'package:flutter/material.dart';
-// import 'package:broka/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 // import 'package:flutter/services.dart';
 
 // // Displays a customizable popup dialog with optional auto-close, navigation, and actions.

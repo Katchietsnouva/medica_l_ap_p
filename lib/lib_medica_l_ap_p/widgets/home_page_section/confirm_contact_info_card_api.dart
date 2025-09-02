@@ -1,7 +1,7 @@
 // lib/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card_api.dart
 import 'dart:convert';
-import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/ui/popup_dialog_utils.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/popup_dialog_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

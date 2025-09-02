@@ -1,7 +1,7 @@
-import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 
 class PersonOrFamilyDetailsCard extends StatelessWidget {
   final AppProvider provider;

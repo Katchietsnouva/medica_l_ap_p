@@ -1,7 +1,7 @@
 // lib/widgets/common/custom_text_form_field.dart
 import 'package:flutter/material.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;

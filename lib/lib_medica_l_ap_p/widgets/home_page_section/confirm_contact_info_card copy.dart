@@ -1,14 +1,14 @@
 // lib/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card.dart.dart
-import 'package:broka/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/ui/popup_dialog_utils.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/ui/custom_text_form_field.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/popup_dialog_utils.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field.dart';
 import 'dart:convert';
-import 'package:broka/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
-import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:broka/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 
 class ContactInfoCard extends StatefulWidget {
   final AppProvider provider;

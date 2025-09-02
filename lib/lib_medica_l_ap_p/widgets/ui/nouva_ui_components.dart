@@ -1,5 +1,5 @@
 // components/ui/Nouva_ui_components.dart
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 
 // const Color primaryColor = Color(0xFFD02030);

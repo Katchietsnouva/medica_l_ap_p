@@ -1,5 +1,5 @@
 // lib/widgets/responsive_footer.dart
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -351,7 +351,7 @@ class ResponsiveFooter extends StatelessWidget {
 
 // // import 'dart:ui';
 // // import 'package:flutter/material.dart';
-// // import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 // // // import 'package:royal_med/utils/app_theme.dart';
 
 // // class ResponsiveFooter extends StatelessWidget {
@@ -698,7 +698,7 @@ class ResponsiveFooter extends StatelessWidget {
 // // // import 'dart:ui';
 
 // // // import 'package:flutter/material.dart';
-// // // import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 // // // // import 'package:royal_med/utils/app_theme.dart';
 
 // // // class ResponsiveFooter extends StatelessWidget {
@@ -888,7 +888,7 @@ class ResponsiveFooter extends StatelessWidget {
 // // // }
 
 // // // // // lib/widgets/common/responsive_footer.dart
-// // // // import 'package:broka/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+// // // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
 // // // // import 'package:flutter/material.dart';
 // // // // // import 'package:royal_med/utils/app_theme.dart';
 

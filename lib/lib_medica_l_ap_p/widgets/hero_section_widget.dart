@@ -1,7 +1,7 @@
 // lib/lib_medica_l_ap_p/widgets/hero_section_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 
 class HeroSectionWidget extends StatelessWidget {
   final ScrollController scrollController;

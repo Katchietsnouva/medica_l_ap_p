@@ -1,7 +1,7 @@
 // lib/widgets/cover_amount_card.dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 
 class CoverAmountCard extends StatelessWidget {
   final int amount;

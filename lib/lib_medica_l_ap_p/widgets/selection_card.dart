@@ -1,7 +1,7 @@
 // lib/widgets/selection_card.dart
 import 'package:flutter/material.dart';
-import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
-// import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 // // lib/widgets/selection_card.dart
 
 class SelectionCard extends StatelessWidget {
@@ -91,7 +91,7 @@ class SelectionCard extends StatelessWidget {
 }
 
 // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
-// // import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 // class SelectionCard extends StatelessWidget {
 //   final IconData icon;
 //   final String title;

@@ -1,7 +1,7 @@
 // lib/lib_medica_l_ap_p/widgets/system_header.dart
 import 'dart:ui';
 
-import 'package:broka/lib_medica_l_ap_p/widgets/settings_dialog.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/settings_dialog.dart';
 import 'package:flutter/material.dart';
 import '../models/royal_project_model.dart';
 import 'desktop_nav_bar.dart';
