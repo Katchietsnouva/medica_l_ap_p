@@ -1,6 +1,6 @@
 // lib/providers/dashboard_provider.dart
 import 'package:flutter/material.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/data/models/quote_model.dart';
+import 'package:broka/lib_medica_l_ap_p/data/models/quote_model.dart';
 
 class DashboardProvider extends ChangeNotifier {
   // Mock data

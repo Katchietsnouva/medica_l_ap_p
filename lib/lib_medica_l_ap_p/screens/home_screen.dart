@@ -1,18 +1,18 @@
 // lib/screens/home_screen.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/cover_amount_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/family_cover_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/hero_section_widget.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/mobile_nav_panel.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/home_page_section/cover_amount_cards.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/home_page_section/family_cover_cards.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/hero_section_widget.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/mobile_nav_panel.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/system_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/person_or_family_details_card.dart';
+import 'package:broka/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:broka/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/person_or_family_details_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -254,12 +254,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
-// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
+// import 'package:broka/lib_medica_l_ap_p/lib/providers/app_provider.dart';
+// import 'package:broka/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
+// import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
 // import 'package:flutter_animate/flutter_animate.dart';
 
 // class HomeScreen extends StatelessWidget {
@@ -646,12 +646,12 @@ class _HomeScreenState extends State<HomeScreen> {
 // // // lib/screens/home_screen.dart
 // // import 'package:flutter/material.dart';
 // // import 'package:provider/provider.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
-// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/summary_card.dart';
+// // import 'package:broka/lib_medica_l_ap_p/lib/providers/app_provider.dart';
+// // import 'package:broka/lib_medica_l_ap_p/lib/utils/app_theme.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/cover_amount_card.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/selection_card.dart';
+// // import 'package:broka/lib_medica_l_ap_p/widgets/summary_card.dart';
 
 // // class HomeScreen extends StatelessWidget {
 // //   const HomeScreen({super.key});

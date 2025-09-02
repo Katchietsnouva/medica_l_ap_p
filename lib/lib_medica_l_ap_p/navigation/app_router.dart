@@ -1,12 +1,12 @@
 // lib/navigation/app_router.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/home_screen.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart'; // Add this import
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/dashboard_overview_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/my_cover_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/payment_history_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/home_screen.dart';
+import 'package:broka/lib_medica_l_ap_p/screens/dashboard/contact_screen.dart'; // Add this import
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _shellNavigatorKey =

@@ -1,9 +1,9 @@
 // lib/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/dialog_utils.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/ui/popup_dialog_utils.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/ui/custom_text_form_field.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
+import 'package:broka/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
