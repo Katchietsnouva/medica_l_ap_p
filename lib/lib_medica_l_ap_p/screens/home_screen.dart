@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    final bool isSmallScreen = screenWidth < 600;
+    final bool isSmallScreen = screenWidth < 1200;
 
     return Scaffold(
       endDrawer: isSmallScreen ? const MobileNavPanel() : null,
@@ -156,9 +156,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         FamilyCoverCards(
-                            provider: provider,
-                            ScrollToPersonOrFamilyDetailsCard:
-                                _scrollToPersonOrFamilyDetailsCard),
+                          provider: provider,
+                          ScrollToPersonOrFamilyDetailsCard:
+                              _scrollToPersonOrFamilyDetailsCard,
+                        ),
                         const SizedBox(height: 24),
                         _buildAnimatedSection(
                           isVisible:
@@ -183,7 +184,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 24),
                         QuoteSummaryCard(
-                            onProceedToPayment: _scrollToQuoteSummaryCard),
+                          onProceedToPayment: _scrollToQuoteSummaryCard,
+                        ),
                         const SizedBox(height: 24),
                         _buildAnimatedSection(
                           isVisible: provider.isPaymentFormVisible,
