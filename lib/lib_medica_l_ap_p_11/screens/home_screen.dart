@@ -12,7 +12,7 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/person_or_family_details_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/person_or_family_details_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

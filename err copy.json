@@ -1,0 +1,12 @@
+{
+    "status": "error",
+    "message": "Validation failed",
+    "errors": {
+        "principal_dob": [
+            "The principal dob field is required."
+        ],
+        "limit": [
+            "The limit field is required."
+        ]
+    }
+}

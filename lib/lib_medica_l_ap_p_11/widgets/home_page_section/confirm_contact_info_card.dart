@@ -7,7 +7,7 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container.
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 class ContactInfoCard extends StatefulWidget {
   final AppProvider provider;
@@ -68,21 +68,6 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
 
     setState(() => _isSubmitting = true);
 
-    // Get the AppProvider instance here
-    final provider = Provider.of<AppProvider>(context, listen: false);
-
-    // Get the required data from the provider
-    final dob = provider.myDob;
-    final coverAmount = provider.selectedCoverAmount;
-
-    // Check if the required data is available
-    if (dob == null || coverAmount == null) {
-      if (mounted) {
-        setState(() => _isSubmitting = false);
-      }
-      return; // Early exit if data is missing
-    }
-
     final success = await ContactInfoService.submitContactInfo(
       context: context,
       formKey: _formKey,
@@ -92,8 +77,6 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
       kraController: _kraController,
       provider: widget.provider,
       onSuccessScrollToMpesa: widget.onSuccessScrollToMpesa,
-      principalDob: dob.toIso8601String(),
-      limit: coverAmount.toDouble(),
     );
 
     if (mounted) {
