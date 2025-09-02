@@ -6,38 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ContactInfoService {
-  static const String _authEndpoint = 'https://royal.inscloud.net/api/auth';
-
-  static const String _quoteEndpoint =
-      'https://royal.inscloud.net/api/medical_quote';
-
-  static const String _inscloudKey =
-      r'$2y$12$Yp/PEdXkZeKt5VwrW4yBS.Uk6/4Z3n7D6xvmyFir3/ohUFQFhTZjC';
-  static const String _passkey = '00A8A073114C99FB01A54C07A97F5E';
-
-  static Future<String?> _getAuthToken() async {
-    try {
-      final authPayload = {
-        'inscloudkey': _inscloudKey,
-        'passkey': _passkey,
-      };
-
-      final authResponse = await http.post(
-        Uri.parse(_authEndpoint),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(authPayload),
-      );
-
-      if (authResponse.statusCode == 200 || authResponse.statusCode == 201) {
-        final responseData = jsonDecode(authResponse.body);
-        return responseData['token'] as String?;
-      } else {
-        return null;
-      }
-    } catch (e) {
-      return null;
-    }
-  }
+  static const String _endpoint = 'https://apitoget.com/submit';
 
   static Future<bool> submitContactInfo({
     required BuildContext context,
@@ -55,17 +24,6 @@ class ContactInfoService {
 
     formKey.currentState!.save();
 
-    final token = await _getAuthToken();
-    if (token == null) {
-      showPopupDialog(
-        context,
-        message: 'Failed to authenticate with the server.',
-        isError: true,
-        showButton: false,
-      );
-      return false;
-    }
-
     try {
       final payload = {
         'name': nameController.text.trim(),
@@ -75,7 +33,7 @@ class ContactInfoService {
       };
 
       final response = await http.post(
-        Uri.parse(_quoteEndpoint),
+        Uri.parse(_endpoint),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(payload),
       );

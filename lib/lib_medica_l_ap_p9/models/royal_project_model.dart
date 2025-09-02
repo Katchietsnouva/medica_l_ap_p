@@ -25,8 +25,9 @@ class RoyalPersonalDetailsType {
   String churchBranch;
   // String phone;
   String? profilePictureUrl;
-  List<String> phoneNumbers;
-  String? paymentPhoneNumber;
+  List<String> phoneNumbers; // ✅ Changed to a list of strings
+  String?
+      paymentPhoneNumber; // ✅ Added a dedicated field for the payment number
 
   RoyalPersonalDetailsType({
     required this.fullName,
