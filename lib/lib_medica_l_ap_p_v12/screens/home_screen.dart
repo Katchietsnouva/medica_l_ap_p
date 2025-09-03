@@ -1,6 +1,5 @@
 // lib/screens/home_screen.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/cover_amount_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/cover_plans_cards.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/family_cover_cards.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/hero_section_widget.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
@@ -29,7 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey _mpesapaymentFormKey = GlobalKey();
   final GlobalKey _detailsSectionKey = GlobalKey();
   final GlobalKey _coverAmountSectionKey = GlobalKey();
-  final GlobalKey _coverPlanCardsKey = GlobalKey();
 
   void _scrollToForm() {
     final context = _formSectionKey.currentContext;
@@ -59,20 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void _scrollToCoverAmountSection() {
     Future.delayed(const Duration(milliseconds: 400), () {
       final context = _coverAmountSectionKey.currentContext;
-      if (context != null) {
-        Scrollable.ensureVisible(
-          context,
-          duration: const Duration(seconds: 1),
-          curve: Curves.easeInOutCubic,
-          alignment: 0.1,
-        );
-      }
-    });
-  }
-
-  void _scrollToCoverPlansCards() {
-    Future.delayed(const Duration(milliseconds: 400), () {
-      final context = _coverPlanCardsKey.currentContext;
       if (context != null) {
         Scrollable.ensureVisible(
           context,
@@ -182,11 +166,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           // child: _buildPersonalDetailsCard(context, provider),
                           child: PersonOrFamilyDetailsCard(
                             provider: provider,
-                            onScrollToCoverAmountsCard:
+                            onScrollToCoverAmountSection:
                                 _scrollToCoverAmountSection,
                             detailsSectionKey: _detailsSectionKey,
-                            // wont scroll to personal details if like this
-                            // detailsSectionKey: _coverAmountSectionKey,
                           ),
                         ),
                         _buildAnimatedSection(
@@ -194,20 +176,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           // child: _buildCoverAmountCards(context, provider),
                           child: CoverAmountCards(
                             provider: provider,
-                            onScrollToPlanCards: _scrollToCoverPlansCards,
-                            coverAmountSectionKey: _coverAmountSectionKey,
-                          ),
-                        ),
-                        _buildAnimatedSection(
-                          isVisible: provider.isCoverPlansCardVisible,
-                          // child: _buildCoverAmountCards(context, provider),
-                          child: CoverPlansCard(
-                            provider: provider,
-                            // payload: provider.buildPlanPayload(),
                             onScrollToQuoteSummaryCard:
-                                _scrollToCoverPlansCards,
-                            // onProceedToPayment: () {},
-                            coverPlanCardsKey: _coverPlanCardsKey,
+                                _scrollToCoverAmountSection,
+                            coverAmountSectionKey: _coverAmountSectionKey,
                           ),
                         ),
                         const SizedBox(height: 24),

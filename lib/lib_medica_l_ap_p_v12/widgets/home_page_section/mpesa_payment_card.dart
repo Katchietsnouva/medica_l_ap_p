@@ -249,10 +249,8 @@ class _MpesaPaymentCardState extends State<MpesaPaymentCard> {
 
   Widget _buildDetailRow(String label, String value,
       {bool isHighlight = false}) {
-    return Wrap(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      alignment: WrapAlignment.spaceBetween,
-      crossAxisAlignment: WrapCrossAlignment.center,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(label,
             style:

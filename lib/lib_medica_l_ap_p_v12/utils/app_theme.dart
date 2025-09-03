@@ -68,8 +68,7 @@ class AppTheme {
       Color(0xFF37008C);
 
   static const Color backgroundColor = Color(0xFFF8F9FA);
-  // static const Color surfaceColor = Color.fromARGB(255, 224, 245, 249);
-  static const Color surfaceColor = Color(0xFFF5F5F5);
+  static const Color surfaceColor = Color.fromARGB(255, 224, 245, 249);
   static const Color textColor = Color(0xFF343A40);
   static const Color subtleTextColor = Color(0xFF6C757D);
 

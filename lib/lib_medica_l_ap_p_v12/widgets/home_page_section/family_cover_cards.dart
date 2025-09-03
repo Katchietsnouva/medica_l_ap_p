@@ -1,4 +1,4 @@
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/family_type_selection_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/selection_card.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/card_animation_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
@@ -64,7 +64,7 @@ class FamilyCoverCards extends StatelessWidget {
                       index: entry.value['index'] as int,
                       bounce: entry.value['bounce'] as bool,
                       bounceX: entry.value['bounceX'] as bool,
-                      child: FamilyTypeSelectionCard(
+                      child: SelectionCard(
                         minHeight: 160,
                         icon: entry.value['icon'] as IconData,
                         title: entry.value['title'] as String,

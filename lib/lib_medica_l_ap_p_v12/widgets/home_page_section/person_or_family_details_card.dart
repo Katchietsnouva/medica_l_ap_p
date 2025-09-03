@@ -6,13 +6,13 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 
 class PersonOrFamilyDetailsCard extends StatelessWidget {
   final AppProvider provider;
-  final VoidCallback onScrollToCoverAmountsCard;
+  final VoidCallback onScrollToCoverAmountSection;
   final Key? detailsSectionKey;
 
   const PersonOrFamilyDetailsCard(
       {Key? key,
       required this.provider,
-      required this.onScrollToCoverAmountsCard,
+      required this.onScrollToCoverAmountSection,
       this.detailsSectionKey});
 
   @override
@@ -38,7 +38,7 @@ class PersonOrFamilyDetailsCard extends StatelessWidget {
             selectedDate: provider.myDob,
             onDateSelected: (date) {
               provider.setMyDob(date);
-              provider.showCoverAmountSection(onScrollToCoverAmountsCard);
+              provider.showCoverAmountSection(onScrollToCoverAmountSection);
             }),
         if (provider.selectedCoverType == CoverType.spouse ||
             provider.selectedCoverType == CoverType.family) ...[
@@ -48,7 +48,7 @@ class PersonOrFamilyDetailsCard extends StatelessWidget {
               selectedDate: provider.spouseDob,
               onDateSelected: (date) {
                 provider.setSpouseDob(date);
-                provider.showCoverAmountSection(onScrollToCoverAmountsCard);
+                provider.showCoverAmountSection(onScrollToCoverAmountSection);
               }),
         ],
         if (provider.selectedCoverType == CoverType.family) ...[
@@ -81,7 +81,7 @@ class PersonOrFamilyDetailsCard extends StatelessWidget {
                 .toList(),
             onChanged: (value) {
               if (value != null) provider.setChildCount(value);
-              provider.showCoverAmountSection(onScrollToCoverAmountsCard);
+              provider.showCoverAmountSection(onScrollToCoverAmountSection);
             },
           ),
         ],

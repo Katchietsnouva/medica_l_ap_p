@@ -19,8 +19,7 @@ class QuoteSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<AppProvider>();
-    final isVisible = provider.selectedCoverAmount != null &&
-        provider.selectedPlanAmount != null;
+    final isVisible = provider.selectedCoverAmount != null;
 
     final coverTypeString =
         provider.selectedCoverType.toString().split('.').last.replaceAllMapped(

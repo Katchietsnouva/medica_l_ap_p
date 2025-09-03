@@ -3,6 +3,7 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_fiel
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card_api.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container.dart';
+// import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field_validators.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 import 'package:flutter/material.dart';
@@ -67,16 +68,19 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
 
     setState(() => _isSubmitting = true);
 
+    // Get the AppProvider instance here
     final provider = Provider.of<AppProvider>(context, listen: false);
 
+    // Get the required data from the provider
     final dob = provider.myDob;
     final coverAmount = provider.selectedCoverAmount;
 
+    // Check if the required data is available
     if (dob == null || coverAmount == null) {
       if (mounted) {
         setState(() => _isSubmitting = false);
       }
-      return;
+      return; // Early exit if data is missing
     }
 
     final success = await ContactInfoService.submitContactInfo(
