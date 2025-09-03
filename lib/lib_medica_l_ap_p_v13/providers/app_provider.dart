@@ -1,5 +1,4 @@
 // lib/providers/app_provider.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card_api.dart';
 import 'package:flutter/material.dart';
 
 enum CoverType { none, me, spouse, family }
@@ -58,8 +57,6 @@ class AppProvider extends ChangeNotifier {
     _isCoverPlansCardVisible = false;
     _isMpesaComponentVisible = false;
 
-    _medicalPlans = [];
-
     notifyListeners();
   }
 
@@ -78,14 +75,11 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void selectCoverAmount(BuildContext context, int amount) {
+  void selectCoverAmount(int amount) {
     _selectedCoverAmount = amount;
     _isPaymentFormVisible = false;
     // _isPaymentFormVisible = true;
     notifyListeners();
-
-    // ✨ TRIGGER THE FETCH FOR THE NEXT STEP'S DATA ✨
-    fetchMedicalPlans(context);
   }
 
   // void selectPlanAmount(int amount) {
@@ -189,59 +183,5 @@ class AppProvider extends ChangeNotifier {
     _isMpesaComponentVisible = true;
     notifyListeners();
     scrollToMpesasComponent();
-  }
-
-  List<Map<String, dynamic>> _medicalLimits = [];
-  bool _isLoadingLimits = false;
-  String? _limitsError;
-
-  // For Step 4: Medical Plans
-  List<Map<String, dynamic>> _medicalPlans = [];
-  bool _isLoadingPlans = false;
-  String? _plansError;
-
-  List<Map<String, dynamic>> get medicalLimits => _medicalLimits;
-  bool get isLoadingLimits => _isLoadingLimits;
-  String? get limitsError => _limitsError;
-
-  List<Map<String, dynamic>> get medicalPlans => _medicalPlans;
-  bool get isLoadingPlans => _isLoadingPlans;
-  String? get plansError => _plansError;
-
-  Future<void> fetchMedicalLimits(BuildContext context) async {
-    // Prevent re-fetching if we already have the data
-    if (_medicalLimits.isNotEmpty) return;
-
-    _isLoadingLimits = true;
-    _limitsError = null;
-    notifyListeners();
-
-    try {
-      _medicalLimits = await ContactInfoService.fetchMedicalLimits(context);
-    } catch (e) {
-      _limitsError = 'An error occurred: $e';
-    } finally {
-      _isLoadingLimits = false;
-      notifyListeners();
-    }
-  }
-
-  Future<void> fetchMedicalPlans(BuildContext context) async {
-    // Reset previous plans
-    _medicalPlans = [];
-    _isLoadingPlans = true;
-    _plansError = null;
-    // We notify here so the UI shows a loading spinner immediately
-    notifyListeners();
-
-    try {
-      // The service now gets the required data directly from this provider
-      _medicalPlans = await ContactInfoService.fetchMedicalPlans(context, this);
-    } catch (e) {
-      _plansError = 'An error occurred: $e';
-    } finally {
-      _isLoadingPlans = false;
-      notifyListeners();
-    }
   }
 }

@@ -1,19 +1,19 @@
 // lib/screens/home_screen.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/1_family_cover_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/2_person_or_family_details_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/3_cover_amount_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/4_cover_plans_cards.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/5_quote_summary_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/6_confirm_contact_info_card.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/7_mpesa_payment_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/cover_amount_cards.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/cover_plans_cards.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/family_cover_cards.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/hero_section_widget.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/common/responsive_footer.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/mpesa_payment_card.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/mobile_nav_panel.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/system_header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/person_or_family_details_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,17 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey _detailsSectionKey = GlobalKey();
   final GlobalKey _coverAmountSectionKey = GlobalKey();
   final GlobalKey _coverPlanCardsKey = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-    // Use addPostFrameCallback to ensure the context is available
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Fetch the data for step 3 immediately. `listen: false` is important here.
-      Provider.of<AppProvider>(context, listen: false)
-          .fetchMedicalLimits(context);
-    });
-  }
 
   void _scrollToForm() {
     final context = _formSectionKey.currentContext;
