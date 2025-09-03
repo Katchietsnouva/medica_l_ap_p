@@ -20,14 +20,14 @@ class CoverPlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           color: isSelected
-              ? Colors.white
-              : AppTheme.primaryColor.withOpacity(0.9),
+              ? theme.colorScheme.surface
+              : AppTheme.primaryColor(context),
           height: 1.4,
         );
-    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: AnimatedScale(

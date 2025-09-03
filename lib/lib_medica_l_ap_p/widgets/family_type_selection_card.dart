@@ -21,11 +21,13 @@ class FamilyTypeSelectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           color: isSelected
-              ? Colors.white
-              : AppTheme.primaryColor.withOpacity(0.9),
+              ? theme.colorScheme.surface
+              : AppTheme.reversedTextColor(context),
           height: 1.4,
         );
 
@@ -43,7 +45,9 @@ class FamilyTypeSelectionCard extends StatelessWidget {
               Icon(
                 icon,
                 size: 40,
-                color: isSelected ? Colors.white : AppTheme.primaryColor,
+                color: isSelected
+                    ? theme.colorScheme.surface
+                    : AppTheme.reversedTextColor(context),
               ),
               const SizedBox(height: 12),
               Stack(

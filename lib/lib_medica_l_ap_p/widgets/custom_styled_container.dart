@@ -1,3 +1,4 @@
+// lib/lib_medica_l_ap_p/widgets/custom_styled_container.dart
 import 'package:flutter/material.dart';
 import '../utils/app_theme.dart';
 
@@ -21,14 +22,22 @@ class CustomStyledContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       key: containerKey,
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-        color: backgroundColor ?? AppTheme.surfaceColor,
+        color: backgroundColor ??
+            theme.cardTheme.color ??
+            theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.secondaryColor, width: 1),
+        border: Border.all(
+          color: theme.brightness == Brightness.dark
+              ? theme.colorScheme.outline
+              : theme.colorScheme.primary.withOpacity(0.2),
+          width: 1,
+        ),
         boxShadow: [
           BoxShadow(
             color: AppTheme.secondaryColor.withOpacity(0.85),

@@ -29,6 +29,7 @@ class DobPickerField extends StatelessWidget {
 
   Future<void> _selectDate(BuildContext context) async {
     final primaryColor = AppTheme.primaryColor; // or any color you want
+    final theme = Theme.of(context);
 
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -38,9 +39,14 @@ class DobPickerField extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(primary: primaryColor),
+            // colorScheme: ColorScheme.light(primary: primaryColor),
+            colorScheme: theme.colorScheme,
             textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(foregroundColor: primaryColor),
+              // style: TextButton.styleFrom(foregroundColor: primaryColor),
+              style: TextButton.styleFrom(
+                foregroundColor: theme.colorScheme.primary,
+              ),
+              // style: theme.colorScheme.primary,),
             ),
           ),
           child: child!,
@@ -55,27 +61,34 @@ class DobPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return InkWell(
       onTap: () => _selectDate(context),
       child: InputDecorator(
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: const TextStyle(color: AppTheme.subtleTextColor),
+          // labelStyle: const TextStyle(color: AppTheme.subtleTextColor),
+          labelStyle:
+              TextStyle(color: theme.colorScheme.onSurface.withOpacity(0.6)),
           filled: true,
-          fillColor: Colors.grey.shade50,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade300),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide:
-                const BorderSide(color: AppTheme.primaryColor, width: 2),
-          ),
+          fillColor: theme.inputDecorationTheme.fillColor,
+          // border: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(12),
+          //   // borderSide: BorderSide(color: Colors.grey.shade300),
+          // ),
+          border: theme.inputDecorationTheme.border,
+          // enabledBorder: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(12),
+          // borderSide: BorderSide(color: Colors.grey.shade300),
+          // ),
+          enabledBorder: theme.inputDecorationTheme.enabledBorder,
+          // focusedBorder: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(12),
+          //   borderSide:
+          //       const BorderSide(color: AppTheme.primaryColor, width: 2),
+          // ),
+          focusedBorder: theme.inputDecorationTheme.focusedBorder,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,8 +99,8 @@ class DobPickerField extends StatelessWidget {
                   : DateFormat('dd MMM, yyyy').format(selectedDate!),
               style: TextStyle(
                 color: selectedDate == null
-                    ? AppTheme.subtleTextColor
-                    : AppTheme.textColor,
+                    ? theme.colorScheme.onSurface.withOpacity(0.6)
+                    : theme.colorScheme.onSurface,
                 fontSize: 16,
               ),
             ),

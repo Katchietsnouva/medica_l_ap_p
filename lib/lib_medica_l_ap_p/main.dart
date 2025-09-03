@@ -4,6 +4,7 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/logic/theme_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/dashboard_provider.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/screens/home_screen.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/7_mpesa_payment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,70 +41,12 @@ class MyApp extends StatelessWidget {
           title: 'Royal Med',
           debugShowCheckedModeBanner: false,
           // theme: themeProvider.currentTheme, // use dynamic theme
-          theme: ThemeData(
-            brightness: Brightness.light,
-            primarySwatch: Colors.blue,
-            // scaffoldBackgroundColor: Colors.white,
-            scaffoldBackgroundColor: const Color(0xFFF8F9FA), // Lighter grey
-            textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Inter'),
-            fontFamily: 'Inter',
-            // cardTheme: CardTheme(
-            cardTheme: CardThemeData(
-              elevation: 1,
-              shadowColor: Colors.black.withOpacity(0.05),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: BorderSide(color: Colors.grey[200]!, width: 1),
-              ),
-            ),
-            inputDecorationTheme: InputDecorationTheme(
-              filled: true,
-              fillColor: Colors.grey[100],
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey[400]!),
-                // borderSide: BorderSide.none,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: Colors.blue, width: 2),
-              ),
-            ),
-          ),
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            primarySwatch: Colors.blue,
-            // scaffoldBackgroundColor: const Color(0xFF121212),
-            scaffoldBackgroundColor: const Color(0xFF1A1D21), // Dark charcoal
-            fontFamily: 'Inter',
-            textTheme: Theme.of(context).textTheme.apply(
-                fontFamily: 'Inter',
-                bodyColor: Colors.white70,
-                displayColor: Colors.white),
-            // cardTheme: CardTheme(
-            cardTheme: CardThemeData(
-              // color: const Color(0xFF1E1E1E),
-              color: const Color(0xFF25282D),
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: BorderSide(color: Colors.grey[800]!, width: 1),
-              ),
-            ),
-            inputDecorationTheme: InputDecorationTheme(
-              filled: true,
-              fillColor: Colors.grey[850],
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey[700]!),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: Colors.blue, width: 2),
-              ),
-            ),
-          ),
-          themeMode: themeProvider.themeMode,
+          // --- THEME CONNECTION ---
+          theme: AppTheme.lightTheme, // Set the light theme
+          darkTheme: AppTheme.darkTheme, // Set the dark theme
+          themeMode: themeProvider
+              .themeMode, // Let the provider control which one is active
+
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(

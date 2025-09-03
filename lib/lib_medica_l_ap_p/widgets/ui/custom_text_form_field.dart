@@ -36,16 +36,19 @@ class CustomTextFormField extends StatelessWidget {
       enabled: enabled,
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(icon, color: AppTheme.primaryColor),
+        // prefixIcon: Icon(icon, color: AppTheme.primaryColor),
+        prefixIcon: Icon(
+          icon,
+        ),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey.shade400),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppTheme.primaryColor, width: 2),
-        ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(12),
+        //   borderSide: BorderSide(color: Colors.grey.shade400),
+        // ),
+        // focusedBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(12),
+        //   borderSide: const BorderSide(color: AppTheme.primaryColor, width: 2),
+        // ),
       ),
       validator: effectiveValidator,
       keyboardType: keyboardType,

@@ -42,6 +42,9 @@ class RoyalHeader extends StatelessWidget {
       // ),
       // title: LayoutBuilder(
       builder: (context, constraints) {
+        final theme = Theme.of(context);
+        final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
         if (constraints.maxWidth > 1100) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -52,19 +55,20 @@ class RoyalHeader extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(left: 10, right: 10), // mt
-                      padding: const EdgeInsets.only(left: 10, right: 10), // pt
+                      margin: const EdgeInsets.only(left: 0, right: 10), // mt
+                      padding: const EdgeInsets.only(left: 0, right: 10), // pt
                       child: ClipRRect(
                         borderRadius:
                             BorderRadius.circular(20), // rounded corners
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
                           child: Container(
-                            height: 50,
+                            height: 40,
                             width: 200,
                             decoration: BoxDecoration(
-                              color: Colors.white
-                                  .withOpacity(0.2), // frosted glass effect
+                              color: !isDarkMode
+                                  ? Colors.black.withOpacity(0.25)
+                                  : Colors.white.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(40),
                               border: Border.all(
                                 color: Colors.white.withOpacity(0.3),
@@ -111,21 +115,21 @@ class RoyalHeader extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        margin:
-                            const EdgeInsets.only(left: 10, right: 10), // mt
+                        margin: const EdgeInsets.only(left: 0, right: 10), // mt
                         padding:
-                            const EdgeInsets.only(left: 10, right: 10), // pt
+                            const EdgeInsets.only(left: 0, right: 10), // pt
                         child: ClipRRect(
                           borderRadius:
                               BorderRadius.circular(20), // rounded corners
                           child: BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
                             child: Container(
-                              height: 80,
+                              height: 35,
                               width: 160,
                               decoration: BoxDecoration(
-                                color: Colors.white
-                                    .withOpacity(0.2), // frosted glass effect
+                                color: !isDarkMode
+                                    ? Colors.black.withOpacity(0.25)
+                                    : Colors.white.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(40),
                                 border: Border.all(
                                   color: Colors.white.withOpacity(0.3),

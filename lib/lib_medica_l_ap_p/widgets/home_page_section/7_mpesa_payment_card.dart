@@ -260,7 +260,9 @@ class _MpesaPaymentCardState extends State<MpesaPaymentCard> {
         Text(
           value,
           style: TextStyle(
-            color: isHighlight ? AppTheme.primaryColor : AppTheme.textColor,
+            color: isHighlight
+                ? AppTheme.primaryColor(context)
+                : AppTheme.textColor,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

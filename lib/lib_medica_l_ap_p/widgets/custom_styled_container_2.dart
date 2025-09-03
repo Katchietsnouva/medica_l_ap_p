@@ -1,4 +1,4 @@
-// // lib/widgets/selection_card.dart
+// lib/lib_medica_l_ap_p/widgets/custom_styled_container_2.dart
 
 import 'package:flutter/material.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
@@ -6,20 +6,25 @@ import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 class CustomStyledContainer_2 extends StatelessWidget {
   final bool isSelected;
   final double? minHeight;
+  final double? minWidth;
   final Widget child;
 
   const CustomStyledContainer_2({
     super.key,
     required this.isSelected,
     this.minHeight,
+    this.minWidth,
     required this.child,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      constraints: BoxConstraints(minHeight: minHeight ?? 140),
+      constraints: BoxConstraints(
+          minHeight: minHeight ?? 140, minWidth: minWidth ?? 140),
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -27,24 +32,26 @@ class CustomStyledContainer_2 extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: isSelected
               ? [
-                  AppTheme.primaryColor,
-                  Color(0xFF5E35B1),
+                  theme.colorScheme.primary,
+                  theme.colorScheme.primary.withAlpha(200)
                 ]
               : [
-                  AppTheme.surfaceColor,
-                  Color.fromARGB(255, 142, 140, 140),
+                  theme.cardTheme.color!,
+                  theme.colorScheme.onSurface.withOpacity(0.1)
                 ],
         ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isSelected ? AppTheme.primaryColor : Colors.grey.shade300,
+          color: isSelected
+              ? theme.colorScheme.primary
+              : theme.colorScheme.surface.withAlpha(100),
           width: isSelected ? 2.0 : 1.5,
         ),
         boxShadow: [
           BoxShadow(
             color: isSelected
-                ? AppTheme.primaryColor.withOpacity(0.3)
-                : Colors.grey.shade200.withOpacity(0.5),
+                ? theme.colorScheme.primary.withOpacity(0.3)
+                : theme.colorScheme.onSurface.withOpacity(0.1),
             blurRadius: isSelected ? 12 : 8,
             offset: const Offset(0, 4),
             spreadRadius: isSelected ? 2 : 1,

@@ -1,4 +1,5 @@
 // lib/lib_medica_l_ap_p/widgets/hero_section_widget.dart
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
@@ -25,12 +26,6 @@ class HeroSectionWidget extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // Image.asset(
-              //   'https://via.placeholder.com/800?text=Royal+Med+Hero',
-              //   fit: BoxFit.cover,
-              //   color: Colors.black.withOpacity(0.4),
-              //   colorBlendMode: BlendMode.darken,
-              // ),
               Image(
                 image: AssetImage('assets/medica_l_ap_p/images/hero_image.png'),
                 fit: BoxFit.cover,
@@ -44,7 +39,7 @@ class HeroSectionWidget extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      AppTheme.primaryColor.withOpacity(0.3),
+                      AppTheme.primaryColorLight.withOpacity(0.3),
                     ],
                   ),
                 ),
@@ -83,39 +78,21 @@ class HeroSectionWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 32),
-                      ElevatedButton(
+                      NouvaButton(
                         onPressed: () {
                           scrollController.animateTo(
-                            MediaQuery.of(context).size.height,
+                            MediaQuery.of(context).size.height / 3,
                             duration: const Duration(milliseconds: 800),
                             curve: Curves.easeInOut,
                           );
+                          // Scrollable.ensureVisible(
+                          // _formSectionKey.currentContext!,
+                          // scrollController: _scrollController,
+                          // duration: const Duration(milliseconds: 500),
+                          // curve: Curves.easeInOut,
+                          // );
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.secondaryColor,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 16,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          elevation: 4,
-                        ),
-                        child: Text(
-                          'Get Cover Now',
-                          // style:
-                          //     Theme.of(context).textTheme.labelLarge?.copyWith(
-                          //           fontSize: 18,
-                          //         ),
-                          style: TextStyle(
-                            fontSize: 18,
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.white,
-                          ),
-                        ),
+                        text: 'Get Cover Now',
                       ),
                     ],
                   )

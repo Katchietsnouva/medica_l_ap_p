@@ -131,6 +131,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     final provider = context.watch<AppProvider>();
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
@@ -160,7 +163,10 @@ class _HomeScreenState extends State<HomeScreen> {
             expandedHeight: screenHeight * 0.6,
             pinned: true,
             floating: true,
-            backgroundColor: AppTheme.surfaceColor,
+            // backgroundColor: AppTheme.surfaceColor,
+            backgroundColor: isDarkMode
+                ? Colors.black.withOpacity(0.25)
+                : Colors.white.withOpacity(0.2),
             elevation: 4,
             flexibleSpace: FlexibleSpaceBar(
               // background: _buildHeroSection(context),

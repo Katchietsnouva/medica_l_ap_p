@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/custom_styled_container_2.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/statics_plans.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card_api.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/popup_dialog_utils.dart';
@@ -195,9 +196,21 @@ class CoverPlansCard extends StatelessWidget {
     Widget content = const SizedBox.shrink();
 
     if (appProvider.isLoadingPlans) {
-      content = const Center(child: CircularProgressIndicator());
+      // content = const Center(child: CircularProgressIndicator());
+      content = Center(
+          child: CustomStyledContainer_2(
+              isSelected: false, child: CircularProgressIndicator()));
     } else if (appProvider.plansError != null) {
-      content = Center(child: Text(appProvider.plansError!));
+      // content = Center(child: Text(appProvider.plansError!));
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showPopupDialog(
+          context,
+          message: appProvider.plansError,
+          isError: true,
+          onClose: () {},
+          buttonText: 'Close',
+        );
+      });
     } else if (appProvider.medicalPlans.isEmpty) {
       final plans = extractPlans(staticPlansData);
       content = _content(plans, appProvider);

@@ -114,7 +114,7 @@ class ResponsiveFooter extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: AppTheme.primaryColor(context),
           radius: 28, // Bigger radius
           child: Icon(icon, color: Colors.white, size: 26), // Bigger icon
         ),

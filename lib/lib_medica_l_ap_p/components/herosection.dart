@@ -1,16 +1,22 @@
-// lib/widgets/summary_card.dart
+// lib/lib_medica_l_ap_p/components/herosection.dart
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/utils/app_theme.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/lib/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+
+class _buildHeroSection {
+  _buildHeroSection(BuildContext context);
+}
 
 class Herosection extends StatelessWidget {
   const Herosection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return _buildHeroSection();
+
+    const Placeholder();
   }
 }
 

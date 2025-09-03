@@ -18,9 +18,13 @@ class CoverAmountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final formatter = NumberFormat.compact(locale: 'en_US');
     final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
-          color: isSelected ? Colors.white : AppTheme.primaryColor,
+          color: isSelected
+              ? theme.colorScheme.surface
+              : theme.colorScheme.primary,
           fontWeight: FontWeight.bold,
         );
     return GestureDetector(

@@ -33,6 +33,7 @@ void showPopupDialog(
       final screenWidth = MediaQuery.of(context).size.width;
       final isWideScreen = screenWidth > 600;
 
+      var maxHeight;
       return WillPopScope(
         onWillPop: () async {
           if (Navigator.of(dialogContext).canPop()) {
@@ -56,6 +57,8 @@ void showPopupDialog(
           content: ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: isWideScreen ? 400 : screenWidth * 0.85,
+              maxHeight: MediaQuery.of(context).size.height *
+                  0.6, // limit dialog height to 60% screen height
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -74,29 +77,35 @@ void showPopupDialog(
                     ),
                   ],
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      isError ? Icons.error : Icons.check_circle,
-                      color: isError ? Colors.red : Colors.green,
-                      size: isWideScreen ? 32 : 28,
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: SelectableText(
-                        message ?? 'Quote saved successfully!',
-                        style: TextStyle(
-                          fontSize: isWideScreen ? 18 : 16,
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          isError ? Icons.error : Icons.check_circle,
+                          color: isError ? Colors.red : Colors.green,
+                          size: isWideScreen ? 32 : 28,
                         ),
-                        enableInteractiveSelection: true,
-                        toolbarOptions: const ToolbarOptions(
-                          copy: true,
-                          selectAll: true,
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: SelectableText(
+                              message ?? 'Quote saved successfully!',
+                              style: TextStyle(
+                                fontSize: isWideScreen ? 18 : 16,
+                              ),
+                              enableInteractiveSelection: true,
+                              toolbarOptions: const ToolbarOptions(
+                                copy: true,
+                                selectAll: true,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
                 if (isError) ...[
                   const SizedBox(height: 12),
@@ -137,6 +146,7 @@ void showPopupDialog(
                           onClose();
                         }
                       },
+                      // (isError)
                       text:
                           buttonText ?? (isError ? 'Close' : 'Go to Dashboard'),
                     ),

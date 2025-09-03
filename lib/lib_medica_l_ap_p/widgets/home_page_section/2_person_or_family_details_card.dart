@@ -56,20 +56,7 @@ class PersonOrFamilyDetailsCard extends StatelessWidget {
           DropdownButtonFormField<int>(
             decoration: InputDecoration(
               labelText: "Number of Children",
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: AppTheme.secondaryColor,
-                  width: 2,
-                ),
-              ),
-              labelStyle: const TextStyle(color: AppTheme.subtleTextColor),
               filled: true,
-              fillColor: Colors.white,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey.shade300),
-              ),
             ),
             value: provider.childCount == 0 ? null : provider.childCount,
             hint: const Text("Select count"),

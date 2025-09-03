@@ -44,6 +44,8 @@ class NouvaButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context); // Get the theme
+
     final EdgeInsets padding = compact
         ? const EdgeInsets.symmetric(horizontal: 16, vertical: 10)
         : const EdgeInsets.symmetric(horizontal: 24, vertical: 16);
@@ -62,7 +64,7 @@ class NouvaButton extends StatelessWidget {
         : ElevatedButton.styleFrom(
             // backgroundColor: Colors.blue,
             backgroundColor:
-                backgroundColor ?? AppTheme.primaryColor, // <-- updated line
+                backgroundColor ?? theme.primaryColor, // <-- updated line
             foregroundColor: Colors.white,
             // padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             padding: padding,
