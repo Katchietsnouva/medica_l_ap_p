@@ -51,7 +51,7 @@ const Map<String, dynamic> staticPlansData = {
       "insurer_id": 1,
       "plans": [
         {
-          "Plan": "Royal Med Executive",
+          "Plan": "Royalmed Exe",
           "Options": [
             {
               "Option": "500000",
@@ -65,7 +65,7 @@ const Map<String, dynamic> staticPlansData = {
           ]
         },
         {
-          "Plan": "Royal Premier",
+          "Plan": "Royal Pre",
           "Options": [
             {
               "Option": "500000",

@@ -41,8 +41,7 @@ import 'package:provider/provider.dart';
 // //         const Divider(height: 40),
 // //         Text(
 // //           "Select Plan",
-// //           style: Theme.of(context)
-// _buildBeneficiaryDetails(context, provider),.textTheme.headlineMedium,
+// //           style: Theme.of(context).textTheme.headlineMedium,
 // //         ),
 // //         const SizedBox(height: 16),
 // //         Row(
@@ -181,10 +180,10 @@ class CoverPlansCard extends StatelessWidget {
 
   PlanType _getPlanTypeFromName(String planName) {
     switch (planName) {
-      case 'Royal Premier':
+      case 'Royal Pre':
         return PlanType.royalPre;
-      case 'Royal Med Executive':
-        return PlanType.royalMedExe;
+      case 'Royalmed Exe':
+        return PlanType.royalmedExe;
       default:
         return PlanType.none;
     }
@@ -198,36 +197,9 @@ class CoverPlansCard extends StatelessWidget {
 
     if (appProvider.isLoadingPlans) {
       // content = const Center(child: CircularProgressIndicator());
-      // content = Center(
-      //     child: CustomStyledContainer_2(
-      //         isSelected: false, child: CircularProgressIndicator()));
-      // content = Center(
-      //   child: Center(
-      //     // isSelected: false,
-      //     child: Image.asset(
-      //       'assets/gifs/spinner.gif',
-      //       width: 140, // adjust size as needed
-      //       height: 140,
-      //       fit: BoxFit.contain,
-      //     ),
-      //   ),
-      // );
-
       content = Center(
-        child: Container(
-          width: 200,
-          height: 200,
-          decoration: BoxDecoration(
-            color: Colors.white, // or any bg color you want to merge with
-            shape: BoxShape.circle, // optional (nice for loaders)
-          ),
-          padding: const EdgeInsets.all(20),
-          child: Image.asset(
-            'assets/gifs/spinner.gif',
-            fit: BoxFit.contain,
-          ),
-        ),
-      );
+          child: CustomStyledContainer_2(
+              isSelected: false, child: CircularProgressIndicator()));
     } else if (appProvider.plansError != null) {
       // content = Center(child: Text(appProvider.plansError!));
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -266,6 +238,7 @@ class CoverPlansCard extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: plans.asMap().entries.expand((entry) {
+        // ... (Your existing logic to build the card from planData)
         final planData = entry.value;
         final index = entry.key;
         final planType = _getPlanTypeFromName(planData['planName']);

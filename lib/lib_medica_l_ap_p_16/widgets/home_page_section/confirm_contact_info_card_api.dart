@@ -64,9 +64,9 @@ class ContactInfoService {
     try {
       // 1. Build the payload from the provider's state
       final payload = {
-        "insurer": 5,
+        "insurer": 1,
         "principal_dob": DateFormat('yyyy-MM-dd').format(provider.myDob!),
-        "spouse_dob": provider.spouseDob != null
+        "spouse_age": provider.spouseDob != null
             ? DateFormat('yyyy-MM-dd').format(provider.spouseDob!)
             : "",
         "children": provider.childCount,
@@ -93,7 +93,6 @@ class ContactInfoService {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        print('Plans available: $data');
 
         // 2. Parse and flatten the complex JSON into a simple list
         final List<Map<String, dynamic>> plans = [];

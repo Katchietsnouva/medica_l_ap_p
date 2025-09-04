@@ -103,5 +103,7 @@ flutter:
   assets:
     - assets/medica_l_ap_p/images/hero_image.png
     - assets/medica_l_ap_p/images/logo.png
+    - assets/gifs/spinner.gif
+
 
 

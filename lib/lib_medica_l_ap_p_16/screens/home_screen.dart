@@ -165,8 +165,8 @@ class _HomeScreenState extends State<HomeScreen> {
             floating: true,
             // backgroundColor: AppTheme.surfaceColor,
             backgroundColor: isDarkMode
-                ? Colors.black.withOpacity(0.95)
-                : Colors.white.withOpacity(0.9),
+                ? Colors.black.withOpacity(0.25)
+                : Colors.white.withOpacity(0.2),
             elevation: 4,
             flexibleSpace: FlexibleSpaceBar(
               // background: _buildHeroSection(context),

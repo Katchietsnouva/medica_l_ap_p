@@ -1,11 +1,11 @@
 // lib/providers/app_provider.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/2_person_or_family_details_card.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/home_page_section/confirm_contact_info_card_api.dart';
 import 'package:flutter/material.dart';
 
 enum CoverType { none, me, spouse, family }
 
-enum PlanType { none, royalPre, royalMedExe }
+// enum PlanType { none, Royal Pre, Royalmed Exe, }
+enum PlanType { none, royalPre, royalmedExe }
 
 class AppProvider extends ChangeNotifier {
   CoverType _selectedCoverType = CoverType.none;
@@ -26,14 +26,7 @@ class AppProvider extends ChangeNotifier {
       _selectedPlanType; // Replace selectedPlanAmount
   DateTime? get myDob => _myDob;
   DateTime? get spouseDob => _spouseDob;
-
-  List<Child> _children = [];
-
-  List<Child> get children => _children;
-  int get childCount => _children.length;
-
-  // int get childCount => _childCount;
-
+  int get childCount => _childCount;
   int? get selectedCoverAmount => _selectedCoverAmount;
   int? get selectedPlanAmount => _selectedPlanAmount;
   bool get isPaymentFormVisible => _isPaymentFormVisible;
@@ -80,33 +73,9 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setChildCount(int newCount) {
-    // _childCount = count;
-    final currentCount = _children.length;
-    if (newCount == currentCount) return;
-
-    if (newCount > currentCount) {
-      // Add new empty Child objects if the count increases
-      _children.addAll(List.generate(newCount - currentCount, (_) => Child()));
-    } else {
-      // Remove children from the end if the count decreases
-      _children = _children.sublist(0, newCount);
-    }
+  void setChildCount(int count) {
+    _childCount = count;
     notifyListeners();
-  }
-
-  void updateChildName(int index, String name) {
-    if (index < _children.length) {
-      _children[index].name = name;
-      notifyListeners();
-    }
-  }
-
-  void updateChildDob(int index, DateTime dob) {
-    if (index < _children.length) {
-      _children[index].dob = dob;
-      notifyListeners();
-    }
   }
 
   void selectCoverAmount(BuildContext context, int amount) {

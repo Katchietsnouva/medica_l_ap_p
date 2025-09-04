@@ -3,24 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 
-enum OutlineTypeOnSelection {
-  filled,
-  outline,
-}
-
 class CustomStyledContainer_2 extends StatelessWidget {
   final bool isSelected;
   final double? minHeight;
   final double? minWidth;
-  final OutlineTypeOnSelection outlineTypeOnSelection;
-
   final Widget child;
 
   const CustomStyledContainer_2({
     super.key,
     required this.isSelected,
     this.minHeight,
-    this.outlineTypeOnSelection = OutlineTypeOnSelection.filled,
     this.minWidth,
     required this.child,
   });
@@ -35,57 +27,31 @@ class CustomStyledContainer_2 extends StatelessWidget {
           minHeight: minHeight ?? 140, minWidth: minWidth ?? 140),
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
       decoration: BoxDecoration(
-        color: outlineTypeOnSelection == OutlineTypeOnSelection.outline
-            ? Colors.red
-            // ? Colors.transparent
-            : null,
-        // : AppTheme.surfaceColor_3,
-        // : Colors.pink,
-        gradient: outlineTypeOnSelection == OutlineTypeOnSelection.filled &&
-                isSelected
-            ? LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  // affects part 1 when selected
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: isSelected
+              ? [
                   theme.colorScheme.primary,
-                  // theme.colorScheme.primary.withAlpha(200),
-                  // AppTheme.surfaceColor_2,
-                  theme.colorScheme.primary.withAlpha(50),
+                  theme.colorScheme.primary.withAlpha(200)
+                ]
+              : [
+                  theme.cardTheme.color!,
+                  theme.colorScheme.onSurface.withOpacity(0.1)
                 ],
-              )
-            : LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: isSelected
-                    ? [
-                        // affected selected wtiht outline when selected, if removed we cownt see any text
-                        // theme.colorScheme.primary,
-                        AppTheme.surfaceColor_3,
-                        // theme.colorScheme.primary.withAlpha(1),
-                        // theme.colorScheme.primary.withAlpha(255)
-                        AppTheme.surfaceColor_3,
-                      ]
-                    : [
-                        // affects part 1 when not selected
-                        theme.cardTheme.color!,
-                        // theme.colorScheme.onSurface.withOpacity(0.9)
-                        AppTheme.surfaceColor_2,
-                      ],
-              ),
+        ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isSelected
               ? theme.colorScheme.primary
-              : theme.colorScheme.surface.withAlpha(150),
+              : theme.colorScheme.surface.withAlpha(100),
           width: isSelected ? 2.0 : 1.5,
         ),
         boxShadow: [
           BoxShadow(
             color: isSelected
-                ? theme.colorScheme.primary.withOpacity(0.5)
-                : theme.colorScheme.onSurface.withOpacity(0.5),
-            // color: Colors.red,
+                ? theme.colorScheme.primary.withOpacity(0.3)
+                : theme.colorScheme.onSurface.withOpacity(0.1),
             blurRadius: isSelected ? 12 : 8,
             offset: const Offset(0, 4),
             spreadRadius: isSelected ? 2 : 1,
