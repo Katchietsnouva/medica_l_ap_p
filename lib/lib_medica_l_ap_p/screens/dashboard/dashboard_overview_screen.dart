@@ -23,12 +23,14 @@ class DashboardOverviewScreen extends StatefulWidget {
 
 class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
   late bool isSidebarExpanded;
+  String? _activeMenuItem; // Tracks the currently selected menu item
 
   @override
   void initState() {
     super.initState();
     // Initialize isSidebarExpanded to a default value; actual value set in didChangeDependencies
     isSidebarExpanded = widget.isSidebarExpandedWide;
+    _activeMenuItem = null; // Initialize as null (no item selected)
   }
 
   @override
@@ -73,7 +75,12 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              setState(() {
+                _activeMenuItem = null; // Clear active menu item on close
+              });
+              Navigator.of(context).pop();
+            },
             child: const Text('Close'),
           ),
         ],
@@ -141,6 +148,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
         ),
         child: Column(
           children: [
+            // Toggle button
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
@@ -155,6 +163,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 },
               ),
             ),
+            // Sidebar content
             Expanded(
               child: Column(
                 children: [
@@ -345,19 +354,52 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
     required VoidCallback onTap,
     required bool isExpanded,
   }) {
+    final isActive = _activeMenuItem == label; // Check if this button is active
+
     return ListTile(
-      leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
+      leading: Icon(
+        icon,
+        color: isActive
+            ? Theme.of(context)
+                  .colorScheme
+                  .primary // Highlight icon
+            : Theme.of(context).colorScheme.primary.withOpacity(0.7),
+      ),
       title: isExpanded
           ? Text(
               label,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: isActive
+                    ? Theme.of(context)
+                          .colorScheme
+                          .primary // Highlight text
+                    : Theme.of(context).textTheme.bodyMedium?.color,
+              ),
             )
           : null,
-      onTap: onTap,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      tileColor: Theme.of(context).cardColor.withOpacity(0.1),
+      onTap: () {
+        setState(() {
+          _activeMenuItem = label; // Set this item as active
+        });
+        onTap(); // Call the original onTap to show popup
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: isActive
+            ? BorderSide(
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary, // Highlight border
+                width: 2.0,
+              )
+            : BorderSide.none, // No border when inactive
+      ),
+      tileColor: isActive
+          ? Theme.of(context).colorScheme.primary.withOpacity(
+              0.3,
+            ) // Lighter shade
+          : Theme.of(context).cardColor.withOpacity(0.1),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       minLeadingWidth: isExpanded ? 30 : 0,
       dense: !isExpanded,
@@ -403,6 +445,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 const SizedBox(height: 24),
                 LayoutBuilder(
                   builder: (context, constraints) {
+                    // Dynamic column count based on screen width
                     int crossAxisCount = constraints.maxWidth > 800
                         ? 4
                         : constraints.maxWidth > 400
@@ -414,7 +457,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                       mainAxisSpacing: 16,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      childAspectRatio: 1.5,
+                      childAspectRatio: 1.5, // Increased height for more space
                       children: [
                         CardAnimationLayout(
                           index: 2,
