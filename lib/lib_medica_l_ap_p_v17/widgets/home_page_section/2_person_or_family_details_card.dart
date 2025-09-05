@@ -1,6 +1,5 @@
 // lib/lib_medica_l_ap_p/widgets/home_page_section/2_person_or_family_details_card.dart
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/card_animation_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
@@ -84,70 +83,54 @@ class _PersonOrFamilyDetailsCardState extends State<PersonOrFamilyDetailsCard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Divider(height: 40),
-        CardAnimationLayout(
-          index: 0,
-          bounce: true,
-          child: Text(
-            "Personal Details",
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+        Text(
+          "Personal Details",
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
         const SizedBox(height: 16),
-        CardAnimationLayout(
-          index: 1,
-          bounce: true,
-          child: DobPickerField(
-              label: "Your Date of Birth",
-              selectedDate: provider.myDob,
-              onDateSelected: (date) {
-                provider.setMyDob(date);
-                provider
-                    .showCoverAmountSection(widget.onScrollToCoverAmountsCard);
-              }),
-        ),
+        DobPickerField(
+            label: "Your Date of Birth",
+            selectedDate: provider.myDob,
+            onDateSelected: (date) {
+              provider.setMyDob(date);
+              provider
+                  .showCoverAmountSection(widget.onScrollToCoverAmountsCard);
+            }),
         if (provider.selectedCoverType == CoverType.spouse ||
             provider.selectedCoverType == CoverType.family) ...[
           const SizedBox(height: 16),
-          CardAnimationLayout(
-            index: 2,
-            bounce: true,
-            child: DobPickerField(
-                label: "Spouse's Date of Birth",
-                selectedDate: provider.spouseDob,
-                onDateSelected: (date) {
-                  provider.setSpouseDob(date);
-                  if (provider.selectedCoverType == CoverType.spouse) {
-                    provider.showCoverAmountSection(
-                        widget.onScrollToCoverAmountsCard);
-                  }
-                }),
-          ),
+          DobPickerField(
+              label: "Spouse's Date of Birth",
+              selectedDate: provider.spouseDob,
+              onDateSelected: (date) {
+                provider.setSpouseDob(date);
+                if (provider.selectedCoverType == CoverType.spouse) {
+                  provider.showCoverAmountSection(
+                      widget.onScrollToCoverAmountsCard);
+                }
+              }),
         ],
         if (provider.selectedCoverType == CoverType.family) ...[
           const SizedBox(height: 16),
-          CardAnimationLayout(
-            index: 3,
-            bounce: true,
-            child: DropdownButtonFormField<int>(
-              decoration: const InputDecoration(
-                labelText: "Number of Children",
-                filled: true,
-              ),
-              value: provider.childCount == 0 ? null : provider.childCount,
-              hint: const Text("Select count"),
-              items: List.generate(10, (index) => index + 1)
-                  .map((count) =>
-                      DropdownMenuItem(value: count, child: Text("$count")))
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  // This now resizes the list in the provider
-                  provider.setChildCount(value);
-                }
-                provider
-                    .showCoverAmountSection(widget.onScrollToCoverAmountsCard);
-              },
+          DropdownButtonFormField<int>(
+            decoration: const InputDecoration(
+              labelText: "Number of Children",
+              filled: true,
             ),
+            value: provider.childCount == 0 ? null : provider.childCount,
+            hint: const Text("Select count"),
+            items: List.generate(10, (index) => index + 1)
+                .map((count) =>
+                    DropdownMenuItem(value: count, child: Text("$count")))
+                .toList(),
+            onChanged: (value) {
+              if (value != null) {
+                // This now resizes the list in the provider
+                provider.setChildCount(value);
+              }
+              provider
+                  .showCoverAmountSection(widget.onScrollToCoverAmountsCard);
+            },
           ),
 
           // --- NEW: DYNAMIC CHILD INPUT FIELDS ---

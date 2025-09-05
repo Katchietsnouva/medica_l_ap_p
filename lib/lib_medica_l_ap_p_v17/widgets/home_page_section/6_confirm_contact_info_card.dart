@@ -1,5 +1,4 @@
 // lib/lib_medica_l_ap_p/widgets/home_page_section/6_confirm_contact_info_card.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/card_animation_layout.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/dob_picker_field.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/custom_text_form_field.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
@@ -38,7 +37,6 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
   late List<TextEditingController> _childNameControllers;
 
   bool _isSubmitting = false;
-  bool _isSubmitSuccessful = false;
   final ValueNotifier<bool> _isFormValid = ValueNotifier<bool>(false);
 
   @override
@@ -102,7 +100,6 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
     final phoneValid = NouvaValidators.phone(_phoneController.text) == null;
     final idValid = NouvaValidators.requiredText(_idController.text) == null;
     final kraValid = NouvaValidators.kraPin(_kraController.text) == null;
-    final startDateValid = widget.provider.coverStartDate != null;
     _isFormValid.value =
         nameValid && emailValid && phoneValid && idValid && kraValid;
   }
@@ -139,17 +136,7 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
     );
 
     if (mounted) {
-      // setState(() => _isSubmitting = false);
-      if (success) {
-        setState(() {
-          _isSubmitSuccessful = true;
-          _isSubmitting = false;
-        });
-      } else {
-        setState(() {
-          _isSubmitting = false;
-        });
-      }
+      setState(() => _isSubmitting = false);
     }
   }
 
@@ -170,81 +157,53 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              CardAnimationLayout(
-                index: 0,
-                bounce: true,
-                child: Text(
-                  'Confirm Your Contact Info Details',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
+              Text(
+                'Confirm Your Contact Info Details',
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 8),
-              CardAnimationLayout(
-                index: 1,
-                bounce: true,
-                child: Text(
-                  'Please provide your details to finalize your quote. We will contact you to complete the payment.',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+              Text(
+                'Please provide your details to finalize your quote. We will contact you to complete the payment.',
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 32),
-              CardAnimationLayout(
-                index: 2,
-                bounce: true,
-                child: CustomTextFormField(
-                  controller: _nameController,
-                  label: 'Full Name',
-                  icon: Icons.person_outline,
-                  validatorType: ValidatorType.requiredText,
-                ),
+              CustomTextFormField(
+                controller: _nameController,
+                label: 'Full Name',
+                icon: Icons.person_outline,
+                validatorType: ValidatorType.requiredText,
               ),
               const SizedBox(height: 20),
-              CardAnimationLayout(
-                index: 3,
-                bounce: true,
-                child: CustomTextFormField(
-                  controller: _emailController,
-                  label: 'Email Address',
-                  icon: Icons.email_outlined,
-                  keyboardType: TextInputType.emailAddress,
-                  validatorType: ValidatorType.email,
-                ),
+              CustomTextFormField(
+                controller: _emailController,
+                label: 'Email Address',
+                icon: Icons.email_outlined,
+                keyboardType: TextInputType.emailAddress,
+                validatorType: ValidatorType.email,
               ),
               const SizedBox(height: 20),
-              CardAnimationLayout(
-                index: 4,
-                bounce: true,
-                child: CustomTextFormField(
-                  controller: _phoneController,
-                  label: 'Phone Number',
-                  icon: Icons.phone_outlined,
-                  keyboardType: TextInputType.phone,
-                  validatorType: ValidatorType.phone,
-                ),
+              CustomTextFormField(
+                controller: _phoneController,
+                label: 'Phone Number',
+                icon: Icons.phone_outlined,
+                keyboardType: TextInputType.phone,
+                validatorType: ValidatorType.phone,
               ),
               const SizedBox(height: 20),
-              CardAnimationLayout(
-                index: 5,
-                bounce: true,
-                child: CustomTextFormField(
-                  controller: _idController,
-                  label: 'National ID Number',
-                  icon: Icons.badge_outlined,
-                  keyboardType: TextInputType.number,
-                  validatorType: ValidatorType.requiredText,
-                ),
+              CustomTextFormField(
+                controller: _idController,
+                label: 'National ID Number',
+                icon: Icons.badge_outlined,
+                keyboardType: TextInputType.number,
+                validatorType: ValidatorType.requiredText,
               ),
               const SizedBox(height: 20),
-              CardAnimationLayout(
-                index: 6,
-                bounce: true,
-                child: CustomTextFormField(
-                  controller: _kraController,
-                  label: 'KRA PIN (Optional)',
-                  icon: Icons.receipt_long_outlined,
-                  keyboardType: TextInputType.text,
-                  validatorType: ValidatorType.kraPin,
-                ),
+              CustomTextFormField(
+                controller: _kraController,
+                label: 'KRA PIN (Optional)',
+                icon: Icons.receipt_long_outlined,
+                keyboardType: TextInputType.text,
+                validatorType: ValidatorType.kraPin,
               ),
               const SizedBox(height: 40),
               if (showSpouseField || showChildrenFields) ...[
@@ -258,71 +217,38 @@ class _ContactInfoCardState extends State<ContactInfoCard> {
               ],
 
               if (showSpouseField)
-                CardAnimationLayout(
-                  index: 7,
-                  bounce: true,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 20.0),
-                    child: CustomTextFormField(
-                      controller: _spouseNameController,
-                      label: "Spouse's Full Name",
-                      icon: Icons.favorite_border,
-                      validatorType: ValidatorType.requiredText,
-                      onChanged: (value) => provider.setSpouseName(value),
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: CustomTextFormField(
+                    controller: _spouseNameController,
+                    label: "Spouse's Full Name",
+                    icon: Icons.favorite_border,
+                    validatorType: ValidatorType.requiredText,
+                    onChanged: (value) => provider.setSpouseName(value),
                   ),
                 ),
 
               if (showChildrenFields)
                 ...List.generate(provider.childCount, (index) {
-                  return CardAnimationLayout(
-                      index: index + 8,
-                      child: _buildChildInputRow(context, index));
+                  return _buildChildInputRow(context, index);
                 }),
-              const SizedBox(height: 20),
 
-              CardAnimationLayout(
-                index: 9,
-                bounce: true,
-                child: DobPickerField(
-                  label: 'Cover Start Date',
-                  selectedDate: provider.coverStartDate,
-                  onDateSelected: (date) => provider.setCoverStartDate(date),
-                  allowFutureDates: true,
-                ),
-              ),
               // --- FINAL SUBMIT BUTTON ---
               const SizedBox(height: 40),
               ValueListenableBuilder<bool>(
                 valueListenable: _isFormValid,
                 builder: (context, isValid, child) {
-                  if (_isSubmitting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (_isSubmitSuccessful) {
-                    // Option 1: Show a success message or a disabled button
-                    return CardAnimationLayout(
-                      index: 10,
-                      bounce: true,
-                      child: NouvaButton(
-                        onPressed: null, // disabled
-                        text: 'Submitted Successfully',
-                        isFullWidth: true,
-                      ),
-                    );
-
-                    // Option 2: Or just return SizedBox.shrink() to hide the button
-                    // return const SizedBox.shrink();
-                  } else {
-                    return CardAnimationLayout(
-                      index: 10,
-                      bounce: true,
-                      child: NouvaButton(
-                        onPressed: !isValid ? null : _submitForm,
-                        text: 'Submit & Proceed to Payment',
-                        isFullWidth: true,
-                      ),
-                    );
-                  }
+                  return _isSubmitting
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : NouvaButton(
+                          onPressed:
+                              _isSubmitting || !isValid ? null : _submitForm,
+                          text: 'Submit & Proceed to Payment',
+                          isFullWidth: true,
+                          // isLoading: _isSubmitting,
+                        );
                 },
               ),
             ],

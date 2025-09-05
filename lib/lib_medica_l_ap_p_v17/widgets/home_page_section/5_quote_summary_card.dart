@@ -1,5 +1,4 @@
 // lib/lib_medica_l_ap_p/widgets/home_page_section/quote_summary_card.dart
-import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/card_animation_layout.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/popup_dialog_utils.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/ui/nouva_ui_components.dart';
 import 'package:flutter/material.dart';
@@ -46,37 +45,21 @@ class QuoteSummaryCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CardAnimationLayout(
-                    index: 0,
-                    bounce: true,
-                    child: Text(
-                      "Your Quote Summary",
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
+                  Text(
+                    "Your Quote Summary",
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 24),
-                  CardAnimationLayout(
-                    index: 2,
-                    bounce: true,
-                    child: _buildPremiumHighlight(context, currencyFormatter,
-                        provider.selectedPlanAmount),
-                  ),
+                  _buildPremiumHighlight(
+                      context, currencyFormatter, provider.selectedPlanAmount),
                   const SizedBox(height: 24),
-                  CardAnimationLayout(
-                      index: 3,
-                      bounce: true,
-                      child: _buildPlanDetails(
-                          context, currencyFormatter, provider)),
+                  _buildPlanDetails(context, currencyFormatter, provider),
                   // const Divider(height: 32),
                   // _buildBeneficiaryDetails(context, provider),
                   const SizedBox(height: 32),
                   const Divider(height: 32),
-                  CardAnimationLayout(
-                    index: 4,
-                    bounce: true,
-                    child: _buildCalculationSummary(
-                        context, provider, currencyFormatter),
-                  ),
+                  _buildCalculationSummary(
+                      context, provider, currencyFormatter),
                   const SizedBox(height: 32),
                   SizedBox(
                     width: double.infinity,
@@ -146,52 +129,39 @@ class QuoteSummaryCard extends StatelessWidget {
           context,
           label: "Plan Name",
           value: _formatPlanName(provider.selectedPlanType),
-          crossAxisAlignment: CrossAxisAlignment.start,
-          expand: true, // take available space on left
         ),
         _buildDetailItem(
           context,
           label: "Cover Limit",
           value: formatter.format(provider.selectedCoverAmount),
-          crossAxisAlignment: CrossAxisAlignment.end,
-          expand: false, // only take needed width
         ),
       ],
     );
   }
 
-  Widget _buildDetailItem(
-    BuildContext context, {
-    required String label,
-    required String value,
-    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
-    bool expand = true, // control if Expanded is used or not
-  }) {
-    Widget content = Column(
-      crossAxisAlignment: crossAxisAlignment,
-      children: [
-        Text(
-          label.toUpperCase(),
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: Theme.of(context).textTheme.bodyMedium?.color,
-              ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-      ],
+  Widget _buildDetailItem(BuildContext context,
+      {required String label, required String value}) {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label.toUpperCase(),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+        ],
+      ),
     );
-
-    if (expand) {
-      return Expanded(child: content);
-    } else {
-      return content;
-    }
   }
 
   Widget _buildBeneficiaryDetails(BuildContext context, AppProvider provider) {
@@ -368,16 +338,8 @@ class QuoteSummaryCard extends StatelessWidget {
           //   isTotal: true, // Make it stand out
           // ),
 
-          ...provider.calculatedTaxes.asMap().entries.map((entry) {
-            final index = entry.key +
-                5; // baseIndex to continue from previous widgets' indexes
-            final tax = entry.value;
-
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: CardAnimationLayout(
-                index: index,
-                bounce: true,
+          ...provider.calculatedTaxes.map((tax) => Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
                 child: _buildCalculationRow(
                   context,
                   label:
@@ -385,9 +347,7 @@ class QuoteSummaryCard extends StatelessWidget {
                           .trim(),
                   value: formatter.format(tax.amount),
                 ),
-              ),
-            );
-          }).toList(),
+              )),
         ],
       ),
     );

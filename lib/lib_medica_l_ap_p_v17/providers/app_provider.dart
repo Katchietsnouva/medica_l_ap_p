@@ -39,16 +39,10 @@ class AppProvider extends ChangeNotifier {
   bool _isMpesaComponentVisible = false;
   String _spouseName = '';
   List<Child> _children = [];
-  DateTime? _coverStartDate;
 
   String? _selectedInsurer;
   List<TaxInfo> _calculatedTaxes = [];
   double _totalPayable = 0.0;
-  String? _email;
-  String? _phone;
-  String? _kraPin;
-  String? _idNumber;
-  double? _lastPaymentAmount;
 
   String? get selectedInsurer => _selectedInsurer;
   List<TaxInfo> get calculatedTaxes => _calculatedTaxes;
@@ -70,12 +64,6 @@ class AppProvider extends ChangeNotifier {
   int? get selectedPlanAmount => _selectedPlanAmount;
   bool get isPaymentFormVisible => _isPaymentFormVisible;
   bool get isMpesaComponentVisible => _isMpesaComponentVisible;
-  DateTime? get coverStartDate => _coverStartDate;
-  String? get email => _email;
-  String? get phone => _phone;
-  String? get kraPin => _kraPin;
-  String? get idNumber => _idNumber;
-  double? get lastPaymentAmount => _lastPaymentAmount;
 
   bool get isPersonOrFamilyDetailsCardVisible =>
       _selectedCoverType != CoverType.none;
@@ -106,12 +94,7 @@ class AppProvider extends ChangeNotifier {
     _selectedInsurer = null;
     _calculatedTaxes = [];
     _totalPayable = 0;
-    _coverStartDate = null;
-    _email = null;
-    _phone = null;
-    _kraPin = null;
-    _idNumber = null;
-    _lastPaymentAmount = null;
+
     _medicalPlans = [];
 
     notifyListeners();
@@ -159,36 +142,6 @@ class AppProvider extends ChangeNotifier {
       _children[index].dob = dob;
       notifyListeners();
     }
-  }
-
-  void setCoverStartDate(DateTime date) {
-    _coverStartDate = date;
-    notifyListeners();
-  }
-
-  void setEmail(String email) {
-    _email = email;
-    notifyListeners();
-  }
-
-  void setPhone(String phone) {
-    _phone = phone;
-    notifyListeners();
-  }
-
-  void setKraPin(String kraPin) {
-    _kraPin = kraPin;
-    notifyListeners();
-  }
-
-  void setIdNumber(String idNumber) {
-    _idNumber = idNumber;
-    notifyListeners();
-  }
-
-  void setLastPaymentAmount(double amount) {
-    _lastPaymentAmount = amount;
-    notifyListeners();
   }
 
   void selectCoverAmount(BuildContext context, int amount) {

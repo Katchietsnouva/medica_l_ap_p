@@ -1,10 +1,10 @@
-// lib/screens/dashboard/components/stat_card.dart
 import 'package:flutter/material.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 
 class StatCard extends StatelessWidget {
   final String title;
   final String value;
+  final String? subtitle;
   final IconData icon;
   final Color color;
 
@@ -12,6 +12,7 @@ class StatCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.value,
+    this.subtitle,
     required this.icon,
     required this.color,
   });
@@ -20,32 +21,47 @@ class StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CircleAvatar(
-              radius: 20,
+              radius: 16,
               backgroundColor: color.withOpacity(0.1),
-              child: Icon(icon, color: color),
+              child: Icon(icon, color: color, size: 20),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppTheme.subtleTextColor,
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
+                const SizedBox(height: 4),
                 Text(
                   value,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppTheme.textColor,
                       ),
                 ),
+                if (subtitle != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle!,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppTheme.subtleTextColor,
+                          fontSize: 12,
+                        ),
+                  ),
+                ],
               ],
             ),
           ],
@@ -55,36 +71,166 @@ class StatCard extends StatelessWidget {
   }
 }
 
-// import 'package:flutter/material.dart';
-
-// class StatCard extends StatelessWidget {
-//   final String title;
-//   final String value;
-//   const StatCard({super.key, required this.title, required this.value});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // return const Placeholder();
-//     return Container(
-//       child: Column(
-//         children: [Text(title), Text(value)],
-//       ),
-//     );
-//   }
-// }
-
 // // import 'package:flutter/material.dart';
+// // import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
 
-// // class StatCard extends StatefulWidget {
-// //   const StatCard({super.key});
+// // class StatCard extends StatelessWidget {
+// //   final String title;
+// //   final String value;
+// //   final String? subtitle;
+// //   final IconData icon;
+// //   final Color color;
 
-// //   @override
-// //   State<StatCard> createState() => _StatCardState();
-// // }
+// //   const StatCard({
+// //     super.key,
+// //     required this.title,
+// //     required this.value,
+// //     this.subtitle,
+// //     required this.icon,
+// //     required this.color,
+// //   });
 
-// // class _StatCardState extends State<StatCard> {
 // //   @override
 // //   Widget build(BuildContext context) {
-// //     return const Placeholder();
+// //     return Card(
+// //       elevation: 2,
+// //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+// //       child: Padding(
+// //         padding: const EdgeInsets.all(12.0),
+// //         child: Column(
+// //           crossAxisAlignment: CrossAxisAlignment.start,
+// //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+// //           children: [
+// //             CircleAvatar(
+// //               radius: 16,
+// //               backgroundColor: color.withOpacity(0.1),
+// //               child: Icon(icon, color: color, size: 20),
+// //             ),
+// //             const SizedBox(height: 8),
+// //             Column(
+// //               crossAxisAlignment: CrossAxisAlignment.start,
+// //               children: [
+// //                 Text(
+// //                   title,
+// //                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
+// //                         color: AppTheme.subtleTextColor,
+// //                         fontWeight: FontWeight.w600,
+// //                       ),
+// //                 ),
+// //                 const SizedBox(height: 4),
+// //                 Text(
+// //                   value,
+// //                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
+// //                         fontWeight: FontWeight.bold,
+// //                         color: AppTheme.textColor,
+// //                       ),
+// //                 ),
+// //                 if (subtitle != null) ...[
+// //                   const SizedBox(height: 4),
+// //                   Text(
+// //                     subtitle!,
+// //                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
+// //                           color: AppTheme.subtleTextColor,
+// //                           fontSize: 12,
+// //                         ),
+// //                   ),
+// //                 ],
+// //               ],
+// //             ),
+// //           ],
+// //         ),
+// //       ),
+// //     );
 // //   }
 // // }
+
+// // // // lib/screens/dashboard/components/stat_card.dart
+// // // import 'package:flutter/material.dart';
+// // // import 'package:medica_l_ap_p/lib_medica_l_ap_p/utils/app_theme.dart';
+
+// // // class StatCard extends StatelessWidget {
+// // //   final String title;
+// // //   final String value;
+// // //   final IconData icon;
+// // //   final Color color;
+
+// // //   const StatCard({
+// // //     super.key,
+// // //     required this.title,
+// // //     required this.value,
+// // //     required this.icon,
+// // //     required this.color,
+// // //   });
+
+// // //   @override
+// // //   Widget build(BuildContext context) {
+// // //     return Card(
+// // //       elevation: 2,
+// // //       child: Padding(
+// // //         padding: const EdgeInsets.all(16.0),
+// // //         child: Column(
+// // //           crossAxisAlignment: CrossAxisAlignment.start,
+// // //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+// // //           children: [
+// // //             CircleAvatar(
+// // //               radius: 20,
+// // //               backgroundColor: color.withOpacity(0.1),
+// // //               child: Icon(icon, color: color),
+// // //             ),
+// // //             const SizedBox(height: 10),
+// // //             Column(
+// // //               crossAxisAlignment: CrossAxisAlignment.start,
+// // //               children: [
+// // //                 Text(
+// // //                   title,
+// // //                   style: Theme.of(context).textTheme.bodyMedium,
+// // //                 ),
+// // //                 Text(
+// // //                   value,
+// // //                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
+// // //                         fontWeight: FontWeight.bold,
+// // //                         color: AppTheme.textColor,
+// // //                       ),
+// // //                 ),
+// // //               ],
+// // //             ),
+// // //           ],
+// // //         ),
+// // //       ),
+// // //     );
+// // //   }
+// // // }
+
+// // // // import 'package:flutter/material.dart';
+
+// // // // class StatCard extends StatelessWidget {
+// // // //   final String title;
+// // // //   final String value;
+// // // //   const StatCard({super.key, required this.title, required this.value});
+
+// // // //   @override
+// // // //   Widget build(BuildContext context) {
+// // // //     // return const Placeholder();
+// // // //     return Container(
+// // // //       child: Column(
+// // // //         children: [Text(title), Text(value)],
+// // // //       ),
+// // // //     );
+// // // //   }
+// // // // }
+
+// // // // // import 'package:flutter/material.dart';
+
+// // // // // class StatCard extends StatefulWidget {
+// // // // //   const StatCard({super.key});
+
+// // // // //   @override
+// // // // //   State<StatCard> createState() => _StatCardState();
+// // // // // }
+
+// // // // // class _StatCardState extends State<StatCard> {
+// // // // //   @override
+// // // // //   Widget build(BuildContext context) {
+// // // // //     return const Placeholder();
+// // // // //   }
+// // // // // }

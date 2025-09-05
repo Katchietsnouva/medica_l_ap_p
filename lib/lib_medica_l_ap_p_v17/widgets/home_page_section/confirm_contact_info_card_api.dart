@@ -227,9 +227,6 @@ class ContactInfoService {
     final premium = provider.selectedPlanAmount ?? 0;
     final principalName = nameController.text.trim();
     final principalDob = DateFormat('yyyy-MM-dd').format(provider.myDob!);
-    final startDate = provider.coverStartDate ?? DateTime.now();
-    final endDate =
-        DateTime(startDate.year + 1, startDate.month, startDate.day - 1);
 
     // 2. Build the 'members' list dynamically
     final List<Map<String, dynamic>> members = [];
@@ -307,10 +304,9 @@ class ContactInfoService {
         'limit': limit,
         "members": members,
         "policy": {
-          // "start_date": DateFormat('yyyy-MM-dd').format(now),
-          // "end_date": DateFormat('yyyy-MM-dd').format(DateTime(now.year + 1, now.month, now.day - 1)),
-          "start_date": DateFormat('yyyy-MM-dd').format(startDate),
-          "end_date": DateFormat('yyyy-MM-dd').format(endDate),
+          "start_date": DateFormat('yyyy-MM-dd').format(now),
+          "end_date": DateFormat('yyyy-MM-dd')
+              .format(DateTime(now.year + 1, now.month, now.day - 1)),
           "insurer": insurer,
           "limit": coverAmount,
           "basic": basicPremium,
@@ -332,10 +328,6 @@ class ContactInfoService {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        provider.setEmail(emailController.text.trim());
-        provider.setPhone(phoneController.text.trim());
-        provider.setKraPin(kraController.text.trim().toUpperCase());
-        provider.setIdNumber(idController.text.trim());
         showPopupDialog(
           context,
           message: 'Quote saved successfully! Proceed.',

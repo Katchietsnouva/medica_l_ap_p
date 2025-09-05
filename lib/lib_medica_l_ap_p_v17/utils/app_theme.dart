@@ -103,8 +103,8 @@ class AppTheme {
   );
 
   static const _dark = _ThemeColors(
-    primary: Color(0xFF9E77ED),
-    // primary: Color(0xFF37008C),
+    // primary: Color(0xFF9E77ED),
+    primary: Color(0xFF37008C),
     surface: Color(0xFF25282D),
     background: Color(0xFF1A1D21),
     text: Color(0xFFE0E0E0),
