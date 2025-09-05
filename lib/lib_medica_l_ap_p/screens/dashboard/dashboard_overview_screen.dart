@@ -1,4 +1,5 @@
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
+import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/card_animation_layout.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/universal_page_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/stat_card.dart';
@@ -41,7 +42,10 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
   }
 
   void _showDetailPopup(
-      BuildContext context, String title, List<Map<String, String>> details) {
+    BuildContext context,
+    String title,
+    List<Map<String, String>> details,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -77,8 +81,11 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
     );
   }
 
-  Widget _buildDetailRow(BuildContext context,
-      {required String label, required String value}) {
+  Widget _buildDetailRow(
+    BuildContext context, {
+    required String label,
+    required String value,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -87,9 +94,9 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
           child: Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                ),
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).textTheme.bodyMedium?.color,
+            ),
           ),
         ),
         const SizedBox(width: 16),
@@ -108,213 +115,225 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
 
   Widget _buildSidebar(BuildContext context) {
     final appProvider = context.watch<AppProvider>();
-    final currencyFormat =
-        NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ');
+    final currencyFormat = NumberFormat.currency(
+      locale: 'en_KE',
+      symbol: 'Ksh ',
+    );
 
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      width: isSidebarExpanded ? 200 : 60,
-      margin: const EdgeInsets.symmetric(vertical: 24),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          // Toggle button
-          Align(
-            alignment: Alignment.topRight,
-            child: IconButton(
-              icon: Icon(
-                isSidebarExpanded ? Icons.menu_open : Icons.menu,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              onPressed: () {
-                setState(() {
-                  isSidebarExpanded = !isSidebarExpanded;
-                });
-              },
+    return CardAnimationLayout(
+      index: 6,
+      bounce: false, // Subtle entrance for the sidebar
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        width: isSidebarExpanded ? 200 : 60,
+        margin: const EdgeInsets.symmetric(vertical: 24),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
             ),
-          ),
-          // Sidebar content
-          Expanded(
-            child: Column(
-              children: [
-                _buildSidebarButton(
-                  context,
-                  icon: Icons.person_outline,
-                  label: 'Profile',
-                  onTap: () => _showDetailPopup(
-                    context,
-                    'Profile Details',
-                    [
-                      {
-                        'label': 'Name',
-                        'value': appProvider.spouseName.isNotEmpty
-                            ? appProvider.spouseName
-                            : 'N/A',
-                      },
-                      {
-                        'label': 'DOB',
-                        'value': appProvider.myDob != null
-                            ? DateFormat('dd MMM, yyyy')
-                                .format(appProvider.myDob!)
-                            : 'N/A',
-                      },
-                      {
-                        'label': 'Email',
-                        'value': appProvider.email ?? 'N/A',
-                      },
-                      {
-                        'label': 'Phone',
-                        'value': appProvider.phone ?? 'N/A',
-                      },
-                      {
-                        'label': 'KRA PIN',
-                        'value': appProvider.kraPin ?? 'N/A',
-                      },
-                      {
-                        'label': 'ID Number',
-                        'value': appProvider.idNumber ?? 'N/A',
-                      },
-                    ],
-                  ),
-                  isExpanded: isSidebarExpanded,
+          ],
+        ),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                icon: Icon(
+                  isSidebarExpanded ? Icons.menu_open : Icons.menu,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-                const SizedBox(height: 8),
-                _buildSidebarButton(
-                  context,
-                  icon: Icons.shield_outlined,
-                  label: 'Cover Details',
-                  onTap: () => _showDetailPopup(
-                    context,
-                    'Cover Details',
-                    [
-                      {
-                        'label': 'Plan',
-                        'value': appProvider.selectedPlanType
-                            .toString()
-                            .split('.')
-                            .last,
-                      },
-                      {
-                        'label': 'Cover Amount',
-                        'value': currencyFormat
-                            .format(appProvider.selectedCoverAmount ?? 0),
-                      },
-                      {
-                        'label': 'Premium',
-                        'value': currencyFormat.format(appProvider.premium),
-                      },
-                      {
-                        'label': 'Start Date',
-                        'value': appProvider.coverStartDate != null
-                            ? DateFormat('dd MMM, yyyy')
-                                .format(appProvider.coverStartDate!)
-                            : 'N/A',
-                      },
-                      {
-                        'label': 'End Date',
-                        'value': appProvider.coverStartDate != null
-                            ? DateFormat('dd MMM, yyyy').format(
-                                DateTime(
-                                  appProvider.coverStartDate!.year + 1,
-                                  appProvider.coverStartDate!.month,
-                                  appProvider.coverStartDate!.day - 1,
-                                ),
-                              )
-                            : 'N/A',
-                      },
-                      {
-                        'label': 'Insurer',
-                        'value': appProvider.selectedInsurer ?? 'N/A',
-                      },
-                    ],
+                onPressed: () {
+                  setState(() {
+                    isSidebarExpanded = !isSidebarExpanded;
+                  });
+                },
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  CardAnimationLayout(
+                    index: 7,
+                    bounce: true,
+                    child: _buildSidebarButton(
+                      context,
+                      icon: Icons.person_outline,
+                      label: 'Profile',
+                      onTap: () =>
+                          _showDetailPopup(context, 'Profile Details', [
+                            {
+                              'label': 'Name',
+                              'value': appProvider.spouseName.isNotEmpty
+                                  ? appProvider.spouseName
+                                  : 'N/A',
+                            },
+                            {
+                              'label': 'DOB',
+                              'value': appProvider.myDob != null
+                                  ? DateFormat(
+                                      'dd MMM, yyyy',
+                                    ).format(appProvider.myDob!)
+                                  : 'N/A',
+                            },
+                            {
+                              'label': 'Email',
+                              'value': appProvider.email ?? 'N/A',
+                            },
+                            {
+                              'label': 'Phone',
+                              'value': appProvider.phone ?? 'N/A',
+                            },
+                            {
+                              'label': 'KRA PIN',
+                              'value': appProvider.kraPin ?? 'N/A',
+                            },
+                            {
+                              'label': 'ID Number',
+                              'value': appProvider.idNumber ?? 'N/A',
+                            },
+                          ]),
+                      isExpanded: isSidebarExpanded,
+                    ),
                   ),
-                  isExpanded: isSidebarExpanded,
-                ),
-                const SizedBox(height: 8),
-                _buildSidebarButton(
-                  context,
-                  icon: Icons.family_restroom_outlined,
-                  label: 'Dependants',
-                  onTap: () => _showDetailPopup(
-                    context,
-                    'Dependants',
-                    [
-                      if (appProvider.spouseName.isNotEmpty)
+                  const SizedBox(height: 8),
+                  CardAnimationLayout(
+                    index: 8,
+                    bounce: true,
+                    child: _buildSidebarButton(
+                      context,
+                      icon: Icons.shield_outlined,
+                      label: 'Cover Details',
+                      onTap: () => _showDetailPopup(context, 'Cover Details', [
                         {
-                          'label': 'Spouse',
-                          'value':
-                              '${appProvider.spouseName} (${appProvider.spouseDob != null ? DateFormat('dd MMM, yyyy').format(appProvider.spouseDob!) : 'N/A'})',
+                          'label': 'Plan',
+                          'value': appProvider.selectedPlanType
+                              .toString()
+                              .split('.')
+                              .last,
                         },
-                      if (appProvider.children.isNotEmpty)
-                        ...appProvider.children.asMap().entries.map(
-                              (entry) => {
-                                'label': 'Child ${entry.key + 1}',
-                                'value':
-                                    '${entry.value.name} (${entry.value.dob != null ? DateFormat('dd MMM, yyyy').format(entry.value.dob!) : 'N/A'})',
+                        {
+                          'label': 'Cover Amount',
+                          'value': currencyFormat.format(
+                            appProvider.selectedCoverAmount ?? 0,
+                          ),
+                        },
+                        {
+                          'label': 'Premium',
+                          'value': currencyFormat.format(appProvider.premium),
+                        },
+                        {
+                          'label': 'Start Date',
+                          'value': appProvider.coverStartDate != null
+                              ? DateFormat(
+                                  'dd MMM, yyyy',
+                                ).format(appProvider.coverStartDate!)
+                              : 'N/A',
+                        },
+                        {
+                          'label': 'End Date',
+                          'value': appProvider.coverStartDate != null
+                              ? DateFormat('dd MMM, yyyy').format(
+                                  DateTime(
+                                    appProvider.coverStartDate!.year + 1,
+                                    appProvider.coverStartDate!.month,
+                                    appProvider.coverStartDate!.day - 1,
+                                  ),
+                                )
+                              : 'N/A',
+                        },
+                        {
+                          'label': 'Insurer',
+                          'value': appProvider.selectedInsurer ?? 'N/A',
+                        },
+                      ]),
+                      isExpanded: isSidebarExpanded,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  CardAnimationLayout(
+                    index: 9,
+                    bounce: true,
+                    child: _buildSidebarButton(
+                      context,
+                      icon: Icons.family_restroom_outlined,
+                      label: 'Dependants',
+                      onTap: () => _showDetailPopup(context, 'Dependants', [
+                        if (appProvider.spouseName.isNotEmpty)
+                          {
+                            'label': 'Spouse',
+                            'value':
+                                '${appProvider.spouseName} (${appProvider.spouseDob != null ? DateFormat('dd MMM, yyyy').format(appProvider.spouseDob!) : 'N/A'})',
+                          },
+                        if (appProvider.children.isNotEmpty)
+                          ...appProvider.children.asMap().entries.map(
+                            (entry) => {
+                              'label': 'Child ${entry.key + 1}',
+                              'value':
+                                  '${entry.value.name} (${entry.value.dob != null ? DateFormat('dd MMM, yyyy').format(entry.value.dob!) : 'N/A'})',
+                            },
+                          ),
+                        if (appProvider.spouseName.isEmpty &&
+                            appProvider.children.isEmpty)
+                          {
+                            'label': 'Dependants',
+                            'value': 'No dependants added.',
+                          },
+                      ]),
+                      isExpanded: isSidebarExpanded,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  CardAnimationLayout(
+                    index: 10,
+                    bounce: true,
+                    child: _buildSidebarButton(
+                      context,
+                      icon: Icons.account_balance_wallet_outlined,
+                      label: 'Payments',
+                      onTap: () =>
+                          _showDetailPopup(context, 'Payment Details', [
+                            {
+                              'label': 'Total Payable',
+                              'value': currencyFormat.format(
+                                appProvider.totalPayable,
+                              ),
+                            },
+                            ...appProvider.calculatedTaxes.map(
+                              (tax) => {
+                                'label': tax.name,
+                                'value': currencyFormat.format(tax.amount),
                               },
                             ),
-                      if (appProvider.spouseName.isEmpty &&
-                          appProvider.children.isEmpty)
-                        {
-                          'label': 'Dependants',
-                          'value': 'No dependants added.',
-                        },
-                    ],
+                            {
+                              'label': 'Last Payment',
+                              'value': appProvider.lastPaymentAmount != null
+                                  ? currencyFormat.format(
+                                      appProvider.lastPaymentAmount!,
+                                    )
+                                  : 'N/A',
+                            },
+                            {
+                              'label': 'Remaining Balance',
+                              'value': currencyFormat.format(
+                                (appProvider.totalPayable -
+                                    (appProvider.lastPaymentAmount ?? 0)),
+                              ),
+                            },
+                          ]),
+                      isExpanded: isSidebarExpanded,
+                    ),
                   ),
-                  isExpanded: isSidebarExpanded,
-                ),
-                const SizedBox(height: 8),
-                _buildSidebarButton(
-                  context,
-                  icon: Icons.account_balance_wallet_outlined,
-                  label: 'Payments',
-                  onTap: () => _showDetailPopup(
-                    context,
-                    'Payment Details',
-                    [
-                      {
-                        'label': 'Total Payable',
-                        'value':
-                            currencyFormat.format(appProvider.totalPayable),
-                      },
-                      ...appProvider.calculatedTaxes.map(
-                        (tax) => {
-                          'label': tax.name,
-                          'value': currencyFormat.format(tax.amount),
-                        },
-                      ),
-                      {
-                        'label': 'Last Payment',
-                        'value': appProvider.lastPaymentAmount != null
-                            ? currencyFormat
-                                .format(appProvider.lastPaymentAmount!)
-                            : 'N/A',
-                      },
-                      {
-                        'label': 'Remaining Balance',
-                        'value': currencyFormat.format(
-                            (appProvider.totalPayable -
-                                (appProvider.lastPaymentAmount ?? 0))),
-                      },
-                    ],
-                  ),
-                  isExpanded: isSidebarExpanded,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -331,10 +350,9 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
       title: isExpanded
           ? Text(
               label,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
             )
           : null,
       onTap: onTap,
@@ -349,8 +367,10 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     final appProvider = context.watch<AppProvider>();
-    final currencyFormat =
-        NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ');
+    final currencyFormat = NumberFormat.currency(
+      locale: 'en_KE',
+      symbol: 'Ksh ',
+    );
 
     final content = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -363,77 +383,102 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Welcome Back, ${appProvider.spouseName.isNotEmpty ? appProvider.spouseName : 'User'}!',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                CardAnimationLayout(
+                  index: 0,
+                  bounce: true,
+                  child: Text(
+                    'Welcome Back, ${appProvider.spouseName.isNotEmpty ? appProvider.spouseName : 'User'}!',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  "Here's a summary of your active cover.",
-                  style: Theme.of(context).textTheme.bodyMedium,
+                CardAnimationLayout(
+                  index: 1,
+                  bounce: true,
+                  child: Text(
+                    "Here's a summary of your active cover.",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
                 const SizedBox(height: 24),
                 LayoutBuilder(
                   builder: (context, constraints) {
-                    // Dynamic column count based on screen width
                     int crossAxisCount = constraints.maxWidth > 800
                         ? 4
                         : constraints.maxWidth > 400
-                            ? 2
-                            : 1;
+                        ? 2
+                        : 1;
                     return GridView.count(
                       crossAxisCount: crossAxisCount,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      childAspectRatio: 1.5, // Increased height for more space
+                      childAspectRatio: 1.5,
                       children: [
-                        StatCard(
-                          title: 'Active Cover Plan',
-                          value: appProvider.selectedPlanType
-                              .toString()
-                              .split('.')
-                              .last,
-                          subtitle:
-                              'Insurer: ${appProvider.selectedInsurer ?? 'N/A'}',
-                          icon: Icons.shield_outlined,
-                          color: Colors.blue,
+                        CardAnimationLayout(
+                          index: 2,
+                          bounce: true,
+                          child: StatCard(
+                            title: 'Active Cover Plan',
+                            value: appProvider.selectedPlanType
+                                .toString()
+                                .split('.')
+                                .last,
+                            subtitle:
+                                'Insurer: ${appProvider.selectedInsurer ?? 'N/A'}',
+                            icon: Icons.shield_outlined,
+                            color: Colors.blue,
+                          ),
                         ),
-                        StatCard(
-                          title: 'Cover Amount',
-                          value: currencyFormat
-                              .format(appProvider.selectedCoverAmount ?? 0),
-                          subtitle:
-                              'Premium: ${currencyFormat.format(appProvider.premium)}',
-                          icon: Icons.health_and_safety_outlined,
-                          color: Colors.green,
+                        CardAnimationLayout(
+                          index: 3,
+                          bounce: true,
+                          child: StatCard(
+                            title: 'Cover Amount',
+                            value: currencyFormat.format(
+                              appProvider.selectedCoverAmount ?? 0,
+                            ),
+                            subtitle:
+                                'Premium: ${currencyFormat.format(appProvider.premium)}',
+                            icon: Icons.health_and_safety_outlined,
+                            color: Colors.green,
+                          ),
                         ),
-                        StatCard(
-                          title: 'Total Balance Due',
-                          value: currencyFormat.format(
+                        CardAnimationLayout(
+                          index: 4,
+                          bounce: true,
+                          child: StatCard(
+                            title: 'Total Balance Due',
+                            value: currencyFormat.format(
                               (appProvider.totalPayable -
-                                  (appProvider.lastPaymentAmount ?? 0))),
-                          subtitle:
-                              'Last Payment: ${appProvider.lastPaymentAmount != null ? currencyFormat.format(appProvider.lastPaymentAmount!) : 'N/A'}',
-                          icon: Icons.account_balance_wallet_outlined,
-                          color: Colors.orange,
+                                  (appProvider.lastPaymentAmount ?? 0)),
+                            ),
+                            subtitle:
+                                'Last Payment: ${appProvider.lastPaymentAmount != null ? currencyFormat.format(appProvider.lastPaymentAmount!) : 'N/A'}',
+                            icon: Icons.account_balance_wallet_outlined,
+                            color: Colors.orange,
+                          ),
                         ),
-                        StatCard(
-                          title: 'Next Renewal Date',
-                          value: appProvider.coverStartDate != null
-                              ? DateFormat('dd MMM, yyyy').format(
-                                  DateTime(
-                                    appProvider.coverStartDate!.year + 1,
-                                    appProvider.coverStartDate!.month,
-                                    appProvider.coverStartDate!.day - 1,
-                                  ),
-                                )
-                              : 'N/A',
-                          subtitle:
-                              'Start Date: ${appProvider.coverStartDate != null ? DateFormat('dd MMM, yyyy').format(appProvider.coverStartDate!) : 'N/A'}',
-                          icon: Icons.event_repeat_outlined,
-                          color: Colors.purple,
+                        CardAnimationLayout(
+                          index: 5,
+                          bounce: true,
+                          child: StatCard(
+                            title: 'Next Renewal Date',
+                            value: appProvider.coverStartDate != null
+                                ? DateFormat('dd MMM, yyyy').format(
+                                    DateTime(
+                                      appProvider.coverStartDate!.year + 1,
+                                      appProvider.coverStartDate!.month,
+                                      appProvider.coverStartDate!.day - 1,
+                                    ),
+                                  )
+                                : 'N/A',
+                            subtitle:
+                                'Start Date: ${appProvider.coverStartDate != null ? DateFormat('dd MMM, yyyy').format(appProvider.coverStartDate!) : 'N/A'}',
+                            icon: Icons.event_repeat_outlined,
+                            color: Colors.purple,
+                          ),
                         ),
                       ],
                     );
@@ -446,12 +491,10 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
       ],
     );
 
-    return UniversalPageLayout(
-      slivers: [],
-      child: content,
-    );
+    return UniversalPageLayout(slivers: [], child: content);
   }
 }
+
 // import 'package:medica_l_ap_p/lib_medica_l_ap_p/providers/app_provider.dart';
 // import 'package:medica_l_ap_p/lib_medica_l_ap_p/widgets/universal_page_layout.dart';
 // import 'package:flutter/material.dart';
