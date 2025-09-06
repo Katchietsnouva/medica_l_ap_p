@@ -44,7 +44,10 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
   }
 
   void _showDetailPopup(
-      BuildContext context, String title, List<Map<String, String>> details) {
+    BuildContext context,
+    String title,
+    List<Map<String, String>> details,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -85,8 +88,11 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
     );
   }
 
-  Widget _buildDetailRow(BuildContext context,
-      {required String label, required String value}) {
+  Widget _buildDetailRow(
+    BuildContext context, {
+    required String label,
+    required String value,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -95,9 +101,9 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
           child: Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                ),
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).textTheme.bodyMedium?.color,
+            ),
           ),
         ),
         const SizedBox(width: 16),
@@ -116,8 +122,10 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
 
   Widget _buildSidebar(BuildContext context) {
     final appProvider = context.watch<AppProvider>();
-    final currencyFormat =
-        NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ');
+    final currencyFormat = NumberFormat.currency(
+      locale: 'en_KE',
+      symbol: 'Ksh ',
+    );
 
     return CardAnimationLayout(
       index: 6,
@@ -166,41 +174,39 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                       context,
                       icon: Icons.person_outline,
                       label: 'Profile',
-                      onTap: () => _showDetailPopup(
-                        context,
-                        'Profile Details',
-                        [
-                          {
-                            'label': 'Name',
-                            'value': appProvider.spouseName.isNotEmpty
-                                ? appProvider.spouseName
-                                : 'N/A',
-                          },
-                          {
-                            'label': 'DOB',
-                            'value': appProvider.myDob != null
-                                ? DateFormat('dd MMM, yyyy')
-                                    .format(appProvider.myDob!)
-                                : 'N/A',
-                          },
-                          {
-                            'label': 'Email',
-                            'value': appProvider.email ?? 'N/A',
-                          },
-                          {
-                            'label': 'Phone',
-                            'value': appProvider.phone ?? 'N/A',
-                          },
-                          {
-                            'label': 'KRA PIN',
-                            'value': appProvider.kraPin ?? 'N/A',
-                          },
-                          {
-                            'label': 'ID Number',
-                            'value': appProvider.idNumber ?? 'N/A',
-                          },
-                        ],
-                      ),
+                      onTap: () =>
+                          _showDetailPopup(context, 'Profile Details', [
+                            {
+                              'label': 'Name',
+                              'value': appProvider.spouseName.isNotEmpty
+                                  ? appProvider.spouseName
+                                  : 'N/A',
+                            },
+                            {
+                              'label': 'DOB',
+                              'value': appProvider.myDob != null
+                                  ? DateFormat(
+                                      'dd MMM, yyyy',
+                                    ).format(appProvider.myDob!)
+                                  : 'N/A',
+                            },
+                            {
+                              'label': 'Email',
+                              'value': appProvider.email ?? 'N/A',
+                            },
+                            {
+                              'label': 'Phone',
+                              'value': appProvider.phone ?? 'N/A',
+                            },
+                            {
+                              'label': 'KRA PIN',
+                              'value': appProvider.kraPin ?? 'N/A',
+                            },
+                            {
+                              'label': 'ID Number',
+                              'value': appProvider.idNumber ?? 'N/A',
+                            },
+                          ]),
                       isExpanded: isSidebarExpanded,
                     ),
                   ),
@@ -212,51 +218,49 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                       context,
                       icon: Icons.shield_outlined,
                       label: 'Cover Details',
-                      onTap: () => _showDetailPopup(
-                        context,
-                        'Cover Details',
-                        [
-                          {
-                            'label': 'Plan',
-                            'value': appProvider.selectedPlanType
-                                .toString()
-                                .split('.')
-                                .last,
-                          },
-                          {
-                            'label': 'Cover Amount',
-                            'value': currencyFormat
-                                .format(appProvider.selectedCoverAmount ?? 0),
-                          },
-                          {
-                            'label': 'Premium',
-                            'value': currencyFormat.format(appProvider.premium),
-                          },
-                          {
-                            'label': 'Start Date',
-                            'value': appProvider.coverStartDate != null
-                                ? DateFormat('dd MMM, yyyy')
-                                    .format(appProvider.coverStartDate!)
-                                : 'N/A',
-                          },
-                          {
-                            'label': 'End Date',
-                            'value': appProvider.coverStartDate != null
-                                ? DateFormat('dd MMM, yyyy').format(
-                                    DateTime(
-                                      appProvider.coverStartDate!.year + 1,
-                                      appProvider.coverStartDate!.month,
-                                      appProvider.coverStartDate!.day - 1,
-                                    ),
-                                  )
-                                : 'N/A',
-                          },
-                          {
-                            'label': 'Insurer',
-                            'value': appProvider.selectedInsurer ?? 'N/A',
-                          },
-                        ],
-                      ),
+                      onTap: () => _showDetailPopup(context, 'Cover Details', [
+                        {
+                          'label': 'Plan',
+                          'value': appProvider.selectedPlanType
+                              .toString()
+                              .split('.')
+                              .last,
+                        },
+                        {
+                          'label': 'Cover Amount',
+                          'value': currencyFormat.format(
+                            appProvider.selectedCoverAmount ?? 0,
+                          ),
+                        },
+                        {
+                          'label': 'Premium',
+                          'value': currencyFormat.format(appProvider.premium),
+                        },
+                        {
+                          'label': 'Start Date',
+                          'value': appProvider.coverStartDate != null
+                              ? DateFormat(
+                                  'dd MMM, yyyy',
+                                ).format(appProvider.coverStartDate!)
+                              : 'N/A',
+                        },
+                        {
+                          'label': 'End Date',
+                          'value': appProvider.coverStartDate != null
+                              ? DateFormat('dd MMM, yyyy').format(
+                                  DateTime(
+                                    appProvider.coverStartDate!.year + 1,
+                                    appProvider.coverStartDate!.month,
+                                    appProvider.coverStartDate!.day - 1,
+                                  ),
+                                )
+                              : 'N/A',
+                        },
+                        {
+                          'label': 'Insurer',
+                          'value': appProvider.selectedInsurer ?? 'N/A',
+                        },
+                      ]),
                       isExpanded: isSidebarExpanded,
                     ),
                   ),
@@ -268,32 +272,28 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                       context,
                       icon: Icons.family_restroom_outlined,
                       label: 'Dependants',
-                      onTap: () => _showDetailPopup(
-                        context,
-                        'Dependants',
-                        [
-                          if (appProvider.spouseName.isNotEmpty)
-                            {
-                              'label': 'Spouse',
+                      onTap: () => _showDetailPopup(context, 'Dependants', [
+                        if (appProvider.spouseName.isNotEmpty)
+                          {
+                            'label': 'Spouse',
+                            'value':
+                                '${appProvider.spouseName} (${appProvider.spouseDob != null ? DateFormat('dd MMM, yyyy').format(appProvider.spouseDob!) : 'N/A'})',
+                          },
+                        if (appProvider.children.isNotEmpty)
+                          ...appProvider.children.asMap().entries.map(
+                            (entry) => {
+                              'label': 'Child ${entry.key + 1}',
                               'value':
-                                  '${appProvider.spouseName} (${appProvider.spouseDob != null ? DateFormat('dd MMM, yyyy').format(appProvider.spouseDob!) : 'N/A'})',
+                                  '${entry.value.name} (${entry.value.dob != null ? DateFormat('dd MMM, yyyy').format(entry.value.dob!) : 'N/A'})',
                             },
-                          if (appProvider.children.isNotEmpty)
-                            ...appProvider.children.asMap().entries.map(
-                                  (entry) => {
-                                    'label': 'Child ${entry.key + 1}',
-                                    'value':
-                                        '${entry.value.name} (${entry.value.dob != null ? DateFormat('dd MMM, yyyy').format(entry.value.dob!) : 'N/A'})',
-                                  },
-                                ),
-                          if (appProvider.spouseName.isEmpty &&
-                              appProvider.children.isEmpty)
-                            {
-                              'label': 'Dependants',
-                              'value': 'No dependants added.',
-                            },
-                        ],
-                      ),
+                          ),
+                        if (appProvider.spouseName.isEmpty &&
+                            appProvider.children.isEmpty)
+                          {
+                            'label': 'Dependants',
+                            'value': 'No dependants added.',
+                          },
+                      ]),
                       isExpanded: isSidebarExpanded,
                     ),
                   ),
@@ -305,36 +305,36 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                       context,
                       icon: Icons.account_balance_wallet_outlined,
                       label: 'Payments',
-                      onTap: () => _showDetailPopup(
-                        context,
-                        'Payment Details',
-                        [
-                          {
-                            'label': 'Total Payable',
-                            'value':
-                                currencyFormat.format(appProvider.totalPayable),
-                          },
-                          ...appProvider.calculatedTaxes.map(
-                            (tax) => {
-                              'label': tax.name,
-                              'value': currencyFormat.format(tax.amount),
+                      onTap: () =>
+                          _showDetailPopup(context, 'Payment Details', [
+                            {
+                              'label': 'Total Payable',
+                              'value': currencyFormat.format(
+                                appProvider.totalPayable,
+                              ),
                             },
-                          ),
-                          {
-                            'label': 'Last Payment',
-                            'value': appProvider.lastPaymentAmount != null
-                                ? currencyFormat
-                                    .format(appProvider.lastPaymentAmount!)
-                                : 'N/A',
-                          },
-                          {
-                            'label': 'Remaining Balance',
-                            'value': currencyFormat.format(
+                            ...appProvider.calculatedTaxes.map(
+                              (tax) => {
+                                'label': tax.name,
+                                'value': currencyFormat.format(tax.amount),
+                              },
+                            ),
+                            {
+                              'label': 'Last Payment',
+                              'value': appProvider.lastPaymentAmount != null
+                                  ? currencyFormat.format(
+                                      appProvider.lastPaymentAmount!,
+                                    )
+                                  : 'N/A',
+                            },
+                            {
+                              'label': 'Remaining Balance',
+                              'value': currencyFormat.format(
                                 (appProvider.totalPayable -
-                                    (appProvider.lastPaymentAmount ?? 0))),
-                          },
-                        ],
-                      ),
+                                    (appProvider.lastPaymentAmount ?? 0)),
+                              ),
+                            },
+                          ]),
                       isExpanded: isSidebarExpanded,
                     ),
                   ),
@@ -360,20 +360,22 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
       leading: Icon(
         icon,
         color: isActive
-            ? Theme.of(context).colorScheme.primary // Highlight icon
+            ? Theme.of(context)
+                  .colorScheme
+                  .primary // Highlight icon
             : Theme.of(context).colorScheme.primary.withOpacity(0.7),
       ),
       title: isExpanded
           ? Text(
               label,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: isActive
-                        ? Theme.of(context)
-                            .colorScheme
-                            .primary // Highlight text
-                        : Theme.of(context).textTheme.bodyMedium?.color,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: isActive
+                    ? Theme.of(context)
+                          .colorScheme
+                          .primary // Highlight text
+                    : Theme.of(context).textTheme.bodyMedium?.color,
+              ),
             )
           : null,
       onTap: () {
@@ -386,17 +388,17 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
         borderRadius: BorderRadius.circular(8),
         side: isActive
             ? BorderSide(
-                color:
-                    Theme.of(context).colorScheme.primary, // Highlight border
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary, // Highlight border
                 width: 2.0,
               )
             : BorderSide.none, // No border when inactive
       ),
       tileColor: isActive
-          ? Theme.of(context)
-              .colorScheme
-              .primary
-              .withOpacity(0.3) // Lighter shade
+          ? Theme.of(context).colorScheme.primary.withOpacity(
+              0.3,
+            ) // Lighter shade
           : Theme.of(context).cardColor.withOpacity(0.1),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       minLeadingWidth: isExpanded ? 30 : 0,
@@ -407,8 +409,10 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     final appProvider = context.watch<AppProvider>();
-    final currencyFormat =
-        NumberFormat.currency(locale: 'en_KE', symbol: 'Ksh ');
+    final currencyFormat = NumberFormat.currency(
+      locale: 'en_KE',
+      symbol: 'Ksh ',
+    );
 
     final content = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -445,8 +449,8 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                     int crossAxisCount = constraints.maxWidth > 800
                         ? 4
                         : constraints.maxWidth > 400
-                            ? 2
-                            : 1;
+                        ? 2
+                        : 1;
                     return GridView.count(
                       crossAxisCount: crossAxisCount,
                       crossAxisSpacing: 16,
@@ -475,8 +479,9 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                           bounce: true,
                           child: StatCard(
                             title: 'Cover Amount',
-                            value: currencyFormat
-                                .format(appProvider.selectedCoverAmount ?? 0),
+                            value: currencyFormat.format(
+                              appProvider.selectedCoverAmount ?? 0,
+                            ),
                             subtitle:
                                 'Premium: ${currencyFormat.format(appProvider.premium)}',
                             icon: Icons.health_and_safety_outlined,
@@ -489,8 +494,9 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                           child: StatCard(
                             title: 'Total Balance Due',
                             value: currencyFormat.format(
-                                (appProvider.totalPayable -
-                                    (appProvider.lastPaymentAmount ?? 0))),
+                              (appProvider.totalPayable -
+                                  (appProvider.lastPaymentAmount ?? 0)),
+                            ),
                             subtitle:
                                 'Last Payment: ${appProvider.lastPaymentAmount != null ? currencyFormat.format(appProvider.lastPaymentAmount!) : 'N/A'}',
                             icon: Icons.account_balance_wallet_outlined,
@@ -528,10 +534,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
       ],
     );
 
-    return UniversalPageLayout(
-      slivers: [],
-      child: content,
-    );
+    return UniversalPageLayout(slivers: [], child: content);
   }
 }
 

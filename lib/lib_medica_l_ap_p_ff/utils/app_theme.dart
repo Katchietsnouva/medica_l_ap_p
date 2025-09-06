@@ -73,9 +73,7 @@ class AppTheme {
   static const Color textColor = Color(0xFF343A40);
   static const Color subtleTextColor = Color(0xFF6C757D);
   static const Color surfaceColor_2 = Color.fromARGB(255, 237, 228, 249);
-  // static const Color surfaceColor_3 = Color.fromARGB(255, 214, 230, 238);
-  static const Color surfaceColor_3 = Color.fromARGB(255, 154, 110, 181);
-  // static Color surfaceColor_3 = primaryColorLight.withOpacity(0.9);
+  static const Color surfaceColor_3 = Color.fromARGB(255, 214, 230, 238);
 
   static Color primaryColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark

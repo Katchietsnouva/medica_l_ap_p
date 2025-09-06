@@ -23,8 +23,8 @@ class CoverAmountCard extends StatelessWidget {
     final formatter = NumberFormat.compact(locale: 'en_US');
     final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
           color: isSelected
-              ? theme.colorScheme.primary
-              : AppTheme.reversedTextColor(context),
+              ? theme.colorScheme.surface
+              : theme.colorScheme.primary,
           fontWeight: FontWeight.bold,
         );
     return GestureDetector(
@@ -34,7 +34,6 @@ class CoverAmountCard extends StatelessWidget {
         duration: const Duration(milliseconds: 500),
         // padding: const EdgeInsets.symmetric(vertical: 60),
         child: CustomStyledContainer_2(
-          outlineTypeOnSelection: OutlineTypeOnSelection.outline,
           isSelected: isSelected,
           minHeight: 140,
           child: Center(

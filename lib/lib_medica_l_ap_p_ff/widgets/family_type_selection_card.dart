@@ -26,8 +26,7 @@ class FamilyTypeSelectionCard extends StatelessWidget {
     final textStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           color: isSelected
-              ? theme.colorScheme.primary
-              // ? AppTheme.reversedTextColor(context)
+              ? theme.colorScheme.surface
               : AppTheme.reversedTextColor(context),
           height: 1.4,
         );
@@ -39,7 +38,6 @@ class FamilyTypeSelectionCard extends StatelessWidget {
         duration: const Duration(milliseconds: 500),
         child: CustomStyledContainer_2(
           isSelected: isSelected,
-          outlineTypeOnSelection: OutlineTypeOnSelection.outline,
           minHeight: minHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +45,9 @@ class FamilyTypeSelectionCard extends StatelessWidget {
               Icon(
                 icon,
                 size: 40,
-                color: textStyle?.color,
+                color: isSelected
+                    ? theme.colorScheme.surface
+                    : AppTheme.reversedTextColor(context),
               ),
               const SizedBox(height: 12),
               Stack(

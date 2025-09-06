@@ -36,8 +36,7 @@ class CustomStyledContainer_2 extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
       decoration: BoxDecoration(
         color: outlineTypeOnSelection == OutlineTypeOnSelection.outline
-            // ? Colors.red
-            ? theme.cardTheme.color!
+            ? Colors.red
             // ? Colors.transparent
             : null,
         // : AppTheme.surfaceColor_3,
@@ -55,43 +54,39 @@ class CustomStyledContainer_2 extends StatelessWidget {
                   theme.colorScheme.primary.withAlpha(50),
                 ],
               )
-            // : LinearGradient(
-            //     begin: Alignment.topLeft,
-            //     end: Alignment.bottomRight,
-            //     colors: isSelected
-            //         ? [
-            //             // theme.colorScheme.primary,
-            //             theme.cardTheme.color!,
-
-            //             AppTheme.surfaceColor_3,
-            //             // theme.cardTheme.color!,
-            //             // theme.colorScheme.primary.withAlpha(1),
-            //             // theme.colorScheme.primary.withAlpha(255)
-            //             // AppTheme.surfaceColor_3,
-            //             // theme.cardTheme.color!,
-            //           ]
-            //         : [
-            //             // affects part 1 when not selected
-            //             theme.cardTheme.color!,
-            //             // theme.colorScheme.onSurface.withOpacity(0.9)
-            //             AppTheme.surfaceColor_2,
-            //           ],
-            //   ),
-            : null,
+            : LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: isSelected
+                    ? [
+                        // affected selected wtiht outline when selected, if removed we cownt see any text
+                        // theme.colorScheme.primary,
+                        AppTheme.surfaceColor_3,
+                        // theme.colorScheme.primary.withAlpha(1),
+                        // theme.colorScheme.primary.withAlpha(255)
+                        AppTheme.surfaceColor_3,
+                      ]
+                    : [
+                        // affects part 1 when not selected
+                        theme.cardTheme.color!,
+                        // theme.colorScheme.onSurface.withOpacity(0.9)
+                        AppTheme.surfaceColor_2,
+                      ],
+              ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isSelected
-              ? theme.colorScheme.primary.withAlpha(255)
+              ? theme.colorScheme.primary
               : theme.colorScheme.surface.withAlpha(150),
-          width: isSelected ? 1.5 : 1.0,
+          width: isSelected ? 2.0 : 1.5,
         ),
         boxShadow: [
           BoxShadow(
             color: isSelected
-                ? theme.colorScheme.primary.withOpacity(0.4)
-                : theme.colorScheme.onSurface.withOpacity(0.4),
+                ? theme.colorScheme.primary.withOpacity(0.5)
+                : theme.colorScheme.onSurface.withOpacity(0.5),
             // color: Colors.red,
-            blurRadius: isSelected ? 8 : 4,
+            blurRadius: isSelected ? 12 : 8,
             offset: const Offset(0, 4),
             spreadRadius: isSelected ? 2 : 1,
           ),

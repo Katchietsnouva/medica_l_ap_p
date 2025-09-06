@@ -217,8 +217,12 @@ class ContactInfoService {
       return false;
     }
 
+    // 1. Prepare common variables
     final now = DateTime.now();
-    final planName = provider.selectedPlanType.toString().split('.').last;
+    final planName = provider.selectedPlanType
+        .toString()
+        .split('.')
+        .last; // e.g., "royalPre"
     final coverAmount = provider.selectedCoverAmount ?? 0;
     final premium = provider.selectedPlanAmount ?? 0;
     final principalName = nameController.text.trim();
@@ -227,8 +231,10 @@ class ContactInfoService {
     final endDate =
         DateTime(startDate.year + 1, startDate.month, startDate.day - 1);
 
+    // 2. Build the 'members' list dynamically
     final List<Map<String, dynamic>> members = [];
 
+    // Add the Principal (always present)
     members.add({
       "name": principalName,
       "dob": principalDob,
@@ -238,6 +244,7 @@ class ContactInfoService {
       "product_name": planName,
     });
 
+// Add Spouse if selected
     if (provider.selectedCoverType == CoverType.spouse ||
         provider.selectedCoverType == CoverType.family) {
       if (provider.spouseDob != null && provider.spouseName.isNotEmpty) {
@@ -245,13 +252,14 @@ class ContactInfoService {
           "name": provider.spouseName,
           "dob": DateFormat('yyyy-MM-dd').format(provider.spouseDob!),
           "type": "Spouse",
-          "id_no": "",
+          "id_no": "", // Assuming spouse ID is not collected for now
           "i_p_benefit": "",
           "product_name": planName,
         });
       }
     }
 
+    // Add Children if selected
     if (provider.selectedCoverType == CoverType.family) {
       for (var child in provider.children) {
         if (child.name.isNotEmpty && child.dob != null) {
